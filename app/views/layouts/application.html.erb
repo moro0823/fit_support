@@ -4,28 +4,108 @@
     <title>FitSupport</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+    <script src="https://kit.fontawesome.com/721f0cdc29.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <% if customer_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-    <% elsif admin_user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete, class: "btn btn-outline-secondary" %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "アカウント作成", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-    <% end %>
-    <%= yield %>
+
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+
+      <!--ユーザー、ログイン時のヘッダー-->
+      <% if customer_signed_in? %>
+        <nav class="navbar navbar-expand-lg" style="background-color: #66CDAA;">
+          <a class="navbar-brand p-4" href="/">Fit Support</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-botton:3px;">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item mr-3">
+                  <%= link_to "TopPage", root_path, class: "btn btn-outline-light" %>
+                </li>
+                <li class="nav-item mr-3">
+                  <%= link_to "投稿一覧", root_path, class: "btn btn-outline-light" %>
+                </li>
+                <li class="nav-item mr-3">
+                  <%= link_to "投稿を作成", root_path, class: "btn btn-outline-light" %>
+                </li>
+              </ul>
+              <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0 mr-3" type="submit">Search</button>
+              </form>
+              <span class="navbar-text mr-3">
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-danger" %>
+              </span>
+            </div>
+          </nav>
+
+     <!--管理者ログイン時ヘッダー-->
+        <% elsif admin_user_signed_in? %>
+          <nav class="navbar navbar-expand-lg" style="background-color: #FF8C00;">
+            <a class="navbar-brand p-4" href="/">Fit Support</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item mr-3">
+                    <%= link_to "ユーザー一覧", root_path, class: "btn btn-outline-light" %>
+                  </li>
+                  <li class="nav-item mr-3">
+                    <%= link_to "ユーザー投稿一覧", root_path, class: "btn btn-outline-light" %>
+                  </li>
+                  <li class="nav-item mr-3">
+                    <%= link_to "管理者用投稿作成", root_path, class: "btn btn-outline-light" %>
+                  </li>
+                  <li class="nav-item mr-3">
+                    <%= link_to "管理者用投稿一覧", root_path, class: "btn btn-outline-light" %>
+                  </li>
+                </ul>
+                  <form class="form-inline">
+                　　<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                　　　<button class="btn btn-outline-dark my-2 my-sm-0 mr-3" type="submit">Search</button>
+                  </form>
+                  <span class="navbar-text mr-3">
+                    <%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
+                  </span>
+              </div>
+          </nav>
+        <!--ログアウト時のヘッダー-->
+        <% else %>
+          <nav class="navbar navbar-expand-lg" style="background-color:#FF6347 ;">
+            <a class="navbar-brand p-4" href="/">Fit Support</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item mr-3">
+                    <%= link_to "アプリ紹介", root_path, class: "btn btn-outline-light" %>
+                  </li>
+                  <li class="nav-item mr-3">
+                    <%= link_to "投稿を見てみる", root_path, class: "btn btn-outline-light" %>
+                  </li>
+                </ul>
+                <span class="nav-text mr-3">
+                  <%= link_to "アカウント作成", new_customer_registration_path, class: "btn btn-outline-light"  %>
+                </span>
+                <span class="nav-text">
+                  <%= link_to "アカウント作成済みの方はこちらから", new_customer_session_path, class: "btn btn-outline-light"  %>
+                </span>
+              </div>
+             </nav>
+            <% end %>
+        </header>
+
+      <main class ="mb-auto">
+        <%= render 'layouts/notifications' %>
+        <%= yield %>
+      </main>
   </body>
 </html>
