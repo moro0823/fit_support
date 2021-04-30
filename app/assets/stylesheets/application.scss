@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+
+ // admin側のcss
+
+ .admin_title{
+   background-color:#FFE4C4;
+   display: inline-block;
+ }
+
+
+ .box{
+   text-align:center;
+ }
+
+ .label{
+   color:red;
+   font-size:20px;
+ }
+
+
+// customer側のcss
+
+.title{
+   background-color:#87CEFA;
+   display: inline-block;
+ }
+ 
+ .label{
+   color:red;
+   font-size:20px;
+ }
