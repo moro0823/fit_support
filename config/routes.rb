@@ -1,3 +1,18 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  scope module: :public do
+    root "homes#top"
+  end
+  
+  devise_for :admin_users, controllers: {
+    sessions: 'admin_users/sessions',
+    passwords: 'admin_users/passwords',
+  }
+  
+  devise_for :customers,controllers: {
+    sessions: 'costomers/sessions',
+    passwords: 'costomers/passwords',
+    registrations: 'costomers/registrations'  
+  }
+  
 end
