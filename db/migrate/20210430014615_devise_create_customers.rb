@@ -37,7 +37,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.string :fat_percentage
       t.string :weight
       t.string :profile_image_id
-      t.string :is_show, null: false, default: false
+      t.boolean :is_show,default: false
 
 
       t.timestamps null: false

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="box mt-3 mb-3">
+      <h2 class="admin_title">ユーザー一覧</h2>
+  </div>
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>ユーザー名</th>
+            <th>性別</th>
+            <th>年齢</th>
+            <th>公開ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+          <tr>
+            <td>
+              <%= link_to admin_customer_path(customer) do %>
+                <%= customer.username %>
+              <% end %>
+            </td>
+            <td><%= customer.age %></td>
+            <td><%= customer.sex %></td>
+            <td>
+              <% if customer.is_show  %>
+                <p class="text-success">公開中</p>
+              <% else %>
+                <p class="text-secondary">非公開</p>
+              <% end %>
+            </td>
+           </tr>
+          <% end %>
+        </tbody>
+      </table>
+</div>

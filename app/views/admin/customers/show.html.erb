@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="box mt-3 mb-3">
+      <h2 class="admin_title"><%= @customer.username %>さんのマイページ</h2>
+    </div>
+
+    <div class="box">
+      <div class="card border-success mb-3">
+        <div class="card-header bg-transparent border-success text-success">
+          <div>
+              <%=attachment_image_tag @customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2 rounded-circle"; %>
+            <span class="ml-3"><%= @customer.username %></span>
+          </div>
+        </div>
+
+        <div class="card-body ">
+           <h5 class="card-title">ユーザー情報</h5>
+           <p class="card-text">
+              <p>フォローワー</p>
+              <p>フォロー中</p>
+            <% if @customer.is_show %>
+              <p>---Body Data---</br></p>
+              <p>性別: <%= @customer.sex %></p>
+              <p>年齢: <%= @customer.age%> 才</p>
+              <p>身長: <%= @customer.height %> cm</p>
+              <p>体重: <%= @customer.weight %> kg</p>
+              <p>体脂肪率: <%= @customer.fat_percentage %> %</p>
+            <% end %>
+            <div>BodyDataの公開設定</br>
+              <% if @customer.is_show %>
+                <p class="text-success">公開中</p>
+              <% else %>
+                <p class="text-danger">未公開</p>
+              <% end %>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>

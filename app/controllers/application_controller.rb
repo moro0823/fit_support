@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     if resource_or_scope.is_a?(AdminUser)
         root_path
     else
-        root_path
+        customer_path(current_customer)
     end
   end
 

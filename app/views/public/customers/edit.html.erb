@@ -1,0 +1,73 @@
+<div class ="container">
+  <div class="box mt-3">
+    <h2 class="title">プロフィール編集</h2>
+      <%= form_with model: @customer, local:true do |f| %>
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"プロフィール画像" %><br />
+          </div>
+          <%= attachment_image_tag @customer, :profile_image, :fill,60,60 %>
+          <%= f.attachment_field :profile_image ,placeholder: "プロフィール画像" %>
+        </div>
+
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"ユーザー名" %><br />
+          </div>
+            <%= f.text_field :username, autofocus: true, placeholder: "ユーザー名" %>
+        </div>
+
+        <h3 class="title mt-5">BodyData</h3>
+
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"性別" %><br />
+          </div>
+            <%= f.label :"男性"  %>
+            <%= f.radio_button :sex, :"男性"%>
+            <%= f.label :"女性"  %>
+            <%= f.radio_button :sex, :"女性" %>
+        </div>
+
+        <div class="field mt-3">
+          <div class="label-name">
+            <%= f.label :"年齢(任意)" %><br />
+          </div>
+            <%= f.text_field :age,placeholder: "年齢",size: "10x20" %>  才
+        </div>
+
+        <div class="field mt-3">
+          <div class="label-name">
+            <%= f.label :"身長(任意)" %><br />
+          </div>
+            <%= f.text_field :height,placeholder: "身長" ,size: "10x20"%>  cm
+        </div>
+
+        <div class="field mt-3">
+          <div class="label-name">
+            <%= f.label :"体重（任意）" %><br />
+          </div>
+            <%= f.text_field :weight,placeholder: "体重",size: "10x20" %>  kg
+        </div>
+
+        <div class="field mt-3">
+          <div class="label-name">
+            <%= f.label :"体脂肪率（任意）" %><br />
+          </div>
+            <%= f.text_field :fat_percentage,placeholder: "体脂肪率",size: "10x20" %>  %
+        </div>
+
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"BodyDataの公開設定" %><br />
+          </div>
+            <%= f.radio_button :is_show, false %>
+              <%= f.label :is_show, "未公開", {value: :false, style: "display: inline-block;"} %>
+            <%= f.radio_button :is_show, :true %>
+               <%= f.label :is_show, "公開中", {value: :true, style: "display: inline-block;"} %>
+        </div>
+
+        <%= f.submit "プロフィールを変更する",class: "btn btn-warning" %>
+        <% end %>
+  </div>
+</div>
