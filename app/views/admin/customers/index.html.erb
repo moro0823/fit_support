@@ -1,0 +1,6 @@
+<% @customer.each do |customer| %>
+
+<%=link_to customer.username, admin_customer_path(customer.id)%>
+<%=customer.email %>
+
+<% end %>

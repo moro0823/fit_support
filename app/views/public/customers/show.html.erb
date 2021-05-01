@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="box mt-3 mb-3">
+      <h2 class="title"><%= @customer.username %>さんのマイページ</h2>
+    </div>
+
+  <div class="row">
+    <div class="col-3">
+
+      <div class="card border-success mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-transparent border-success text-success">
+          <div>
+              <%=attachment_image_tag @customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2 rounded-circle"; %>
+            <span class="ml-3"><%= @customer.username %></span>
+          </div>
+          <div class="button">フォローボタン</div>
+        </div>
+
+        <div class="card-body ">
+           <h5 class="card-title">ユーザー情報</h5>
+           <p class="card-text">
+              <p>フォローワー</p>
+              <p>フォロー中</p>
+            <% if @customer == current_customer || @customer.is_show %>
+            <!--ログイン中のユーザーのマイページの時または公開中に設定しているユーザーのマイページはBodydataを表示する-->
+              <p>---Body Data---</br></p>
+              <p>性別: <%= @customer.sex %></p>
+              <p>年齢: <%= @customer.age%> 才</p>
+              <p>身長: <%= @customer.height %> cm</p>
+              <p>体重: <%= @customer.weight %> kg</p>
+              <p>体脂肪率: <%= @customer.fat_percentage %> %</p>
+            <% end %>
+            <div>BodyDataの公開設定</br>
+              <% if @customer.is_show %>
+                <p class="text-success">公開中</p>
+              <% else %>
+                <p class="text-danger">未公開</p>
+              <% end %>
+            </div>
+
+            <% if @customer.id == current_customer.id %>
+              <%= link_to "ユーザー情報編集", edit_customer_path(current_customer),class: "btn btn-info" %>
+            <% end %>
+         </div>
+       <div class="card-footer bg-transparent border-success text-success">メッセージを送る</div>
+      </div>
+    </div>
+
+    <div class="col-8 offset-1">ユーザー投稿一覧</div>
+
+  </div>
+</div>
+
