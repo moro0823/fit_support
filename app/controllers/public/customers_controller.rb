@@ -1,4 +1,6 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
+  # ログインしないと自分のマイページや他の人のマイページは見れないように
 
   def show
     @customer = Customer.find(params[:id])
