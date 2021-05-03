@@ -12,19 +12,19 @@ RSpec.describe Public::CustomersController, type: :controller do
         expect(current_path).to eq '/'
       end
 
-      it 'Log inリンクの内容が正しい' do
+      it 'アカウント作成済みの方はこちらの内容が正しい' do
         log_in_link = find_all('a')[4].native.inner_text
         expect(page).to have_link log_in_link, href: new_customer_session_path
       end
 
-      it 'Sign Upリンクの内容が正しい' do
+      it 'アカウント作成のリンクの内容が正しい' do
         sign_up_link = find_all('a')[3]
         expect(page).to have_link sign_up_link.native.inner_text, href: new_customer_registration_path
       end
     end
   end
 
-  describe 'アバウト画面のテスト' do
+  describe 'アプリ紹介画面のテスト' do
     before do
       visit '/home/about'
     end
@@ -129,33 +129,39 @@ RSpec.describe Public::CustomersController, type: :controller do
 
     before do
       visit new_customer_session_path
-      fill_in 'customer[email]', with: customer.email
-      fill_in 'customer[password]', with: customer.password
-      click_button 'ログイン'
+        fill_in 'customer[email]', with: customer.email
+        fill_in 'customer[password]', with: customer.password
+        click_button 'ログイン'
     end
 
     context 'ヘッダーの表示を確認' do
-
-      it '左上から1番目のリンクが「Toppage」である' do
-        home_link = find_all('a')[1].native.inner_text
-        expect(home_link).to match(/home/i)
-       end
+      it '左上から1番目のリンクが「TopPage」である' do
+        top_link = find_all('a')[1].native.inner_text
+        expect(top_link).to match("TopPage")
+      end
 
       it '左上から2番目のリンクが「マイページ」である' do
-        customers_link = find_all('a')[2].native.inner_text
-        expect(customers_link).to match(/customers/i)
-      end
-      it 'Booksリンクが表示される: 左上から3番目のリンクが「投稿一覧」である' do
+        mypage_link = find_all('a')[2].native.inner_text
+        expect(mypage_link).to match("マイページ")
       end
 
-      it 'Booksリンクが表示される: 左上から4番目のリンクが「投稿一覧」である' do
+      it '左上から3番目のリンクが「投稿一覧」である' do
+        posts_link = find_all('a')[3].native.inner_text
+        expect(posts_link).to match("投稿一覧")
       end
 
-      it '左上から5番目のリンクが「logout」である' do
-        logout_link = find_all('a')[6].native.inner_text
-        expect(logout_link).to match(/logout/i)
+      it '左上から4番目のリンクが「投稿を作成」である' do
+        post_new_link = find_all('a')[4].native.inner_text
+        expect(post_new_link).to match("投稿を作成")
+      end
+
+      it '左上から5番目のリンクが「ログアウト」である' do
+        logout_link = find_all('a')[5].native.inner_text
+        expect(logout_link).to match("ログアウト")
       end
     end
   end
+
+
 
 end #一番上のend
