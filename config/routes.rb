@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     root "homes#top"
     get 'home/about' => "homes#about"
     resources :customers, only: [:edit, :update, :show]
+    resources :posts
   end
 
   namespace :admin do

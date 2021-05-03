@@ -7,4 +7,5 @@ class Customer < ApplicationRecord
   attachment :profile_image
   enum sex: { "男性": 0, "女性": 1}
   validates :username, presence: true
+  has_many :posts, dependent: :destroy
 end

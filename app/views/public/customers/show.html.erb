@@ -45,8 +45,31 @@
       </div>
     </div>
 
-    <div class="col-8 offset-1">ユーザー投稿一覧</div>
+    <div class="col-8 offset-1">
+          <% @posts.each do |posts| %>
+        <div>
+          <div class="card border-success mb-3">
+            <div class="card-header bg-transparent border-success">Day：<%= posts.day %></div>
+              <div class="card-body">
+                <h5 class="card-title text-success"><%= posts.status %></h5>
+                  <p class="card-text"><%= simple_format posts.body %></p>
+                  <div>
+                    <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
+                  </div>
+              </div>
+            <div class="card-footer bg-transparent border-success">
+              <%= posts.updated_at.strftime("%Y-%m-%d %H:%M") %>
+              <span>いいね数</span>
+              <span>コメント数</span>
+              <%= link_to "編集",edit_post_path(posts.id), class:"btn btn-info"  %>
+              <%= link_to "削除", post_path(posts.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger"  %>
 
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
