@@ -1,2 +1,31 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+  <div class ="container">
+    <div class="box mt-3">
+      <h2 class="title mt-3">投稿詳細</h2>
+        <div class="d-flex justify-content-center">
+          <div class="card border-success mt-3 mb-5" style="width: 36rem;">
+            <div class="card-header bg-transparent border-success">
+              <%= attachment_image_tag @post.customer, :profile_image, :fill, 60, 60, fallback: "no_image.png",size: "60x60",class:"mr-4 mt-2 rounded-circle";  %>
+              <%= link_to @post.customer.username, customer_path(@post.customer.id)  %>
+            </div>
+              <div class="card-body">
+                <% if @post.status == "トレーニングメニュー" %>
+                  <h5 class="card-title text-danger"><%= @post.status %></h5>
+                <% elsif @post.status == "食事" %>
+                  <h5 class="card-title text-info"><%= @post.status %></h5>
+                <% else @post.status == "知識" %>
+                  <h5 class="card-title text-primary"><%= @post.status %></h5>
+                <% end %>
+                  <p class="card-text"><%= simple_format @post.body %></p>
+                  <div>
+                    <p><%= attachment_image_tag @post,:image, :fill,60,60 %></p>
+                  </div>
+              </div>
+            <div class="card-footer bg-transparent border-success">
+              Day：<%=@post.day %>
+              <span>いいね数</span>
+              <span>コメント数</span>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>

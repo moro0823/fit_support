@@ -1,2 +1,34 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+  <div class ="container">
+    <div class="box mt-3">
+      <h2 class="title mt-3">投稿一覧</h2>
+          <% @posts.each do |posts| %>
+        <div class="d-flex justify-content-center">
+          <div class="card border-success mt-3 mb-5" style="width: 36rem;">
+            <div class="card-header bg-transparent border-success">
+              <%= attachment_image_tag posts.customer, :profile_image, :fill, 60, 60, fallback: "no_image.png",size: "60x60",class:"mr-4 mt-2 rounded-circle";  %>
+              <%= link_to posts.customer.username, customer_path(posts.customer.id)  %>
+            </div>
+              <div class="card-body">
+                <% if posts.status == "トレーニングメニュー" %>
+                  <h5 class="card-title text-danger"><%= posts.status %></h5>
+                <% elsif posts.status == "食事" %>
+                  <h5 class="card-title text-info"><%= posts.status %></h5>
+                <% else posts.status == "知識" %>
+                  <h5 class="card-title text-primary"><%= posts.status %></h5>
+                <% end %>
+                  <p class="card-text"><%= simple_format posts.body %></p>
+                  <div>
+                    <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
+                  </div>
+              </div>
+            <div class="card-footer bg-transparent border-success">
+              Day：<%= link_to posts.day,post_path(posts.id),class:"text-warning" %>
+              <span>いいね数</span>
+              <span>コメント数</span>
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>

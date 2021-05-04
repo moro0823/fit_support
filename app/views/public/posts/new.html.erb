@@ -7,7 +7,7 @@
         <%= f.label :"投稿ジャンルの選択（必須）" %>
       </div>
         <%= f.label :"トレーニングメニュー"  %>
-        <%= f.radio_button :status, :"トレーニングメニュー"%></br>
+        <%= f.radio_button :status, :"トレーニングメニュー",required: true %></br>
         <%= f.label :"食事"  %>
         <%= f.radio_button :status, :"食事" %></br>
         <%= f.label :"情報の共有"  %>
@@ -16,16 +16,16 @@
 
     <div class="field mt-3">
       <div class="label">
-        <%= f.label :"日にち（必須）" %>
+        <%= f.label :"日にち（必須）"  %>
       </div>
-        <%= f.date_field :day%>
+        <%= f.date_field :day,required: true%>
     </div>
 
     <div class="field mt-3">
       <div class="label">
         <%= f.label :"記入欄(必須)" %>
       </div>
-        <%= f.text_area :body,size:"60x15"%>
+        <%= f.text_area :body,required: true,size:"60x15"%>
     </div>
 
     <div class="field mt-3">

@@ -1,6 +1,8 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_customer!, except: [:index]
+  # ログインしなくても投稿一覧は見れるように設定
   def index
-    
+    @posts = Post.all
   end
 
   def new
@@ -10,8 +12,13 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
-    @post.save
-    redirect_to customer_path(current_customer)
+    if @post.save
+      redirect_to customer_path(current_customer), notice: "投稿しました"
+    else
+      flash.now[:alert] = '必須項目が入力されてない為、投稿に失敗しました'
+      render :new
+    end
+
   end
 
   def show
@@ -20,6 +27,11 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.customer == current_customer
+      render "edit"
+    else
+      redirect_to posts_path
+    end
   end
 
   def update
