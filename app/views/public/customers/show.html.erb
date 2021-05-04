@@ -64,16 +64,15 @@
                   </div>
               </div>
             <div class="card-footer bg-transparent border-success">
-              <%= posts.updated_at.strftime("%Y-%m-%d %H:%M") %>
+              <%= posts.updated_at.strftime("%Y/%m/%d %H:%M") %>
               <span>いいね数</span>
-              <span>コメント数</span>
+              <span>コメント <%= link_to posts.post_comments.count,post_path(posts.id) %></span>
               <% if @customer.id == current_customer.id %>
                 <%= link_to "編集",edit_post_path(posts.id), class:"btn btn-info"  %>
                 <%= link_to "削除", post_path(posts.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger"  %>
             　<% end %>
             </div>
           </div>
-
         </div>
       <% end %>
     </div>

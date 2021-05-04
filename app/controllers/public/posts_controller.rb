@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_customer!, except: [:index]
   # ログインしなくても投稿一覧は見れるように設定
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def new
@@ -23,6 +23,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
   end
 
   def edit
