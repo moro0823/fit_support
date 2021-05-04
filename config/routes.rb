@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get 'home/about' => "homes#about"
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     resources :customers, only: [:edit, :update, :show]
   end

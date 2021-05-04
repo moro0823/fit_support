@@ -23,7 +23,21 @@
               </div>
             <div class="card-footer bg-transparent border-success">
               Day：<%= link_to posts.day,post_path(posts.id),class:"text-warning" %>
-              <span>いいね数</span>
+              <span>
+                <% if posts.favorited_by?(current_customer) %>
+                <p>
+                  <%= link_to post_favorites_path(posts), method: :delete do %>
+                  ♥<%= posts.favorites.count %> いいね
+                  <% end %>
+                </p>
+                <% else %>
+                <p>
+                  <%= link_to post_favorites_path(posts), method: :post do %>
+                  ♡<%= posts.favorites.count %> いいね
+                <% end %>
+                </p>
+                <% end %>
+              </span>
               <span>コメント <%=link_to posts.post_comments.count, post_path(posts.id) %></span>
             </div>
           </div>

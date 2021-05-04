@@ -23,7 +23,9 @@
               </div>
             <div class="card-footer bg-transparent border-success">
               Post Day : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
-              <span>いいね数</span>
+              <span>
+                いいね <%= @post.favorites.count %>
+              </span>
               <span>
                 コメント <%= @post.post_comments.count %>
               </span>
