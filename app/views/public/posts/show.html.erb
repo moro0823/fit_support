@@ -34,10 +34,10 @@
         <div>
           <div class="new-comment">
             <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-              <%= f.text_area :comment,placeholder: "コメントをここに",size:"50x5" %>
-          </div>
-            <%= f.submit "コメントする", class:"btn btn-primary mt-3" %>
+              <p><%= f.text_area :comment,placeholder: "コメントをここに",size:"50x5" %></p>
+              <p><%= f.submit "コメントする", class:"btn btn-primary mt-3" %></p>
             <% end %>
+          </div>
         </div>
 
     <% @post.post_comments.each do |post_comment| %>

@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   scope module: :public do
     root "homes#top"
     get 'home/about' => "homes#about"
-    resources :customers, only: [:edit, :update, :show]
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end
+    resources :customers, only: [:edit, :update, :show]
   end
 
   namespace :admin do
