@@ -12,6 +12,7 @@
               <%=attachment_image_tag @customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2 rounded-circle"; %>
             <span class="ml-3"><%= @customer.username %></span>
           </div>
+          <div class="introduction mt-2" style="color:black;"><%=simple_format @customer.introduction %></div>
           <div class="button">フォローボタン</div>
         </div>
 
@@ -41,39 +42,50 @@
               <%= link_to "ユーザー情報編集", edit_customer_path(current_customer),class:"btn btn-info" %>
             <% end %>
          </div>
-       <div class="card-footer bg-transparent border-success text-success">メッセージを送る</div>
+       <div class="card-footer bg-transparent border-success text-success">
+          <% if @customer.id == current_customer.id %>
+          <p>
+            <%= link_to "いいねした投稿一覧", customer_favorite_path,class:"btn btn-outline-danger" %>
+          </p>
+          <% else %>
+            <p>メッセージを送る</p>
+          <% end %>
+      </div>
       </div>
     </div>
+
+  <!-----------------------------------ここまでサイドバー-------------------------------------------------->
 
     <div class="col-md-8 col-sm-8 col-xs-9 offset-1">
           <% @posts.each do |posts| %>
         <div>
           <div class="card border-success mb-3">
-            <div class="card-header bg-transparent border-success">Day：<%= link_to posts.day,post_path(posts.id),class:"text-warning" %></div>
+            <div class="card-header bg-transparent border-success">
+              <% if posts.status == "トレーニングメニュー" %>
+                <h5 class="text-danger"><%= posts.status %></h5>
+              <% elsif posts.status == "食事" %>
+                <h5 class="text-info"><%= posts.status %></h5>
+              <% else posts.status == "知識" %>
+                <h5 class="text-primary"><%= posts.status %></h5>
+              <% end %>
+            </div>
               <div class="card-body">
-                <% if posts.status == "トレーニングメニュー" %>
-                  <h5 class="card-title text-danger"><%= posts.status %></h5>
-                <% elsif posts.status == "食事" %>
-                  <h5 class="card-title text-info"><%= posts.status %></h5>
-                <% else posts.status == "知識" %>
-                  <h5 class="card-title text-primary"><%= posts.status %></h5>
-                <% end %>
+                <h5 class="card-title"><%= link_to posts.title,post_path(posts.id),class:"text-warning" %></h5>
                   <p class="card-text"><%= simple_format posts.body %></p>
                   <div>
                     <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
                   </div>
               </div>
             <div class="card-footer bg-transparent border-success">
-              <%= posts.updated_at.strftime("%Y-%m-%d %H:%M") %>
-              <span>いいね数</span>
-              <span>コメント数</span>
+              <%= posts.updated_at.strftime("%Y/%m/%d %H:%M") %>
+              <span class="ml-3 mr-3"><i class="fas fa-heart mr-1" style="color:red;"></i><%= link_to posts.favorites.count,from_favorite_path(posts) %></span>
+              <span class="mr-3"><i class="far fa-comment-dots mr-1"></i><%= link_to posts.post_comments.count,post_path(posts.id) %></span>
               <% if @customer.id == current_customer.id %>
-                <%= link_to "編集",edit_post_path(posts.id), class:"btn btn-info"  %>
+              <span class="mr-2"><%= link_to "編集",edit_post_path(posts.id), class:"btn btn-info"  %></span>
                 <%= link_to "削除", post_path(posts.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger"  %>
             　<% end %>
             </div>
           </div>
-
         </div>
       <% end %>
     </div>

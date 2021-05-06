@@ -16,9 +16,9 @@
 
     <div class="field mt-3">
       <div class="label">
-        <%= f.label :"日にち（必須）" %>
+        <%= f.label :"タイトル（必須）"  %>
       </div>
-        <%= f.date_field :day%>
+        <%= f.text_field :title,required: true,size:"60x15" %>
     </div>
 
     <div class="field mt-3">

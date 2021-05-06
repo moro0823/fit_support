@@ -1,0 +1,47 @@
+  <div class="container">
+    <div class="box mt-3">
+      <h2 class="title mt-3">いいねした投稿一覧</h2>
+      <h3 class="mt-3" style="color:red;">いいねをすることで参考になった投稿をすぐ見返すことができます！</h3>
+      <h4 class="mt-3">自分投稿もいいねしておくことでお気に入りの投稿もすぐにみることも可能です！</h4>
+      <% if @customer.favorited_posts.count == 0 %>
+        <div class="mt-5"><%= link_to "投稿一覧からお気に入り投稿を探す",posts_path, class:"btn btn-outline-info" %></div>
+        <h4 class="mt-5">参考画像</h4>
+         <img class="favorite-image" src="/assets/favorite_sample.png" style="width:800px; height:600px;">
+
+        <% else %>
+        <% @customer.favorited_posts.each do |posts| %>
+        <div class="d-flex justify-content-center">
+          <div class="card border-success mt-3 mb-5" style="width: 36rem;">
+            <div class="card-header bg-transparent border-success">
+              <%= attachment_image_tag posts.customer, :profile_image, :fill, 60, 60, fallback: "no_image.png",size: "60x60",class:"mr-4 mt-2 rounded-circle";  %>
+              <%= link_to posts.customer.username, customer_path(posts.customer.id)  %>
+            </div>
+              <div class="card-body">
+                <h4 class ="card-title"><%= link_to posts.title,post_path(posts.id),class:"text-warning" %></h4>
+                  <p class="card-text">
+                    <% if posts.status == "トレーニングメニュー" %>
+                      <h5 class="text-danger"><%= posts.status %></h5>
+                    <% elsif posts.status == "食事" %>
+                      <h5 class="text-info"><%= posts.status %></h5>
+                    <% else posts.status == "知識" %>
+                      <h5 class="text-primary"><%= posts.status %></h5>
+                    <% end %>
+                  </p>
+                  <p class="card-text"><%= simple_format posts.body %></p>
+                  <div>
+                    <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
+                  </div>
+              </div>
+            <div class="card-footer bg-transparent border-success">
+              Post Day : <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %>
+              <%= link_to post_favorites_path(posts), method: :delete do %>
+              <p class="mt-2">いいねを取り消す</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+       <% end %>
+       <% end %>
+      </div>
+    </div>
+

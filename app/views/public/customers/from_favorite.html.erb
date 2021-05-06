@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="box mt-3 mb-3">
+      <h2 class="title">いいねしたユーザー一覧</h2>
+  </div>
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>ユーザー名</th>
+            <th>BodyData公開設定</th>
+            <th>フォローボタン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post.favorited_customers.each do |customer| %>
+          <tr>
+            <td>
+              <%= attachment_image_tag customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2 rounded-circle"; %>
+              <%= link_to customer.username,customer_path(customer) %>
+            </td>
+            <td>
+              <% if customer.is_show  %>
+                <p class="text-success">公開中</p>
+              <% else %>
+                <p class="text-secondary">非公開</p>
+              <% end %>
+            </td>
+            <td>フォローボタン</td>
+           </tr>
+          <% end %>
+        </tbody>
+      </table>
+</div>
