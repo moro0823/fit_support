@@ -33,9 +33,9 @@
                   </div>
               </div>
             <div class="card-footer bg-transparent border-success">
-              Post Day : <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %>
-              <%= link_to post_favorites_path(posts), method: :delete do %>
-              <p class="mt-2">いいねを取り消す</p>
+              <p>Post Day : <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+              <%= link_to post_customer_favorite_path(posts), method: :delete do %>
+                <p class="btn btn-outline-danger mt-2">いいねを取り消す</p>
               <% end %>
             </div>
           </div>

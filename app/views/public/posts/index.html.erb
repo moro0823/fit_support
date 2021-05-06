@@ -24,22 +24,10 @@
               </div>
             <div class="card-footer bg-transparent border-success">
               <div>
-                <% if current_customer.already_favorited?(posts) %>
-                <span>
-                 <%= link_to  post_favorites_path(posts), method: :delete do %>
-                  <i class="fas fa-heart" style="color:red;"></i>
-                  <%= posts.favorites.count %>
-                  <% end %>
+                <span id="posts_<%= posts.id %>">
+                  <%= render "public/favorites/favorite", posts: posts %>
                 </span>
-                <% else %>
-                <span>
-                  <%= link_to post_favorites_path(posts), method: :post do %>
-                    <i class="far fa-heart" style="color:silver;"></i>
-                   <%= posts.favorites.count %>
-                  <% end %>
-                <% end %>
-                </span>
-              <span class="ml-3"><%= link_to posts.post_comments.count, post_path(posts.id), class:"far fa-comment-dots"%></span>
+                <span class="ml-3"><%= link_to posts.post_comments.count, post_path(posts.id), class:"far fa-comment-dots"%></span>
              </div>
             </div>
           </div>

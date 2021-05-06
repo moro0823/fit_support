@@ -26,22 +26,9 @@
             <div class="card-footer bg-transparent border-success">
               <p class="mt-2 mb-3">Post Day : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
               <div>
-                <% if current_customer.already_favorited?(@post) %>
-                <span>
-                 <%= link_to  post_favorites_path(@post), method: :delete do %>
-                   <i class="fas fa-heart" style="color:red;"></i>
-                 <%= @post.favorites.count %>
-                  <% end %>
+                <span id="posts_<%= @post.id %>">
+                  <%= render "public/favorites/favorite", posts: @post %>
                 </span>
-                <% else %>
-                <span>
-                <%= link_to post_favorites_path(@post), method: :post do %>
-                  <i class="far fa-heart" style="color:silver;"></i>
-                <%= @post.favorites.count %>
-                <% end %>
-                </span>
-                <% end %>
-                 <span>
                   <i class="far fa-comment-dots ml-3"></i>
                   <%= @post.post_comments.count %>
                 </span>
