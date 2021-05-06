@@ -16,29 +16,31 @@
                 <% else posts.status == "知識" %>
                   <h5 class="card-title text-primary"><%= posts.status %></h5>
                 <% end %>
+                  <h4 class="card-text"><%= link_to posts.title,post_path(posts.id),class:"text-warning" %></h4>
                   <p class="card-text"><%= simple_format posts.body %></p>
                   <div>
                     <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
                   </div>
               </div>
             <div class="card-footer bg-transparent border-success">
-              Day：<%= link_to posts.day,post_path(posts.id),class:"text-warning" %>
-              <span>
-                <% if posts.favorited_by?(current_customer) %>
-                <p>
-                  <%= link_to post_favorites_path(posts), method: :delete do %>
-                  ♥<%= posts.favorites.count %> いいね
+              <div>
+                <% if current_customer.already_favorited?(posts) %>
+                <span>
+                 <%= link_to  post_favorites_path(posts), method: :delete do %>
+                  <i class="fas fa-heart" style="color:red;"></i>
+                  <%= posts.favorites.count %>
                   <% end %>
-                </p>
+                </span>
                 <% else %>
-                <p>
+                <span>
                   <%= link_to post_favorites_path(posts), method: :post do %>
-                  ♡<%= posts.favorites.count %> いいね
+                    <i class="far fa-heart" style="color:silver;"></i>
+                   <%= posts.favorites.count %>
+                  <% end %>
                 <% end %>
-                </p>
-                <% end %>
-              </span>
-              <span>コメント <%=link_to posts.post_comments.count, post_path(posts.id) %></span>
+                </span>
+              <span class="ml-3"><%= link_to posts.post_comments.count, post_path(posts.id), class:"far fa-comment-dots"%></span>
+             </div>
             </div>
           </div>
         </div>

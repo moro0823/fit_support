@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
   # ログインしなくても投稿一覧は見れるように設定
   def index
     @posts = Post.all.order(created_at: :desc)
+    @favorite = Favorite.new
   end
 
   def new
@@ -24,6 +25,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+    @favorite = Favorite.new
   end
 
   def edit
@@ -58,7 +60,7 @@ class Public::PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:customer_id, :day, :image, :body, :status)
+      params.require(:post).permit(:customer_id, :title, :image, :body, :status, :day)
     end
 
 end

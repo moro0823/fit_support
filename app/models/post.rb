@@ -5,12 +5,10 @@ class Post < ApplicationRecord
 
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorited_customers, through: :favorites, source: :customer
 
-  def favorited_by?(customer)
-    favorites.where(customer_id: customer.id).exists?
-  end
 
-  validates :day, presence: true
+  validates :title, presence: true
   validates :body, presence: true
   validates :status, inclusion:{in: ["トレーニングメニュー", "食事","情報の共有"]}
 end

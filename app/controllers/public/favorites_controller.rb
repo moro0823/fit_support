@@ -1,16 +1,19 @@
 class Public::FavoritesController < ApplicationController
   def create
-    @post = Post.find(params[:post_id])
-    favorite = current_customer.favorites.new(post_id: @post.id)
-    favorite.save
-    redirect_to posts_path
+    @favorite = current_customer.favorites.new(post_id: params[:post_id])
+    @favorite.save
+    redirect_back(fallback_location: root_path)
+    #直前のページに戻るように
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
-    favorite = current_customer.favorites.find_by(post_id: @post.id)
-    favorite.destroy
-    redirect_to posts_path
+    @favorite = Favorite.find_by(post_id: params[:post_id], customer_id: current_customer.id)
+    @favorite.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
+  def index
+    @favorites = current_customer.favorites.all
   end
 
 end

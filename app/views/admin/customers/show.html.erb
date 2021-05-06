@@ -15,8 +15,11 @@
         <div class="card-body ">
            <h5 class="card-title">ユーザー情報</h5>
            <p class="card-text">
-              <p>フォローワー</p>
-              <p>フォロー中</p>
+             <p>自己紹介</br>
+               <%= @customer.introduction %>
+             </p>
+           <p class="card-text">
+              <p>投稿数 <%= @customer.posts.count %> 件</p>
             <% if @customer.is_show %>
               <p>---Body Data---</br></p>
               <p>性別: <%= @customer.sex %></p>

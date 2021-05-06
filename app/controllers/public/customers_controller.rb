@@ -7,6 +7,14 @@ class Public::CustomersController < ApplicationController
     @posts = @customer.posts.all.order(created_at: :desc)
   end
 
+  def favorite
+    @customer = current_customer
+  end
+
+  def from_favorite
+    @post = Post.find(params[:id])
+  end
+
   def edit
     @customer = current_customer
   end
@@ -25,7 +33,7 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:username, :email, :profile_image, :age, :height, :weight, :fat_percentage,:sex, :is_show)
+    params.require(:customer).permit(:username, :email, :profile_image, :age, :height, :weight, :fat_percentage,:sex, :is_show ,:introduction)
   end
 
 end

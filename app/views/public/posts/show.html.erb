@@ -8,30 +8,49 @@
               <%= link_to @post.customer.username, customer_path(@post.customer.id)  %>
             </div>
               <div class="card-body">
-                <% if @post.status == "トレーニングメニュー" %>
-                  <h5 class="card-title text-danger"><%= @post.status %></h5>
-                <% elsif @post.status == "食事" %>
-                  <h5 class="card-title text-info"><%= @post.status %></h5>
-                <% else @post.status == "知識" %>
-                  <h5 class="card-title text-primary"><%= @post.status %></h5>
-                <% end %>
-                  <p class="card-text">Day：<%=@post.day %></p>
+                <h4 class ="card-title"><%=@post.title %></h4>
+                  <p class="card-text">
+                    <% if @post.status == "トレーニングメニュー" %>
+                      <h5 class="text-danger"><%= @post.status %></h5>
+                    <% elsif @post.status == "食事" %>
+                      <h5 class="text-info"><%= @post.status %></h5>
+                    <% else @post.status == "知識" %>
+                      <h5 class="text-primary"><%= @post.status %></h5>
+                    <% end %>
+                  </p>
                   <p class="card-text"><%= simple_format @post.body %></p>
                   <div>
                     <p><%= attachment_image_tag @post,:image, :fill,60,60 %></p>
                   </div>
               </div>
             <div class="card-footer bg-transparent border-success">
-              Post Day : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
-              <span>
-                いいね <%= @post.favorites.count %>
-              </span>
-              <span>
-                コメント <%= @post.post_comments.count %>
-              </span>
+              <p class="mt-2 mb-3">Post Day : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+              <div>
+                <% if current_customer.already_favorited?(@post) %>
+                <span>
+                 <%= link_to  post_favorites_path(@post), method: :delete do %>
+                   <i class="fas fa-heart" style="color:red;"></i>
+                 <%= @post.favorites.count %>
+                  <% end %>
+                </span>
+                <% else %>
+                <span>
+                <%= link_to post_favorites_path(@post), method: :post do %>
+                  <i class="far fa-heart" style="color:silver;"></i>
+                <%= @post.favorites.count %>
+                <% end %>
+                </span>
+                <% end %>
+                 <span>
+                  <i class="far fa-comment-dots ml-3"></i>
+                  <%= @post.post_comments.count %>
+                </span>
+              </div>
+                <p class="mt-2 mb-3"><%= link_to "いいねしたユーザー一覧を表示", from_favorite_path(@post),class:"btn btn-outline-danger" %></p>
             </div>
           </div>
         </div>
+
 
         <div>
           <div class="new-comment">
@@ -63,3 +82,4 @@
     <% end %>
     </div>
   </div>
+

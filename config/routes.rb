@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root "homes#top"
     get 'home/about' => "homes#about"
+    get 'customer/favorite' => "customers#favorite"
+    get 'customer/from_favorite/:id' => "customers#from_favorite", as: :from_favorite
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
