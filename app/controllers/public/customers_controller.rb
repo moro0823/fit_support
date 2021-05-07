@@ -4,11 +4,11 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts.all.order(created_at: :desc)
+    @posts = @customer.posts.all.page(params[:page]).reverse_order
   end
 
   def favorite
-    @customer = current_customer
+    @favorite_posts = current_customer.favorited_posts.page(params[:page])
   end
 
   def from_favorite

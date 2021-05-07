@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_customer!, except: [:index]
   # ログインしなくても投稿一覧は見れるように設定
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.page(params[:page]).reverse_order
     @favorite = Favorite.new
   end
 
