@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root "homes#top"
     get 'home/about' => "homes#about"
+    post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
     get 'customer/favorite' => "customers#favorite"
     get 'customer/from_favorite/:id' => "customers#from_favorite", as: :from_favorite
     resources :posts do
