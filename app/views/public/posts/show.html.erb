@@ -8,8 +8,7 @@
               <%= link_to @post.customer.username, customer_path(@post.customer.id)  %>
             </div>
               <div class="card-body">
-                <h4 class ="card-title"><%=@post.title %></h4>
-                  <p class="card-text">
+                  <p class="card-title">
                     <% if @post.status == "トレーニングメニュー" %>
                       <h5 class="text-danger"><%= @post.status %></h5>
                     <% elsif @post.status == "食事" %>
@@ -18,6 +17,7 @@
                       <h5 class="text-primary"><%= @post.status %></h5>
                     <% end %>
                   </p>
+                  <h4 class ="card-text-title"><%=@post.title %></h4>
                   <p class="card-text"><%= simple_format @post.body %></p>
                   <div>
                     <p><%= attachment_image_tag @post,:image, :fill,60,60 %></p>

@@ -1,9 +1,21 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_customer!, except: [:index]
+  before_action :authenticate_customer!, except: [:index, :training, :eat, :info]
   # ログインしなくても投稿一覧は見れるように設定
   def index
     @posts = Post.all.page(params[:page]).reverse_order
     @favorite = Favorite.new
+  end
+
+  def training
+    @posts = Post.where(status: "トレーニングメニュー").page(params[:page]).reverse_order
+  end
+
+  def eat
+    @posts = Post.where(status: "食事").page(params[:page]).reverse_order
+  end
+
+  def info
+    @posts = Post.where(status: "情報の共有").page(params[:page]).reverse_order
   end
 
   def new
