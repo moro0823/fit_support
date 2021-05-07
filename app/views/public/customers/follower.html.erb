@@ -1,6 +1,7 @@
 <div class="container">
   <div class="box mt-3 mb-3">
-      <h2 class="title">いいねしたユーザー一覧</h2>
+      <h2 class="title">フォローしたユーザー一覧</h2>
+      <h3 class="mt-3 mb-3"><%= link_to "マイページに戻る", customer_path(@customer),class:"btn btn-outline-info"  %></h3>
   </div>
       <table class="table">
         <thead class="thead-light">
@@ -11,7 +12,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @post.favorited_customers.each do |customer| %>
+          <% @customer.following_customer.where.not(id: current_customer.id).each do |customer| %>
           <tr>
             <td>
               <%= attachment_image_tag customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2 rounded-circle"; %>
@@ -27,9 +28,9 @@
             <td>
               <% if customer.id != current_customer.id %>
                 <% if current_customer.following?(customer) %>
-                  <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+                  <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST,class:"btn btn-outline-danger" %>
                 <% else %>
-                  <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+                  <%= link_to 'フォローする', follow_path(customer.id), method: :POST,class:"btn btn-outline-success" %>
                 <% end %>
               <% end %>
             </td>
@@ -37,4 +38,4 @@
           <% end %>
         </tbody>
       </table>
-</div>
+  </div>

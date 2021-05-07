@@ -20,12 +20,18 @@ Rails.application.routes.draw do
     get 'posts/training' => "posts#training"
     get 'posts/eat' => "posts#eat"
     get 'posts/info' => "posts#info"
+    post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
+    post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
       delete "customer/favorite" => "favorites#destroy_favorite"
     end
-    resources :customers, only: [:edit, :update, :show]
+    resources :customers, only: [:edit, :update, :show] do
+      get  'follower' => 'customers#follower', as: 'follower'
+      get  'followed' => 'customers#followed', as: 'followed'
+    end
   end
 
   namespace :admin do

@@ -73,3 +73,10 @@
 .pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
 }
+
+
+/*投稿のタイトル */
+.card-text-title{
+  background: linear-gradient(transparent 60%, yellow 50%);
+  display: inline-block;
+}
