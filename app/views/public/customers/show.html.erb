@@ -13,7 +13,18 @@
             <span class="ml-3"><%= @customer.username %></span>
           </div>
           <div class="introduction mt-2" style="color:black;"><%=simple_format @customer.introduction %></div>
-          <div class="button">フォローボタン</div>
+          <div class="button">
+            <% if @customer.id == current_customer.id %>
+              <p><%= link_to "フォローした人: #{@customer.following_customer.where.not(id: current_customer.id).count}",customer_follower_path(@customer),class:"btn btn-outline-danger" %></p>
+              <p><%= link_to "フォローされた人: #{@customer.follower_customer.where.not(id: current_customer.id).count}",customer_followed_path(@customer),class:"btn btn-outline-danger" %></p>
+            <% else %>
+              <% if current_customer.following?(@customer) %>
+                <%= link_to 'フォロー外す', unfollow_path(@customer.id), method: :POST,class:"btn btn-outline-danger" %>
+              <% else %>
+                <%= link_to 'フォローする', follow_path(@customer.id), method: :POST,class:"btn btn-outline-success"  %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
 
         <div class="card-body ">
@@ -64,13 +75,13 @@
               <% if posts.status == "トレーニングメニュー" %>
                 <h5 class="text-danger"><%= posts.status %></h5>
               <% elsif posts.status == "食事" %>
-                <h5 class="text-info"><%= posts.status %></h5>
+                <h5 class="text-warning"><%= posts.status %></h5>
               <% else posts.status == "知識" %>
                 <h5 class="text-primary"><%= posts.status %></h5>
               <% end %>
             </div>
               <div class="card-body">
-                <h5 class="card-title"><%= link_to posts.title,post_path(posts.id),class:"text-warning" %></h5>
+                <h5 class="card-text-title"><%= link_to posts.title,post_path(posts.id),class:"text-dark" %></h5>
                   <p class="card-text"><%= simple_format posts.body %></p>
                   <div>
                     <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
