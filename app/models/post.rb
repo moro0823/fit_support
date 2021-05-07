@@ -7,7 +7,6 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_customers, through: :favorites, source: :customer
 
-
   validates :title, presence: true
   validates :body, presence: true
   validates :status, inclusion:{in: ["トレーニングメニュー", "食事","情報の共有"]}

@@ -24,6 +24,7 @@
               </div>
             <div class="card-footer bg-transparent border-success">
               <div>
+                <span class="mr-3"><%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></span>
                 <span id="posts_<%= posts.id %>">
                   <%= render "public/favorites/favorite", posts: posts %>
                 </span>
@@ -33,5 +34,10 @@
           </div>
         </div>
       <% end %>
+      <div class="d-flex justify-content-center">
+        <div class="page mb-5">
+          <%= paginate @posts %>
+        </div>
+      </div>
     </div>
   </div>
