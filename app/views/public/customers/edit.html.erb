@@ -64,7 +64,7 @@
             <%= f.text_field :fat_percentage,placeholder: "体脂肪率",size: "10x20" %>  %
         </div>
 
-        <div class="field mt-3">
+        <div class="field mt-3 mb-3">
           <div class="label">
             <%= f.label :"BodyDataの公開設定" %><br />
           </div>
@@ -74,7 +74,7 @@
                <%= f.label :is_show, "公開中", {value: :true, style: "display: inline-block;"} %>
         </div>
 
-        <%= f.submit "プロフィールを変更する",class: "btn btn-warning" %>
+        <%= f.submit "プロフィールを変更する",class: "btn btn-warning mb-5" %>
         <% end %>
   </div>
 </div>

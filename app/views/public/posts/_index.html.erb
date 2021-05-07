@@ -1,0 +1,38 @@
+      <% posts.each do |posts| %> <!-- @posts → posts -->
+        <div class="d-flex justify-content-center">
+          <div class="card border-success mt-3 mb-5" style="width: 36rem;">
+            <div class="card-header bg-transparent border-success">
+              <%= attachment_image_tag posts.customer, :profile_image, :fill, 60, 60, fallback: "no_image.png",size: "60x60",class:"mr-4 mt-2 rounded-circle";  %>
+              <%= link_to posts.customer.username, customer_path(posts.customer.id)  %>
+            </div>
+              <div class="card-body">
+                <% if posts.status == "トレーニングメニュー" %>
+                  <h5 class="card-title text-danger"><%= posts.status %></h5>
+                <% elsif posts.status == "食事" %>
+                  <h5 class="card-title text-warning"><%= posts.status %></h5>
+                <% else posts.status == "知識" %>
+                  <h5 class="card-title text-primary"><%= posts.status %></h5>
+                <% end %>
+                  <h4 class="card-text-title"><%= link_to posts.title,post_path(posts.id),class:"text-dark" %></h4>
+                  <p class="card-text"><%= simple_format posts.body %></p>
+                  <div>
+                    <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
+                  </div>
+              </div>
+            <div class="card-footer bg-transparent border-success">
+              <div>
+                <span class="mr-3"><%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+                <span id="posts_<%= posts.id %>">
+                  <%= render "public/favorites/favorite", posts: posts %>
+                </span>
+                <span class="ml-3"><%= link_to posts.post_comments.count, post_path(posts.id), class:"far fa-comment-dots"%></span>
+             </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="d-flex justify-content-center">
+        <div class="page mb-5">
+          <%= paginate posts %> <!-- @posts → posts -->
+        </div>
+      </div>

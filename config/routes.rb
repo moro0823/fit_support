@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
     get 'customer/favorite' => "customers#favorite"
     get 'customer/from_favorite/:id' => "customers#from_favorite", as: :from_favorite
+    get 'posts/training' => "posts#training"
+    get 'posts/eat' => "posts#eat"
+    get 'posts/info' => "posts#info"
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
