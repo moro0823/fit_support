@@ -26,6 +26,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     @favorite = Favorite.new
+    @comments = @post.post_comments.all.page(params[:page]).per(5)
   end
 
   def edit

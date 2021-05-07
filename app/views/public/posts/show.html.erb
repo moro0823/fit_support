@@ -29,6 +29,9 @@
                 <span id="posts_<%= @post.id %>">
                   <%= render "public/favorites/favorite", posts: @post %>
                 </span>
+                <span id="post_<%= @post.id %>">
+                  <%= render "public/posts/comment" %>
+                </span>
               </div>
                 <p class="mt-2 mb-3"><%= link_to "いいねしたユーザー一覧を表示", from_favorite_path(@post),class:"btn btn-outline-danger" %></p>
             </div>
@@ -45,8 +48,9 @@
           </div>
 
           <div id="post_comment_<%= @post.id %>">
-            <%= render "public/post_comments/comment", post: @post %>
+            <%= render "public/post_comments/comment" %>
           </div>
+          <div class="more"><%= link_to_next_page @comments, 'もっと見る', remote: true, id: 'view_more',class:"btn btn-primary mt-3 mb-5" %></div>
         </div>
     </div>
   </div>
