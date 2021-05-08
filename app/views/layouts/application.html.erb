@@ -39,6 +39,9 @@
                 <li class="nav-item mr-3">
                   <%= link_to "ユーザーを探す", search_path, class: "btn btn-outline-light" %>
                 </li>
+                <li class="nav-item mr-3">
+                  <%= link_to "友達を探す", search_friend_path, class: "btn btn-outline-light" %>
+                </li>
               </ul>
               <span class="navbar-text mr-3">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-danger" %>

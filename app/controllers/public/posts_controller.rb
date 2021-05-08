@@ -18,6 +18,10 @@ class Public::PostsController < ApplicationController
     @posts = Post.where(status: "情報の共有").page(params[:page]).reverse_order
   end
 
+  def search
+    @genre = Post.search(params[:search])
+  end
+
   def new
     @post = Post.new
   end

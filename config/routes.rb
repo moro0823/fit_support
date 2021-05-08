@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
     post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
     get 'search' => "searches#search"
+    get 'search_friend' => "searches#search_friend", as: :search_friend
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
