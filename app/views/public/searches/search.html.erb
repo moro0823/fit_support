@@ -1,73 +1,76 @@
 <div class="container">
     <div class="box mt-3 mb-3">
-      <h2 class="title">ユーザーを探す</h2>
-      <h5 class="mt-3 mb-3">体型の近いユーザーを検索し、自分のトレーニングメニューの参考にしましょう！</h5>
-      <h6 class="mt-3 mb-3">※検索対象はBodydataが公開中に設定されているユーザーのみ</h5>
-　　　<h4 class="mt-3 mb-5" style ="color:blue;" >下記のBodydataが公開中に設定されているユーザー一覧から条件を入力して検索しましょう！</h4>
+      <div class="text">
+        <h2 class="title mt-3">ユーザーを探す</h2>
+        <h5 class="mt-3 mb-3">体型の近いユーザーを検索し、自分のトレーニングメニューの参考にしましょう！</h5>
+        <h6 class="mt-3 mb-3">※検索対象はBodydataが公開中に設定されているユーザーのみ</h5>
+　　　  <h4 class="mt-3 mb-5" style ="color:blue;" >下記のBodydataが公開中に設定されているユーザー一覧から条件を入力して検索しましょう！</h4>
+      </div>
 
-
-    <div class="search">
-      <div class="search_form">
-        <%= form_with(scope: :search, url: search_path, method: :get, local: :true) do |f| %>
-          <div class="search_field mt-3">
-            <div class="label">
-              <%= f.label :"性別" %><br />
+      <div class="search">
+        <div class="search_form">
+          <%= form_with(scope: :search, url: search_path, method: :get, local: :true) do |f| %>
+            <div class="search_field mt-3">
+              <div class="label">
+                <%= f.label :"性別" %><br />
+              </div>
+                <%= f.label :"男性"  %>
+                <%= f.radio_button :sex,:"男性", value: @search_params[:sex] %>
+                <%= f.label :"女性"  %>
+                <%= f.radio_button :sex,:"女性", value: @search_params[:sex]  %>
             </div>
-              <%= f.label :"男性"  %>
-              <%= f.radio_button :sex,:"男性", value: @search_params[:sex] %>
-              <%= f.label :"女性"  %>
-              <%= f.radio_button :sex,:"女性", value: @search_params[:sex]  %>
-          </div>
 
-          <div class="search_field mt-3">
-            <div class="label">
-              <%= f.label :"年齢" %><br />
+            <div class="search_field mt-3">
+              <div class="label">
+                <%= f.label :"年齢" %><br />
+              </div>
+                <%= f.number_field :age_from, value: @search_params[:age_from], min: 0, max: 100 %> 才 ~
+                <%= f.number_field :age_to, value: @search_params[:age_to] , min: 0, max: 100%> 才
             </div>
-              <%= f.number_field :age_from, value: @search_params[:age_from], min: 0, max: 100 %> 才 ~
-              <%= f.number_field :age_to, value: @search_params[:age_to] , min: 0, max: 100%> 才
-          </div>
 
-          <div class="search_field mt-3">
-            <div class="label">
-              <%= f.label :"身長" %><br />
+            <div class="search_field mt-3">
+              <div class="label">
+                <%= f.label :"身長" %><br />
+              </div>
+                <%= f.number_field :height_from, value: @search_params[:height_from], min: 100, max: 230 %> cm ~
+                <%= f.number_field :height_to, value: @search_params[:height_to] , min: 100, max: 230%> cm
             </div>
-              <%= f.number_field :height_from, value: @search_params[:height_from], min: 100, max: 230 %> cm ~
-              <%= f.number_field :height_to, value: @search_params[:height_to] , min: 100, max: 230%> cm
-          </div>
 
-          <div class="search_field mt-3">
-            <div class="label">
-              <%= f.label :"体重" %><br />
+            <div class="search_field mt-3">
+              <div class="label">
+                <%= f.label :"体重" %><br />
+              </div>
+                <%= f.number_field :weight_from, value: @search_params[:weight_from], min: 10, max: 200 %> kg ~
+                <%= f.number_field :weight_to, value: @search_params[:weight_to] , min: 10, max: 200%> kg
             </div>
-              <%= f.number_field :weight_from, value: @search_params[:weight_from], min: 10, max: 200 %> kg ~
-              <%= f.number_field :weight_to, value: @search_params[:weight_to] , min: 10, max: 200%> kg
-          </div>
 
-          <div class="search_field mt-3">
-            <div class="label">
-              <%= f.label :"体脂肪" %><br />
+            <div class="search_field mt-3">
+              <div class="label">
+                <%= f.label :"体脂肪" %><br />
+              </div>
+                <%= f.number_field :fat_percentage_from, value: @search_params[:fat_percentage_from], min: 0, max: 60 %> % ~
+                <%= f.number_field :fat_percentage_to, value: @search_params[:fat_percentage_to] , min: 0, max: 60 %> %
             </div>
-              <%= f.number_field :fat_percentage_from, value: @search_params[:fat_percentage_from], min: 0, max: 60 %> % ~
-              <%= f.number_field :fat_percentage_to, value: @search_params[:fat_percentage_to] , min: 0, max: 60 %> %
-          </div>
+
+            <h6 class="mt-3 mb-3">※全ての項目を入力する必要はありません！！（例:年齢のみ入力）</h6>
+
+            <div class="btn">
+              <%= f.submit "検索",class:"btn btn-outline-primary mt-3" %>
+            </div>
+          <% end %>
         </div>
-        <h6 class="mt-3 mb-3">※全ての項目を入力する必要はありません！！（例:年齢のみ入力）</h5>
-        <div class="btn">
-            <%= f.submit "検索",class:"btn btn-outline-primary mt-3" %>
-        </div>
-        <% end %>
       </div>
     </div>
-</div>
+  </div>
 
 
 
-<div class="container">
-  <% if @customers == [] %>
-    <div class="box mt-3 mb-3">
-      <h2 class = "seach-result">検索結果はありません</h2>
-    </div>
-  <% else %>
+  <div class="container">
+    <% if @customers == [] %>
+      <div class="box mt-3 mb-3">
+        <h2 class = "seach-result">検索結果はありません</h2>
+      </div>
+    <% else %>
       <table class="table">
         <thead class="thead-light">
           <tr>

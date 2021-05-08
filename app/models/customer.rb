@@ -66,5 +66,13 @@ class Customer < ApplicationRecord
   # 体脂肪率が存在する場合、fat_pasentageで範囲検索する
   scope :fat_percentage_from, -> (from) { where('? <= fat_percentage', from) if from.present? }
   scope :fat_percentage_to, -> (to) { where('fat_percentage <= ?', to) if to.present? }
+
+  scope :search_friend, -> (search_friend_params) do
+    return if search_friend_params.blank?
+      username(search_friend_params[:username])
+  end
+
+  scope :username, -> (username) { where('username LIKE ?', "%#{username}%") if username.present? }
+
 end
 

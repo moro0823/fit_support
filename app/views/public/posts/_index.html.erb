@@ -7,11 +7,11 @@
             </div>
               <div class="card-body">
                 <% if posts.status == "トレーニングメニュー" %>
-                  <h5 class="card-title text-danger"><%= posts.status %></h5>
+                  <h5 class="card-title"><%= link_to posts.status,posts_training_path ,class:"text-danger" %></h5>
                 <% elsif posts.status == "食事" %>
-                  <h5 class="card-title text-warning"><%= posts.status %></h5>
+                  <h5 class="card-title"><%= link_to posts.status,posts_eat_path ,class:"text-warning" %></h5>
                 <% else posts.status == "知識" %>
-                  <h5 class="card-title text-primary"><%= posts.status %></h5>
+                  <h5 class="card-title"><%= link_to posts.status,posts_info_path ,class:"text-primary"%></h5>
                 <% end %>
                   <h4 class="card-text-title"><%= link_to posts.title,post_path(posts.id),class:"text-dark" %></h4>
                   <p class="card-text"><%= simple_format posts.body %></p>
