@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'searches/search'
+  get 'search/search'
     devise_for :admin_users, controllers: {
     sessions: 'admin_users/sessions',
     passwords: 'admin_users/passwords',
@@ -22,6 +24,7 @@ Rails.application.routes.draw do
     get 'posts/info' => "posts#info"
     post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
     post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+    get 'search' => "searches#search"
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy]

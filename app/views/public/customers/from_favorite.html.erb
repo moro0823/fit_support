@@ -27,9 +27,9 @@
             <td>
               <% if customer.id != current_customer.id %>
                 <% if current_customer.following?(customer) %>
-                  <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+                  <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST,class:"btn btn-outline-danger" %>
                 <% else %>
-                  <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+                  <%= link_to 'フォローする', follow_path(customer.id), method: :POST,class:"btn btn-outline-success" %>
                 <% end %>
               <% end %>
             </td>
