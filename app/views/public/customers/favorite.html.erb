@@ -17,7 +17,7 @@
               <%= link_to posts.customer.username, customer_path(posts.customer.id)  %>
             </div>
               <div class="card-body">
-                <h4 class ="card-title"><%= link_to posts.title,post_path(posts.id),class:"text-warning" %></h4>
+                <h4 class ="card-text-title"><%= link_to posts.title,post_path(posts.id),class:"text-dark" %></h4>
                   <p class="card-text">
                     <% if posts.status == "トレーニングメニュー" %>
                       <h5 class="text-danger"><%= posts.status %></h5>
