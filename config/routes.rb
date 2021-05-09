@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :customers, only: [:index, :show]
+    get 'customer/post' => 'customers#post'
   end
 
 

@@ -71,8 +71,12 @@ class Customer < ApplicationRecord
     return if search_friend_params.blank?
       username(search_friend_params[:username])
   end
-
   scope :username, -> (username) { where('username LIKE ?', "%#{username}%") if username.present? }
+
+  scope :search_admin_customer, -> (search_admin_customer_params) do
+    return if search_admin_customer_params.blank?
+      username(search_admin_customer_params[:username])
+  end
 
 end
 
