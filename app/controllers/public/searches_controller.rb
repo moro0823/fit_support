@@ -10,8 +10,11 @@ class Public::SearchesController < ApplicationController
   end
 
 
-  private
 
+
+  private
+  
+  # fetchはparams[:search]が空の場合{}をparams[:search]が空でない場合、params[:search]を返す
   def customer_search_params
     params.fetch(:search, {}).permit(:sex, :age_from, :age_to, :height_from, :height_to, :weight_from, :weight_to, :fat_percentage_from, :fat_percentage_to )
   end
@@ -19,5 +22,7 @@ class Public::SearchesController < ApplicationController
   def customer_search_friend_params
     params.fetch(:search_friend, {}).permit(:username)
   end
+  
+ 
 
 end

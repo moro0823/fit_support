@@ -1,26 +1,47 @@
 <div class="container">
   <div class="box mt-3 mb-3">
-      <h2 class="admin_title">ユーザー一覧</h2>
+    <h4 class="mt-3">パーソナルトレーニングをする際、お客様の投稿を確認するためにご活用ください</h4>
+    <div class="form">
+        <%= form_with(scope: :search_admin_customer, url: admin_customers_path, method: :get, local: true) do |f| %>
+          <div class="field mt-3">
+            <div class="label">
+              <%= f.label :"ユーザー名" %><br />
+            </div>
+              <%= f.text_field :username, value: @search_admin_customers_params[:username] %>
+          </div>
+          <div class="btn">
+            <%= f.submit "検索",class:"btn btn-outline-primary mt-3" %>
+          </div>
+        <% end %>
+    </div>
+    <h2 class="admin_title mt-3">ユーザー一覧</h2>
   </div>
+    <% if @search_admin_customers == [] %>
+      <div class="box mt-3 mb-3">
+        <h2 class = "seach-result">検索結果はありません</h2>
+      </div>
+    <% else %>
       <table class="table">
         <thead class="thead-light">
           <tr>
             <th>ユーザー名</th>
+            <th>投稿数</th>
             <th>性別</th>
             <th>年齢</th>
             <th>公開ステータス</th>
           </tr>
         </thead>
         <tbody>
-          <% @customers.each do |customer| %>
+          <% @search_admin_customers.each do |customer| %>
           <tr>
             <td>
               <%= link_to admin_customer_path(customer) do %>
                 <%= customer.username %>
               <% end %>
             </td>
-            <td><%= customer.age %></td>
+            <td><%= customer.posts.count %> 件</td>
             <td><%= customer.sex %></td>
+            <td><%= customer.age %> 才</td>
             <td>
               <% if customer.is_show  %>
                 <p class="text-success">公開中</p>
@@ -32,4 +53,5 @@
           <% end %>
         </tbody>
       </table>
-</div>
+    <% end %>
+ </div>
