@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="box mt-5">
+    <div class="back mt-5 mb-5">
+      <%= link_to "ジャンル一覧に戻る", admin_genres_path, class:"btn btn-success" %>
+    </div>
+
+    <div class="form mt-3">
+      <%= form_with model: @genre, url: admin_genre_path(@genre), remote: true do |f| %>
+        <div class="text">
+          <%= f.text_field :name,size: "30x10" %>
+        </div>
+        <div class="btn mt-3">
+          <%= f.submit "変更する", class: "btn btn-primary mt-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

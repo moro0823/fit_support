@@ -70,6 +70,9 @@
                   <li class="nav-item mr-3">
                     <%= link_to "管理者用投稿一覧", root_path, class: "btn btn-outline-light" %>
                   </li>
+                  <li class="nav-item mr-3">
+                    <%= link_to "投稿ジャンルを追加する", admin_genres_path, class: "btn btn-outline-light" %>
+                  </li>
                 </ul>
                 <span class="navbar-text mr-3">
                   <%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete, class: "btn btn-outline-danger" %>

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'searches/search'
-  get 'search/search'
     devise_for :admin_users, controllers: {
     sessions: 'admin_users/sessions',
     passwords: 'admin_users/passwords',
@@ -40,6 +38,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :customers, only: [:index, :show]
+    resources :genres, only: [:index, :edit, :create, :update,:destroy]
     get 'customer/post' => 'customers#post'
   end
 
