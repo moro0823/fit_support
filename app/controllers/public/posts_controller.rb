@@ -35,7 +35,6 @@ class Public::PostsController < ApplicationController
       flash.now[:alert] = '必須項目が入力されてない為、投稿に失敗しました'
       render :new
     end
-
   end
 
   def show

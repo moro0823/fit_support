@@ -1,0 +1,37 @@
+  <div class ="container">
+    <div class="box mt-3">
+      <h2 class="title mt-3">投稿詳細</h2>
+        <div class="d-flex justify-content-center">
+          <div class="card border-success mt-3 mb-5" style="width: 36rem;">
+            <div class="card-header bg-transparent border-success">
+              <%= link_to @post.genre.name,admin_genre_path(@post.genre.id) %>
+            </div>
+            <div class="card-body">
+                  <h4 class ="card-title"><%=@post.title %></h4>
+                  <p class="card-text"><%= simple_format @post.body %></p>
+                  <div>
+                    <% if @post.youtube_url.present? %>
+                      <iframe width="500" height="315" src="https://www.youtube.com/embed/<%= @post.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <% end %>
+                  </div>
+                  <p class="card-text">
+                    <div>ユーザーへの公開設定</div>
+                     <% if @post.is_show %>
+                       <p class="text-success">"公開中"</p>
+                     <% else %>
+                       <p class="text-danger">"非公開"</p>
+                     <% end %>
+                  </p>
+                  <div>
+                    <p><%= attachment_image_tag @post,:image, :fill,60,60 %></p>
+                  </div>
+            </div>
+            <div class="card-footer bg-transparent border-success">
+              <p class="mt-2 mb-3">Post Day : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+              <span><%= link_to "編集", edit_admin_post_path(@post),class:"btn btn-success mr-3" %></span>
+              <span><%= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %></span>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>

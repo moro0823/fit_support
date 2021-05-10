@@ -1,0 +1,40 @@
+  <div class ="container">
+    <div class="box mt-3">
+      <h2 class="admin_title mt-3"><%= @genre.name %>一覧</h2>
+      <div class="link mt-3">
+          <%= link_to "投稿一覧に戻る", admin_posts_path, class:"btn btn-outline-primary mr-3" %>
+      </div>
+
+      <% @posts.each do |posts| %>
+        <div class="d-flex justify-content-center">
+          <div class="card border-warning mt-3 mb-5" style="width: 36rem;">
+            <div class="card-header bg-transparent border-warning">
+              <h3><%= posts.genre.name %></h3>
+            </div>
+              <div class="card-body">
+                  <h4 class="card-text-title"><%= link_to posts.title,admin_post_path(posts) %></h4>
+                  <p class="card-text"><%= simple_format posts.body %></p>
+                  <div>
+                    <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
+                  </div>
+                  <div>
+                    <% if posts.youtube_url.present? %>
+                      <iframe width="500" height="315" src="https://www.youtube.com/embed/<%= posts.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <% end %>
+                  </div>
+              </div>
+            <div class="card-footer bg-transparent warning">
+              <div>
+                <span class="mr-3">投稿日: <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+             </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="d-flex justify-content-center">
+        <div class="page mb-5">
+          <%= paginate @posts %>
+        </div>
+      </div>
+    </div>
+  </div>

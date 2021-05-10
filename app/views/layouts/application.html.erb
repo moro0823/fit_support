@@ -59,16 +59,19 @@
               <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item mr-3">
-                    <%= link_to "ユーザー探す", admin_customers_path, class: "btn btn-outline-light" %>
+                    <%= link_to "ユーザーを探す", admin_customers_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
                     <%= link_to "ユーザー投稿一覧", admin_customer_post_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
-                    <%= link_to "管理者用投稿作成", root_path, class: "btn btn-outline-light" %>
+                    <%= link_to "管理者用投稿作成", new_admin_post_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
-                    <%= link_to "管理者用投稿一覧", root_path, class: "btn btn-outline-light" %>
+                    <%= link_to "管理者用投稿一覧", admin_posts_path, class: "btn btn-outline-light" %>
+                  </li>
+                  <li class="nav-item mr-3">
+                    <%= link_to "投稿ジャンルを追加する", admin_genres_path, class: "btn btn-outline-light" %>
                   </li>
                 </ul>
                 <span class="navbar-text mr-3">
@@ -96,8 +99,12 @@
                 <span class="nav-text mr-3">
                   <%= link_to "アカウント作成", new_customer_registration_path, class: "btn btn-outline-light"  %>
                 </span>
-                <span class="nav-text">
+                <span class="nav-text mr-3">
                   <%= link_to "アカウント作成済みの方はこちらから", new_customer_session_path, class: "btn btn-outline-light"  %>
+                </span>
+                <span class="nav-text">
+                  <%= link_to "管理者用ログイン", new_admin_user_session_path, class: "btn btn-outline-light"  %>
+                  <!--すぐに管理者の機能を試しやすい為-->
                 </span>
               </div>
              </nav>

@@ -13,6 +13,7 @@ class Admin::CustomersController < ApplicationController
 
   def post
     @posts = Post.all.page(params[:page]).reverse_order
+   
   end
 
   private
