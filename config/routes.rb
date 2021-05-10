@@ -38,9 +38,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :customers, only: [:index, :show]
-    resources :genres, only: [:index, :edit, :create, :update,:destroy]
+    resources :genres, only: [:index,:show, :edit, :create, :update,:destroy]
     get 'customer/post' => 'customers#post'
+
   end
 
+  scope module: :admin do
+    resources :admin_posts
+  end
 
 end

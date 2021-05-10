@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_09_135159) do
+ActiveRecord::Schema.define(version: 2021_05_10_002215) do
+
+  create_table "admin_posts", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "title"
+    t.string "image_id"
+    t.string "youtube_url"
+    t.text "body"
+    t.boolean "is_show", default: false
+      # 未公開で最初投稿してもらい、編集ページで投稿内容にミスがないか確認してから公開に変更する仕様
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false

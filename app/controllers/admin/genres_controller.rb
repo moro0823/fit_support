@@ -9,6 +9,11 @@ class Admin::GenresController < ApplicationController
     @genres = Genre.all
   end
 
+  def show
+    @genre = Genre.find(params[:id])
+    @posts = @genre.admin_posts.all.page(params[:page]).per(5).reverse_order
+  end
+
   def edit
     @genre = Genre.find(params[:id])
   end
