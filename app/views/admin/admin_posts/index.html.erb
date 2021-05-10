@@ -3,7 +3,7 @@
       <h2 class="admin_title mt-3">スポーツクラブからの投稿一覧</h2>
       <div class="link mt-3">
         <% @genres.each do |genre| %>
-          <%= link_to genre.name,admin_genre_path(genre), class:"btn btn-outline-primary mr-3" %>
+          <%= link_to genre.name,admin_genre_path(genre), class:"btn btn-outline-primary mr-3 " %>
         <% end %>
       </div>
 
@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-center">
           <div class="card border-warning mt-3 mb-5" style="width: 36rem;">
             <div class="card-header bg-transparent border-warning">
-              <h3><%= posts.genre.name %></h3>
+              <h3 class="text-danger"><%= posts.genre.name %></h3>
             </div>
               <div class="card-body">
                   <h4 class="card-text-title"><%= link_to posts.title,admin_post_path(posts) %></h4>
@@ -25,7 +25,7 @@
                      <% end %>
                   </p>
                   <div>
-                    <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
+                    <p><%= attachment_image_tag posts,:image, size:"500x315" %></p>
                   </div>
                   <div>
                     <% if posts.youtube_url.present? %>
