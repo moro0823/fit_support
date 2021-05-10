@@ -6,7 +6,6 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <script src="https://kit.fontawesome.com/721f0cdc29.js" crossorigin="anonymous"></script>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -25,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-botton:3px;">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item mr-3">
-                  <%= link_to "TopPage", root_path, class: "btn btn-outline-light" %>
+                  <%= link_to "スポーツクラブからの情報一覧", admin_posts_path, class: "btn btn-outline-light" %>
                 </li>
                 <li class="nav-item mr-3">
                   <%= link_to "マイページ", customer_path(current_customer), class: "btn btn-outline-light" %>
@@ -65,13 +64,13 @@
                     <%= link_to "ユーザー投稿一覧", admin_customer_post_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
-                    <%= link_to "管理者用投稿作成", new_admin_post_path, class: "btn btn-outline-light" %>
+                    <%= link_to "管理者用情報作成", new_admin_post_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
-                    <%= link_to "管理者用投稿一覧", admin_posts_path, class: "btn btn-outline-light" %>
+                    <%= link_to "情報一覧", admin_posts_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
-                    <%= link_to "投稿ジャンルを追加する", admin_genres_path, class: "btn btn-outline-light" %>
+                    <%= link_to "情報ジャンルを追加する", admin_genres_path, class: "btn btn-outline-light" %>
                   </li>
                 </ul>
                 <span class="navbar-text mr-3">
@@ -93,6 +92,9 @@
                     <%= link_to "アプリ紹介", home_about_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
+                    <%= link_to "スポーツクラブからの情報一覧を見る", admin_posts_path, class: "btn btn-outline-light" %>
+                  </li>
+                  <li class="nav-item mr-3">
                     <%= link_to "投稿を見てみる", posts_path, class: "btn btn-outline-light" %>
                   </li>
                 </ul>
@@ -112,8 +114,10 @@
         </header>
 
       <main class ="mb-auto">
-        <%= render 'layouts/notifications' %>
-        <%= yield %>
+        <div class="background">
+          <%= render 'layouts/notifications' %>
+          <%= yield %>
+        </div>
       </main>
   </body>
 </html>
