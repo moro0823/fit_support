@@ -6,7 +6,6 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <script src="https://kit.fontawesome.com/721f0cdc29.js" crossorigin="anonymous"></script>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -115,8 +114,10 @@
         </header>
 
       <main class ="mb-auto">
-        <%= render 'layouts/notifications' %>
-        <%= yield %>
+        <div class="background">
+          <%= render 'layouts/notifications' %>
+          <%= yield %>
+        </div>
       </main>
   </body>
 </html>

@@ -17,11 +17,13 @@
                   <h4 class="card-text-title"><%= link_to posts.title,admin_post_path(posts) %></h4>
                   <p class="card-text"><%= simple_format posts.body %></p>
                   <p class="card-text">
+                    <% if admin_user_signed_in? %>
                     <div>ユーザーへの公開設定</div>
-                     <% if posts.is_show %>
-                       <p class="text-success">"公開中"</p>
-                     <% else %>
-                       <p class="text-danger">"非公開"</p>
+                       <% if posts.is_show %>
+                         <p class="text-success">"公開中"</p>
+                       <% else %>
+                        <p class="text-danger">"非公開"</p>
+                      <% end %>
                      <% end %>
                   </p>
                   <div>

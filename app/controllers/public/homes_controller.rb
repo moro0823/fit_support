@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
 
   def top
-    @posts = AdminPost.where(is_show: true).page(params[:page]).reverse_order
+    @posts = AdminPost.where(is_show: true).last(3).reverse
   end
 
   def about
