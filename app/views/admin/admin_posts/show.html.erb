@@ -1,9 +1,15 @@
   <div class ="container">
     <div class="box mt-3">
       <h2 class="admin_title mt-3">投稿詳細</h2>
-        <div class="link mt-3">
-          <%= link_to "スポーツクラブからの投稿一覧に戻る", admin_posts_path, class:"btn btn-outline-primary mr-3" %>
-        </div>
+        <% if admin_user_signed_in? %>
+          <div class="link mt-3">
+           <%= link_to "投稿一覧に戻る", admin_posts_path, class:"btn btn-outline-primary mr-3" %>
+          </div>
+        <% else %>
+          <div class="link mt-3">
+            <%= link_to "スポーツクラブからの投稿一覧に戻る", public_admin_posts_path, class:"btn btn-outline-primary mr-3" %>
+          </div>
+        <% end %>
         <div class="d-flex justify-content-center">
           <div class="card border-success mt-3 mb-5" style="width: 36rem;">
             <div class="card-header bg-transparent border-success">

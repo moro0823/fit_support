@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   scope module: :public do
     root "homes#top"
     get 'home/about' => "homes#about"
+    get 'public/admin_posts' => "homes#admin_posts"
+    resources :genres, only: [:show] do
+      get 'public/admin_posts_show' => "homes#admin_posts_show"
+    end
     post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
     post '/homes/guest_admin_sign_in', to: 'homes#guest_admin_sign_in'
     get 'customer/favorite' => "customers#favorite"
