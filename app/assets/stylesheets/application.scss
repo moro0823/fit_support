@@ -141,6 +141,10 @@
   border-width: 3px;
 }
 
+.border-success{
+  border-width: 3px;
+}
+
 
 /*フォント*/
 html, body{
@@ -155,12 +159,19 @@ html, body{
    font-weight: bold;
 }
 
+.down-small{
+    padding-bottom: 200px
+}
 .down{
     padding-bottom: 300px
 }
 
 .down-more{
     padding-bottom: 400px
+}
+
+.down-more-all{
+    padding-bottom: 700px
 }
 
 .admin-title-down{
@@ -216,6 +227,11 @@ html, body{
 
   .nav-item{
      margin-top:10px;
+
+　.btn-outline-light{
+    border-width: 0,1px;
+    font-size: 2px;
+}
  }
 
 }

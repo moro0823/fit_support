@@ -27,7 +27,11 @@
          <div class="info" style="text-align: center;">
           <div class="card border-danger mt-3 mb-5" style="width: 22rem;">
             <div class="card-header bg-transparent border-danger">
-              <h3 class="card-header-title"><%= link_to posts.genre.name, genre_public_admin_posts_show_path(posts.genre), class:"text-danger" %></h3>
+              <% if admin_user_signed_in? %>
+                <h3 class="card-header-title"><%= link_to posts.genre.name, admin_genre_path(posts.genre), class:"text-danger" %></h3>
+              <% else %>
+                <h3 class="card-header-title"><%= link_to posts.genre.name, genre_public_admin_posts_show_path(posts.genre), class:"text-danger" %></h3>
+              <% end %>
             </div>
               <div class="card-body">
                 <h4 class="card-text-title"><%= link_to posts.title,admin_post_path(posts),class:"text-dark" %></h4>
