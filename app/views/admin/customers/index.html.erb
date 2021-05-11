@@ -1,6 +1,6 @@
 <div class="container">
   <div class="box mt-3 mb-3">
-    <h4 class="mt-3">パーソナルトレーニングをする際、お客様の投稿を確認するためにご活用ください</h4>
+    <h2 class="pt-5">パーソナルトレーニングをする際</br>お客様の投稿を確認するためにご活用ください</h2>
     <div class="form">
         <%= form_with(scope: :search_admin_customer, url: admin_customers_path, method: :get, local: true) do |f| %>
           <div class="field mt-3">
@@ -20,10 +20,11 @@
       <div class="box mt-3 mb-3">
         <h2 class = "seach-result">検索結果はありません</h2>
       </div>
+      <div class="down-more-all"
     <% else %>
       <table class="table">
-        <thead class="thead-light">
-          <tr>
+        <thead>
+          <tr class="table-primary">
             <th>ユーザー名</th>
             <th>投稿数</th>
             <th>性別</th>
@@ -33,7 +34,7 @@
         </thead>
         <tbody>
           <% @search_admin_customers.each do |customer| %>
-          <tr>
+          <tr class="table-light">
             <td>
               <%= link_to admin_customer_path(customer) do %>
                 <%= customer.username %>
@@ -54,4 +55,5 @@
         </tbody>
       </table>
     <% end %>
+    <div class="down-more"></div>
  </div>

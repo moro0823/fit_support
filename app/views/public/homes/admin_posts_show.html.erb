@@ -7,10 +7,11 @@
 
     <% if @posts == [] %>
        <div class="box mt-3">
-         <div class="no-genre-text">
-          現在<%= @genre.name %>に関する情報はありません
+         <div class="no-genre-text mt-5">
+          <h1>現在<%= @genre.name %>に関する情報はありません</h1>
          </div>
        </div>
+       <div class="down-more-all"></div>
     <% else %>
       <% @posts.each do |posts| %>
         <div class="d-flex justify-content-center">
@@ -19,7 +20,7 @@
               <h3 class="text-danger"><%= posts.genre.name %></h3>
             </div>
               <div class="card-body">
-                  <h4 class="card-text-title"><%= link_to posts.title,admin_post_path(posts) %></h4>
+                  <h4 class="card-text-title"><%= link_to posts.title,admin_post_path(posts), class:"text-dark"  %></h4>
                   <p class="card-text"><%= simple_format posts.body %></p>
                   <div>
                     <p class="img"><%= attachment_image_tag posts,:image, size:"500x315" %></p>
