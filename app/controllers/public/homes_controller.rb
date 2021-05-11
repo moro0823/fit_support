@@ -7,6 +7,16 @@ class Public::HomesController < ApplicationController
   def about
   end
 
+  def admin_posts
+    @posts = AdminPost.where(is_show: true).page(params[:page]).reverse_order
+    @genres = Genre.all
+  end
+
+  def admin_posts_show
+    @genre = Genre.find(params[:genre_id])
+    @posts = @genre.admin_posts.where(is_show: true).page(params[:page]).reverse_order
+  end
+
 
   def guest_sign_in
     customer = Customer.find_or_create_by!(email: 'guest@example.com') do |customer|

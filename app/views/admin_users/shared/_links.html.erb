@@ -1,10 +1,10 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "ログイン画面へ戻る", new_session_path(resource_name) %><br />
+  <%= link_to "ログイン画面へ戻る", new_session_path(resource_name), class:"btn btn-primary" %><br />
 <% end %>
 
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "パスワードを忘れた方へ", new_password_path(resource_name) %><br />
+  <%= link_to "パスワードを忘れた方へ", new_password_path(resource_name), class: "btn btn-danger" %><br />
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>

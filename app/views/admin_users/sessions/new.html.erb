@@ -1,10 +1,10 @@
 <div class ="container">
   <div class="box mt-3">
-  <h2 class="admin_title">管理者用ログイン画面</h2>
+  <h2 class="admin-title-down">管理者用ログイン画面</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
      <div class="field mt-3">
        <div class="label">
-         <%= f.label :email %><br />
+         <%= f.label :"メールアドレス" %><br />
        </div>
          <%= f.email_field :email, autofocus: true, autocomplete: "email",size: "40x20" %>
          <p class="mt-3">テスト用メールアドレス</br> admin@admin.com</p>
@@ -27,12 +27,13 @@
       </div>
     <% end %>
 
-    <div class="actions mt-3 mb-3">
-      <%= f.submit "ログイン", class: "btn btn-warning"%>
+    <div class="actions mt-3 mb-5">
+      <%= f.submit "ログイン", class: "btn btn-warning btn-lg"%>
     </div>
    <% end %>
-
-   <%= render "admin_users/shared/links" %>
+    <div class="down">
+      <%= render "admin_users/shared/links" %>
+    </div>
   </div>
 </div>
 

@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/721f0cdc29.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
   </head>
 
 
@@ -16,15 +17,17 @@
 
       <!--ユーザー、ログイン時のヘッダー-->
       <% if customer_signed_in? %>
-        <nav class="navbar navbar-expand-lg" style="background-color: #66CDAA;">
-          <a class="navbar-brand p-4" href="/">Fit Support</a>
+        <nav class="navbar navbar-expand-lg" style="background-color: #FF33FF">
+          <p class="navbar-brand p-2">
+            <%= link_to image_tag('img/logo.jpg',width: '70',class:"mt-2 rounded-circle"), '/' %>
+          </p>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-botton:3px;">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item mr-3">
-                  <%= link_to "スポーツクラブからの情報一覧", admin_posts_path, class: "btn btn-outline-light" %>
+                  <%= link_to "スポーツクラブからの情報一覧", home_admin_posts_path, class: "btn btn-outline-light" %>
                 </li>
                 <li class="nav-item mr-3">
                   <%= link_to "マイページ", customer_path(current_customer), class: "btn btn-outline-light" %>
@@ -42,8 +45,8 @@
                   <%= link_to "友達を探す", search_friend_path, class: "btn btn-outline-light" %>
                 </li>
               </ul>
-              <span class="navbar-text mr-3">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-danger" %>
+              <span class="nav-text mr-3">
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-light" %>
               </span>
             </div>
           </nav>
@@ -51,7 +54,9 @@
      <!--管理者ログイン時ヘッダー-->
         <% elsif admin_user_signed_in? %>
           <nav class="navbar navbar-expand-lg" style="background-color: #FF8C00;">
-            <a class="navbar-brand p-4" href="/">Fit Support</a>
+            <p class="navbar-brand p-2">
+              <%= link_to image_tag('img/logo.jpg',width: '70',class:"mt-2 rounded-circle"), '/' %>
+            </p>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -74,14 +79,16 @@
                   </li>
                 </ul>
                 <span class="navbar-text mr-3">
-                  <%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
+                  <%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete, class: "btn btn-outline-light" %>
                 </span>
               </div>
           </nav>
         <!--ログアウト時のヘッダー-->
         <% else %>
           <nav class="navbar navbar-expand-lg" style="background-color:#FF6347 ;">
-            <a class="navbar-brand p-4" href="/">Fit Support</a>
+            <p class="navbar-brand p-2">
+              <%= link_to image_tag('img/logo.jpg',width: '70',class:"mt-2 rounded-circle"), '/' %>
+            </p>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -92,22 +99,24 @@
                     <%= link_to "アプリ紹介", home_about_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
-                    <%= link_to "スポーツクラブからの情報一覧を見る", admin_posts_path, class: "btn btn-outline-light" %>
+                    <%= link_to "スポーツクラブからの情報一覧を見る", public_admin_posts_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
                     <%= link_to "投稿を見てみる", posts_path, class: "btn btn-outline-light" %>
                   </li>
                 </ul>
-                <span class="nav-text mr-3">
-                  <%= link_to "アカウント作成", new_customer_registration_path, class: "btn btn-outline-light"  %>
-                </span>
-                <span class="nav-text mr-3">
-                  <%= link_to "アカウント作成済みの方はこちらから", new_customer_session_path, class: "btn btn-outline-light"  %>
-                </span>
-                <span class="nav-text">
-                  <%= link_to "管理者用ログイン", new_admin_user_session_path, class: "btn btn-outline-light"  %>
-                  <!--すぐに管理者の機能を試しやすい為-->
-                </span>
+                <div class="nav-light">
+                  <div class="nav-text mr-3">
+                    <%= link_to "アカウント作成", new_customer_registration_path, class: "btn btn-outline-light"  %>
+                  </div>
+                  <div class="nav-text mr-3">
+                    <%= link_to "アカウント作成済みの方はこちらから", new_customer_session_path, class: "btn btn-outline-light"  %>
+                  </div>
+                  <div class="nav-text">
+                    <%= link_to "管理者用ログイン", new_admin_user_session_path, class: "btn btn-outline-light"  %>
+                    <!--すぐに管理者の機能を試しやすい為-->
+                  </div>
+                </div>
               </div>
              </nav>
             <% end %>

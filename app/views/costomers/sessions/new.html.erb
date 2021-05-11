@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="box">
-    <h2 class="title mt-3">ログイン</h2>
+  <div class="box mt-3">
+    <h2 class="title-down">ログイン</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field mt-3">
       <div class="label">
@@ -25,12 +25,14 @@
     </div>
     <% end %>
 
-    <div class="actions mt-3 mb-3">
-      <%= f.submit "ログイン", class: "btn btn-primary" %>
+    <div class="actions mt-5 mb-5">
+      <%= f.submit "ログイン", class: "btn btn-primary btn-lg" %>
     </div>
     <% end %>
 
-  <%= render "costomers/shared/links" %>
+    <div class="down">
+      <%= render "costomers/shared/links" %>
+    </div>
   </div>
 </div>
 
