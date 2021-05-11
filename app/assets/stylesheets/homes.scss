@@ -1,3 +1,29 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*aboutページ */
+.main{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-about{
+  margin: 100px auto;
+}
+
+.card-header-about{
+  font-size:35px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.card-title-about{
+  font-size:30px;
+  text-align: center;
+}
+
+.card-text-about{
+  font-size:19px;
+}

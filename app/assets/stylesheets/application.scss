@@ -84,7 +84,7 @@
 }
 
 
-
+/*Topページの情報の表示 */
 .info-content{
   width: 100%;
   display: flex;
@@ -94,3 +94,15 @@
 .info{
   margin: 0 auto;
 }
+
+/*アプリ全体の背景画像 */
+.mb-auto{
+  background-image:url("img/background.jpg");
+  background-size: cover;
+}
+
+.container{
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
