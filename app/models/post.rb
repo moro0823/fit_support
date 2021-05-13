@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   validates :status, inclusion:{in: ["トレーニングメニュー", "食事","情報の共有"]}
-
+  has_many :post_images, dependent: :destroy
+  accepts_attachments_for :post_images, attachment: :image
 end
 

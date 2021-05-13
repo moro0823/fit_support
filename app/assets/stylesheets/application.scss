@@ -210,9 +210,17 @@ html, body{
     justify-content: center;
   }
 
+/*画像の表示のスライダー*/
+.slider{
+  width: 70%;
+  height: 70%;
+  margin: 0 auto;
+}
 
-
-
+.slick-prev:before,
+.slick-next:before {
+    color: red;
+}
 
 /*レスポンシブ対応*/
 @media screen and (max-width: 991px){
@@ -235,3 +243,4 @@ html, body{
  }
 
 }
+//require_* statement.

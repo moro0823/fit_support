@@ -28,7 +28,7 @@
                   </div>
             </div>
             <div class="card-footer bg-transparent border-warning">
-              <p class="mt-2 mb-3">Post Day : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+              <p class="mt-2 mb-3">更新日 : <%= @post.updated_at.strftime('%Y/%m/%d %H:%M') %></p>
               <% if admin_user_signed_in? %>
                 <span><%= link_to "編集", edit_admin_post_path(@post),class:"btn btn-success mr-3" %></span>
                 <span><%= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %></span>
