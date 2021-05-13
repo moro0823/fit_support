@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_05_10_002215) do
     t.string "youtube_url"
     t.text "body"
     t.boolean "is_show", default: false
-      # 未公開で最初投稿してもらい、編集ページで投稿内容にミスがないか確認してから公開に変更する仕様
+      # 未公開で最初投稿してもらい、編集ページでミスがないか確認してから公開に変更する仕様
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

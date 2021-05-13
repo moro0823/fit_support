@@ -46,9 +46,9 @@ RSpec.describe Admin::CustomersController, type: :controller do
     end
 
     context 'ヘッダーの表示を確認' do
-      it '左上から1番目のリンクが「ユーザー一覧」である' do
+      it '左上から1番目のリンクが「ユーザーを探す」である' do
         customer_index_link = find_all('a')[1].native.inner_text
-        expect(customer_index_link).to match("ユーザー一覧")
+        expect(customer_index_link).to match("ユーザーを探す")
       end
 
       it '左上から2番目のリンクが「ユーザー投稿一覧」である' do
@@ -56,18 +56,23 @@ RSpec.describe Admin::CustomersController, type: :controller do
         expect(customer_post_link).to match("ユーザー投稿一覧")
       end
 
-      it ' 左上から3番目のリンクが「管理者投稿作成」である' do
+      it ' 左上から3番目のリンクが「管理者情報作成」である' do
         admin_post_new_link = find_all('a')[3].native.inner_text
-        expect(admin_post_new_link).to match("管理者用投稿作成")
+        expect(admin_post_new_link).to match("管理者用情報作成")
       end
 
-      it ' 左上から4番目のリンクが「管理者用投稿一覧」である' do
+      it ' 左上から4番目のリンクが「情報一覧」である' do
         admin_post_index_link = find_all('a')[4].native.inner_text
-        expect(admin_post_index_link).to match("管理者用投稿一覧")
+        expect(admin_post_index_link).to match("情報一覧")
       end
 
-      it ' 左上から5番目のリンクが「ログアウト」である' do
-        logout_link = find_all('a')[5].native.inner_text
+      it ' 左上から5番目のリンクが「情報ジャンルを追加する」である' do
+        admin_post_index_link = find_all('a')[5].native.inner_text
+        expect(admin_post_index_link).to match("情報ジャンルを追加する")
+      end
+
+      it ' 左上から6番目のリンクが「ログアウト」である' do
+        logout_link = find_all('a')[6].native.inner_text
         expect(logout_link).to match("ログアウト")
       end
     end

@@ -8,8 +8,8 @@
       <div class="down-more-all"></div>
     <% else %>
       <table class="table">
-        <thead class="thead-light">
-          <tr>
+        <thead>
+          <tr class="table-danger">
             <th>ユーザー名</th>
             <th>BodyData公開設定</th>
             <th>フォローボタン</th>
@@ -17,7 +17,7 @@
         </thead>
         <tbody>
           <% @customer.following_customer.where.not(id: current_customer.id).each do |customer| %>
-          <tr>
+          <tr class="table-light">
             <td>
               <%= attachment_image_tag customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2 rounded-circle"; %>
               <%= link_to customer.username,customer_path(customer) %>
