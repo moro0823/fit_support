@@ -12,15 +12,31 @@ RSpec.describe Public::CustomersController, type: :controller do
         expect(current_path).to eq '/'
       end
 
-      it 'アカウント作成済みの方はこちらの内容が正しい' do
-        log_in_link = find_all('a')[4].native.inner_text
-        expect(page).to have_link log_in_link, href: new_customer_session_path
+      it 'アプリ紹介のリンクの内容が正しい' do
+        sign_up_link = find_all('a')[1]
+        expect(page).to have_link sign_up_link.native.inner_text, href: home_about_path
+      end
+
+      it 'スポーツクラブからの情報はこちらの内容が正しい' do
+        sign_up_link = find_all('a')[2]
+        expect(page).to have_link sign_up_link.native.inner_text, href: public_admin_posts_path
+      end
+
+      it '投稿を見てみる' do
+        sign_up_link = find_all('a')[3]
+        expect(page).to have_link sign_up_link.native.inner_text, href: posts_path
       end
 
       it 'アカウント作成のリンクの内容が正しい' do
-        sign_up_link = find_all('a')[3]
+        sign_up_link = find_all('a')[4]
         expect(page).to have_link sign_up_link.native.inner_text, href: new_customer_registration_path
       end
+
+      it 'アカウント作成済みの方はこちらの内容が正しい' do
+        log_in_link = find_all('a')[5].native.inner_text
+        expect(page).to have_link log_in_link, href: new_customer_session_path
+      end
+
     end
   end
 
@@ -55,13 +71,13 @@ RSpec.describe Public::CustomersController, type: :controller do
       end
 
       it 'アカウント作成を押すと、新規登録画面に遷移する' do
-        signup_link = find_all('a')[3].native.inner_text
+        signup_link = find_all('a')[4].native.inner_text
         click_link signup_link
         is_expected.to eq '/customers/sign_up'
       end
 
       it 'アカウント作成済みの方はこちらを押すと、ログイン画面に遷移する' do
-        login_link = find_all('a')[4].native.inner_text
+        login_link = find_all('a')[5].native.inner_text
         click_link login_link
         is_expected.to eq '/customers/sign_in'
       end
@@ -137,7 +153,7 @@ RSpec.describe Public::CustomersController, type: :controller do
     context 'ヘッダーの表示を確認' do
       it '左上から1番目のリンクが「TopPage」である' do
         top_link = find_all('a')[1].native.inner_text
-        expect(top_link).to match("TopPage")
+        expect(top_link).to match("スポーツクラブからの情報一覧")
       end
 
       it '左上から2番目のリンクが「マイページ」である' do
@@ -155,8 +171,19 @@ RSpec.describe Public::CustomersController, type: :controller do
         expect(post_new_link).to match("投稿を作成")
       end
 
-      it '左上から5番目のリンクが「ログアウト」である' do
-        logout_link = find_all('a')[5].native.inner_text
+      it '左上から5番目のリンクが「ユーザーを探す」である' do
+        post_new_link = find_all('a')[5].native.inner_text
+        expect(post_new_link).to match("ユーザーを探す")
+      end
+
+      it '左上から6番目のリンクが「友達を探す」である' do
+        post_new_link = find_all('a')[6].native.inner_text
+        expect(post_new_link).to match("友達を探す")
+      end
+
+
+      it '左上か7番目のリンクが「ログアウト」である' do
+        logout_link = find_all('a')[7].native.inner_text
         expect(logout_link).to match("ログアウト")
       end
     end

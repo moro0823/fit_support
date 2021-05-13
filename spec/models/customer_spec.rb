@@ -25,4 +25,4 @@ RSpec.describe Customer, "モデルに関するテスト", type: :model do
       # encrypted_password => deviseで作成した暗号化されたパスワードを保存するカラム
     end
 	 end
-	end
+end
