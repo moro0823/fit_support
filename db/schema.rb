@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_002215) do
+ActiveRecord::Schema.define(version: 2021_05_13_024128) do
 
   create_table "admin_posts", force: :cascade do |t|
     t.integer "genre_id"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2021_05_10_002215) do
     t.string "youtube_url"
     t.text "body"
     t.boolean "is_show", default: false
-      # 未公開で最初投稿してもらい、編集ページでミスがないか確認してから公開に変更する仕様
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -74,6 +73,13 @@ ActiveRecord::Schema.define(version: 2021_05_10_002215) do
     t.text "comment"
     t.integer "customer_id"
     t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "post_images", force: :cascade do |t|
+    t.integer "post_id"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
