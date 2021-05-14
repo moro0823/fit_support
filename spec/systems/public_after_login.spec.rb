@@ -18,6 +18,43 @@ RSpec.describe Public::CustomersController, type: :controller do
         click_button 'ログイン'
       #.customer(id:3)でログインしている状態
     end
+    
+    describe 'ヘッダーのテスト: ログインしている場合' do
+      context 'リンクの内容を確認: ※ログアウトは『ユーザログアウトのテスト』でテスト済み' do
+        subject { current_path }
+
+        it 'スポーツクラブからの情報を押すと、トップページに遷移する' do
+          admin_posts_link = find_all('a')[1].native.inner_text
+          click_link admin_posts_link
+          is_expected.to eq '/public/admin_posts'
+        end
+        it 'マイページを押すと、マイページに遷移する' do
+          mypage_link = find_all('a')[2].native.inner_text
+          click_link mypage_link
+          is_expected.to eq '/customers/' + customer.id.to_s
+        end
+        it '投稿一覧を押すと、投稿一覧に遷移する' do
+          post_link = find_all('a')[3].native.inner_text
+          click_link post_link
+          is_expected.to eq "/posts"
+        end
+        it '投稿を作成を押すと、新規投稿画面に遷移する' do
+          new_post_link = find_all('a')[4].native.inner_text
+          click_link new_post_link
+          is_expected.to eq "/posts/new"
+        end
+        it 'ユーザーを探すを押すと、検索画面に遷移する' do
+          search_link = find_all('a')[5].native.inner_text
+          click_link search_link
+          is_expected.to eq "/search"
+        end
+        it '友達を探すを押すと、友達検索画面に遷移する' do
+          search_friend_link = find_all('a')[6].native.inner_text
+          click_link search_friend_link
+          is_expected.to eq "/search_friend"
+        end
+      end
+    end #ヘッダーのテスト: ログインしている場  
 
    describe 'マイページのテスト' do
       before do
@@ -28,7 +65,7 @@ RSpec.describe Public::CustomersController, type: :controller do
         it 'URLが正しい' do
           expect(current_path).to eq '/customers/' + customer.id.to_s
         end
-        it '投稿一覧に自分の投稿のtitleが表示され、リンクが正しい' do
+        it '投稿一覧に自分の投稿のタイトルが表示され、リンクが正しい' do
           expect(page).to have_link post.title, href: post_path(post)
         end
         it '投稿一覧に自分の投稿の本文が表示される' do
@@ -163,31 +200,6 @@ RSpec.describe Public::CustomersController, type: :controller do
       end
     end #ユーザー情報更新のテスト
 
-  describe 'ヘッダーのテスト: ログインしている場合' do
-      context 'リンクの内容を確認: ※ログアウトは『ユーザログアウトのテスト』でテスト済み' do
-        subject { current_path }
-
-        it 'スポーツクラブからの情報を押すと、トップページに遷移する' do
-          admin_posts_link = find_all('a')[1].native.inner_text
-          admin_posts_link = admin_posts_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-          click_link admin_posts_link
-          is_expected.to eq '/public/admin_posts'
-        end
-        it 'マイページを押すと、マイページに遷移する' do
-          mypage_link = find_all('a')[2].native.inner_text
-          mypage_link = mypage_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-          click_link mypage_link
-          is_expected.to eq '/customers/' + customer.id.to_s
-        end
-        it '投稿一覧を押すと、投稿一覧に遷移する' do
-        end
-
-        it '投稿を作成を押すと、新規投稿画面に遷移する' do
-        end
-      end
-    end #ヘッダーのテスト: ログインしている場
-
-
     describe '投稿一覧画面のテスト' do
       let!(:post_comment) { create(:post_comment, post: post, customer: customer) }
       let!(:other_post_comment) { create(:other_post_comment, post: eat_post, customer: other_customer) }
@@ -232,7 +244,9 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(page).to have_link post.favorites.count,href: post_favorites_path(post)
         end
       end
-
+    end
+    
+    describe '新規投稿画面のテスト' do
       context '投稿成功のテスト' do
         before do
           visit new_post_path
@@ -249,7 +263,7 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(current_path).to eq '/customers/' + post.customer.id.to_s
         end
       end
-    end #投稿一覧のテスト
+    end #投稿成功のテスト
 
     describe '自分の投稿詳細画面のテスト' do
       before do
