@@ -1,0 +1,41 @@
+<div class ="container">
+  <div class="box mt-3">
+  <h2 class="admin-title-down">管理者用ログイン画面</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+     <div class="field mt-3">
+       <div class="label">
+         <%= f.label :"メールアドレス" %><br />
+       </div>
+         <%= f.email_field :email, autofocus: true, autocomplete: "email",size: "40x20" %>
+         <p class="mt-3">テスト用メールアドレス</br> admin@admin.com</p>
+     </div>
+
+     <div class="field">
+       <div class="label">
+         <%= f.label :"パスワード" %><br />
+       </div>
+         <%= f.password_field :password, autocomplete: "current-password",size: "40x20" %></br>
+         <p class="mt-3">テスト用パスワード</br> admintest</p>
+       </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field mt-3">
+        <div class="label">
+          <%= f.label :"入力情報を保存する"%>
+        </div>
+        <%= f.check_box :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions mt-3 mb-5">
+      <%= f.submit "ログイン", class: "btn btn-warning btn-lg"%>
+    </div>
+   <% end %>
+    <div class="down">
+      <%= render "admin_users/shared/links" %>
+    </div>
+  </div>
+</div>
+
+<!--cssはapplication.scssに記載-->
+

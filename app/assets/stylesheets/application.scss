@@ -1,0 +1,246 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+
+ // admin側のcss
+
+ .admin-title{
+   background-color: #FFCC00;
+   display: inline-block;
+   font-weight: bold;
+ }
+
+
+ .box{
+   text-align: center;
+ }
+
+ .label{
+   color: red;
+   font-size: 20px;
+ }
+
+
+// customer側のcss
+
+.title{
+   background-color: #FFAAFF;
+   display: inline-block;
+   font-weight: bold;
+ }
+
+ .label{
+   color: red;
+   font-size: 20px;
+ }
+
+// ヘッダーのcss
+
+/*文字 */
+.btn-outline-light{
+  border-width: 2px;
+  font-size: 15px;
+}
+
+/*配置 */
+ .nav-light{
+   display: flex;
+ }
+
+ .navbar-toggler{
+  background-color: #FFFFFF;
+  border-color: #ffffff;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(51, 51, 51, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/*ページネーションのデザイン */
+
+.pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+  margin-right: 5px;
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+  border-radius: 15px;    /*角を丸くする*/
+}
+
+
+/*アプリ全体の背景画像 */
+.mb-auto{
+  background-image:url("img/background.jpg");
+  background-size: cover;
+}
+
+.container{
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+/*ボタン*/
+.btn-warning{
+  font-weight: bold;
+}
+
+.btn-success{
+  font-weight: bold;
+}
+
+.btn-danger{
+  font-weight: bold;
+}
+
+.btn-primary{
+  font-weight: bold;
+}
+
+
+
+
+/*カード*/
+
+.card-text-title{
+  background: linear-gradient(transparent 60%, yellow 50%);
+  display: inline-block;
+  text-align: center;
+}
+
+.border-dark{
+  border-width: 3px;
+}
+
+.border-danger{
+  border-width: 3px;
+}
+
+.border-warning{
+  border-width: 3px;
+}
+
+.border-success{
+  border-width: 3px;
+}
+
+
+/*フォント*/
+html, body{
+  font-family: 'Kaushan Script', cursive,serif;
+}
+
+/*device関係*/
+.title-down{
+   background-color: #FFAAFF;
+   display: inline-block;
+   margin-top: 80px;
+   font-weight: bold;
+}
+
+.down-small{
+    padding-bottom: 200px
+}
+.down{
+    padding-bottom: 300px
+}
+
+.down-more{
+    padding-bottom: 400px
+}
+
+.down-more-all{
+    padding-bottom: 700px
+}
+
+.admin-title-down{
+   background-color: #FFCC00;
+   display: inline-block;
+   font-weight: bold;
+   margin-top: 80px;
+ }
+
+/*YouTube動画のレスポンシブ関係*/
+ .youtube{
+    position:relative;
+    width:100%;
+    height:0;
+    padding-top:75%;
+}
+
+.youtube iframe{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+/*画像のレスポンシブ*/
+ .attachment.admin_post.image{
+    width:100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+/*画像のレスポンシブ*/
+ .link-genre{
+    display: flex;
+    justify-content: center;
+  }
+
+/*画像の表示のスライダー*/
+.slider{
+  width: 70%;
+  height: 70%;
+  margin: 0 auto;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: red;
+}
+
+/*レスポンシブ対応*/
+@media screen and (max-width: 991px){
+  .navbar{
+     text-align: center;
+  }
+
+  .navbar-nav{
+    flex-direction: row;
+    margin-bottom: 20px;
+  }
+
+  .nav-item{
+     margin-top:10px;
+
+　.btn-outline-light{
+    border-width: 0,1px;
+    font-size: 2px;
+}
+ }
+
+}
+//require_* statement.

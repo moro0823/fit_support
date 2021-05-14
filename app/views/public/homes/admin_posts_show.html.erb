@@ -1,0 +1,52 @@
+  <div class ="container">
+    <div class="box mt-3">
+      <h2 class="admin-title mt-5"><%= @genre.name %>一覧</h2>
+      <div class="link mt-3">
+          <%= link_to "スポーツクラブからの投稿一覧に戻る", public_admin_posts_path, class:"btn btn-outline-primary mr-3" %>
+      </div>
+
+    <% if @posts == [] %>
+       <div class="box mt-3">
+         <div class="no-genre-text mt-5">
+          <h1>現在<%= @genre.name %>に関する情報はありません</h1>
+         </div>
+       </div>
+       <div class="down-more-all"></div>
+    <% else %>
+      <% @posts.each do |posts| %>
+        <div class="d-flex justify-content-center">
+          <div class="card border-warning mt-3 mb-5" style="width: 36rem;">
+            <div class="card-header bg-transparent border-warning">
+              <h3 class="text-danger"><%= posts.genre.name %></h3>
+            </div>
+              <div class="card-body">
+                  <h4 class="card-text-title"><%= link_to posts.title,admin_post_path(posts), class:"text-dark"  %></h4>
+                  <p class="card-text"><%= simple_format posts.body %></p>
+                  <div>
+                    <p class="img"><%= attachment_image_tag posts,:image, size:"500x315" %></p>
+                  </div>
+                  <% if posts.youtube_url.present? %>
+                    <div class="youtube">
+                      <iframe width="500" height="315" src="https://www.youtube.com/embed/<%= posts.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                  <% end %>
+
+              </div>
+            <div class="card-footer bg-transparent warning">
+              <div>
+                <span class="mr-3">投稿日: <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+             </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="down"></div>
+      <!--投稿は少ない時の余白-->
+    <% end %>
+      <div class="d-flex justify-content-center">
+        <div class="page mb-5">
+          <%= paginate @posts %>
+        </div>
+      </div>
+    </div>
+  </div>

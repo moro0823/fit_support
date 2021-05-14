@@ -1,0 +1,80 @@
+<div class ="container">
+  <div class="box mt-3">
+    <h2 class="title mt-5">プロフィール編集</h2>
+      <%= form_with model: @customer, local:true do |f| %>
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"プロフィール画像" %><br />
+          </div>
+          <%= attachment_image_tag @customer, :profile_image, :fill,60,60 %>
+          <%= f.attachment_field :profile_image ,placeholder: "プロフィール画像" %>
+        </div>
+
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"ユーザー名" %><br />
+          </div>
+            <%= f.text_field :username, autofocus: true, placeholder: "ユーザー名" %>
+        </div>
+
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"自己紹介" %><br />
+          </div>
+            <%= f.text_area :introduction, placeholder: "自己紹介",size: "50x10" %>
+        </div>
+
+        <h3 class="title mt-5">BodyData</h3>
+
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"性別" %><br />
+          </div>
+            <%= f.label :"男性"  %>
+            <%= f.radio_button :sex, :"男性"%>
+            <%= f.label :"女性"  %>
+            <%= f.radio_button :sex, :"女性" %>
+        </div>
+
+        <div class="field mt-3">
+          <div class="label-name">
+            <%= f.label :"年齢(任意)" %><br />
+          </div>
+            <%= f.number_field :age, class: "age", min: 0, max: 100 %>  才
+        </div>
+
+        <div class="field mt-3">
+          <div class="label-name">
+            <%= f.label :"身長(任意)" %><br />
+          </div>
+            <%= f.number_field :height, class: "height",min: 100, max: 220,step: "0.1"   %>  cm
+        </div>
+
+        <div class="field mt-3">
+          <div class="label-name">
+            <%= f.label :"体重（任意）" %><br />
+          </div>
+            <%= f.number_field :weight, class: "weight", min: 20, max: 150,step: "0.1"  %>  kg
+        </div>
+
+        <div class="field mt-3">
+          <div class="label-name">
+            <%= f.label :"体脂肪率（任意）" %><br />
+          </div>
+            <%= f.number_field :fat_percentage, class: "fat_percentage", min: 1, max: 50,step: "0.1" %> %
+        </div>
+
+        <div class="field mt-3 mb-3">
+          <div class="label">
+            <%= f.label :"BodyDataの公開設定" %><br />
+          </div>
+            <%= f.radio_button :is_show, false %>
+              <%= f.label :is_show, "未公開", {value: :false, style: "display: inline-block;"} %>
+            <%= f.radio_button :is_show, :true %>
+               <%= f.label :is_show, "公開中", {value: :true, style: "display: inline-block;"} %>
+        </div>
+
+        <%= f.submit "プロフィールを変更する",class: "btn btn-warning mb-5" %>
+        <% end %>
+  </div>
+</div>

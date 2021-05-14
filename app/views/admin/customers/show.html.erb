@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="box mt-3 mb-3">
+      <h2 class="admin-title mt-5"><%= @customer.username %>さんのマイページ</h2>
+    </div>
+
+  <div class="row">
+    <div class="col-md-3 com-sm-3 col-xs-2">
+
+      <div class="card border-success  mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-transparent border-success text-success">
+          <div>
+              <%=attachment_image_tag @customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2 rounded-circle"; %>
+            <span class="ml-3"><%= @customer.username %></span>
+          </div>
+          <div class="introduction mt-2" style="color:black;"><%=simple_format @customer.introduction %></div>
+        </div>
+
+        <div class="card-body ">
+           <h5 class="card-title">ユーザー情報</h5>
+           <p class="card-text">
+              <p>フォローワー</p>
+              <p>フォロー中</p>
+            <% if @customer == current_customer || @customer.is_show %>
+            <!--ログイン中のユーザーのマイページの時または公開中に設定しているユーザーのマイページはBodydataを表示する-->
+              <p>---Body Data---</br></p>
+              <p>性別: <%= @customer.sex %></p>
+              <p>年齢: <%= @customer.age%> 才</p>
+              <p>身長: <%= @customer.height %> cm</p>
+              <p>体重: <%= @customer.weight %> kg</p>
+              <p>体脂肪率: <%= @customer.fat_percentage %> %</p>
+            <% end %>
+            <div>BodyDataの公開設定</br>
+              <% if @customer.is_show %>
+                <p class="text-success">公開中</p>
+              <% else %>
+                <p class="text-danger">未公開</p>
+              <% end %>
+            </div>
+         </div>
+      </div>
+    </div>
+
+  <!-----------------------------------ここまでサイドバー-------------------------------------------------->
+
+    <div class="col-md-8 col-sm-8 col-xs-9 offset-1">
+          <% @posts.each do |posts| %>
+        <div>
+          <div class="card border-success mb-3">
+            <div class="card-header bg-transparent border-success">
+              <% if posts.status == "トレーニングメニュー" %>
+                <h5 class="text-danger"><%= posts.status %></h5>
+              <% elsif posts.status == "食事" %>
+                <h5 class="text-warning"><%= posts.status %></h5>
+              <% else posts.status == "知識" %>
+                <h5 class="text-primary"><%= posts.status %></h5>
+              <% end %>
+            </div>
+              <div class="card-body">
+                <h5 class="card-text-title"><%=posts.title %></h5>
+                  <p class="card-text"><%= simple_format posts.body %></p>
+                  <div>
+                    <% if posts.post_images.present? %>
+                      <div class="slider">
+                        <% posts.post_images.each do |image| %>
+                            <%= attachment_image_tag image, :image, :fill, 300, 300, format: "jpeg" %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+              </div>
+            <div class="card-footer bg-transparent border-success">
+              <%= posts.updated_at.strftime("%Y/%m/%d %H:%M") %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="page mb-5">
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>

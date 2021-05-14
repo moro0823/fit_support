@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="box mt-3">
+    <h2 class="title mt-3">編集画面</h2>
+    <%= form_with model: @post, url:admin_post_path(@post), local:true do |f| %>
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"投稿ジャンルの選択（必須）" %>
+      </div>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name,:include_blank => "選択してください", size: 30 %>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"タイトル（必須）"  %>
+      </div>
+        <%= f.text_field :title,required: true,size:"60x15" %>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"記入欄(必須)" %>
+      </div>
+        <%= f.text_area :body,required: true,size:"60x15"%>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"画像(任意)" %><br />
+          </div>
+          <%= attachment_image_tag @post, :image, :fill, 60, 60, format: 'jpeg' %>
+          <%= f.attachment_field :image ,placeholder: "画像" %>
+        </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"Youtube動画(任意)" %><br />
+      </div>
+        <%= f.text_field :youtube_url, placeholder: 'youtubeのURL',size:"40x10" %>
+    </div>
+
+    <div class="field mt-3 mb-3">
+        <div class="label">
+          <%= f.label :"ユーザーへの公開設定" %><br />
+        </div>
+          <%= f.radio_button :is_show, false %>
+            <%= f.label :is_show, "未公開", {value: :false, style: "display: inline-block;"} %>
+          <%= f.radio_button :is_show, :true %>
+            <%= f.label :is_show, "公開中", {value: :true, style: "display: inline-block;"} %>
+        </div>
+    <div class="actions mt-3 mb-3">
+      <%= f.submit "更新する", class: "btn btn-primary mb-5" %>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*topページのタイトル */
+.title-home{
+  color: 	#00CC33;
+  background: linear-gradient(transparent 97%, 	#00CC33 50%);
+  display: inline-block;
+}
+
+/*Topページの情報の表示 */
+.info-content{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+.info{
+  margin: 0 auto;
+}
+
+/*Topページのスポーツクラブの情報のタイトル */
+.subtitle-home{
+  font-weight: bold;
+  color: red;
+  background: linear-gradient(transparent 97%, 	red 50%);
+  display: inline-block;
+}
+
+
+
+/*aboutページ */
+.about-content{
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 100px;
+  padding-bottom: 100px;
+ }
+
+.about{
+  margin: 0 auto;
+}

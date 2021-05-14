@@ -1,0 +1,11 @@
+  <div class ="container">
+    <div class="box mt-3">
+      <h2 class="title mt-5">全ての投稿一覧</h2>
+      <div class="link mt-3">
+        <span class="mr-3"><%= link_to "トレーニング一覧", posts_training_path, class:"btn btn-outline-danger"%></span>
+        <span class="mr-3"><%= link_to "食事一覧", posts_eat_path, class:"btn btn-outline-warning" %></span>
+        <span><%= link_to "情報の共有一覧", posts_info_path, class:"btn btn-outline-primary" %></span>
+      </div>
+     <%= render 'public/posts/index', posts: @posts %>
+    </div>
+  </div>

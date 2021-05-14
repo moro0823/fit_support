@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="box mt-3 mb-3">
+      <h2 class="title mt-5">フォローされたユーザー一覧</h2>
+      <h3 class="mt-5 mb-5"><%= link_to "マイページに戻る", customer_path(@customer),class:"btn btn-outline-info"  %></h3>
+  </div>
+    <% if @customer.follower_customer.where.not(id: current_customer.id).count == "0"%>
+      <h2 class="mt-5" style="text-align:center;">フォローされているユーザーはいません</h2>
+      <div class="down-more-all"></div>
+    <% else %>
+      <table class="table">
+        <thead class="thead-light">
+          <tr class="table-danger">
+            <th>ユーザー名</th>
+            <th>BodyData公開設定</th>
+            <th>フォローボタン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customer.follower_customer.where.not(id: current_customer.id).each do |customer| %>
+          <tr class="table-light">
+            <td>
+              <%= attachment_image_tag customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2 rounded-circle"; %>
+              <%= link_to customer.username,customer_path(customer) %>
+            </td>
+            <td>
+              <% if customer.is_show  %>
+                <p class="text-success">公開中</p>
+              <% else %>
+                <p class="text-secondary">非公開</p>
+              <% end %>
+            </td>
+            <td>
+              <% if customer.id != current_customer.id %>
+                <% if current_customer.following?(customer) %>
+                  <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST,class:"btn btn-outline-danger" %>
+                <% else %>
+                  <%= link_to 'フォローする', follow_path(customer.id), method: :POST,class:"btn btn-outline-success" %>
+                <% end %>
+              <% end %>
+            </td>
+           </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <div class="down"></div>
+  </div>

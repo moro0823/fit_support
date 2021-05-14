@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="box mt-3">
+    <h2 class="admin-title-down">パスワードを忘れた方へ</h2>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "admin_users/shared/error_messages", resource: resource %>
+
+    <div class="field mt-3 mb-5">
+      <div class="label">
+        <%= f.label :"メールアドレス" %>
+      </div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",size:"40x20" %>
+      </div>
+
+     <div class="actions mt-3 mb-5">
+        <%= f.submit "パスワードのリセットメールを送信します", class: "btn btn-warning" %>
+     </div>
+     <% end %>
+
+    <div class="down-more">
+      <%= render "admin_users/shared/links" %>
+    </div>
+  </div>
+</div>
+

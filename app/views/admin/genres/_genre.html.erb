@@ -1,0 +1,11 @@
+<table class="table mt-5">
+  <% genres.each do |genre| %>
+    <tbody>
+      <tr class="table-light">
+        <td><%= genre.name %></td>
+        <td><%= link_to "編集", edit_admin_genre_path(genre),class:"btn btn-success" %></td>
+        <td><%= link_to "削除", admin_genre_path(genre), method: :delete, class:"btn btn-danger" %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
