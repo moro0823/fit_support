@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Public::CustomersController, type: :controller do
-
   describe 'ユーザログイン後のテスト' do
     let(:customer) { create(:customer) }
     let!(:other_customer) { create(:customer) }
@@ -12,13 +11,13 @@ RSpec.describe Public::CustomersController, type: :controller do
     let!(:info_post) { create(:info_post, customer: other_customer) }
 
     before do
-        visit new_customer_session_path
-        fill_in 'customer[email]', with: customer.email
-        fill_in 'customer[password]', with: customer.password
-        click_button 'ログイン'
-      #.customer(id:3)でログインしている状態
+      visit new_customer_session_path
+      fill_in 'customer[email]', with: customer.email
+      fill_in 'customer[password]', with: customer.password
+      click_button 'ログイン'
+      # .customer(id:3)でログインしている状態
     end
-    
+
     describe 'ヘッダーのテスト: ログインしている場合' do
       context 'リンクの内容を確認: ※ログアウトは『ユーザログアウトのテスト』でテスト済み' do
         subject { current_path }
@@ -54,9 +53,9 @@ RSpec.describe Public::CustomersController, type: :controller do
           is_expected.to eq "/search_friend"
         end
       end
-    end #ヘッダーのテスト: ログインしている場  
+    end # ヘッダーのテスト: ログインしている場
 
-   describe 'マイページのテスト' do
+    describe 'マイページのテスト' do
       before do
         visit customer_path(customer)
       end
@@ -78,12 +77,12 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(page).to have_link '削除', href: post_path(post)
         end
         it 'コメント数が表示され、投稿詳細へのリンク先が正しい' do
-          expect(page).to have_link post.post_comments.count,href: post_path(post)
+          expect(page).to have_link post.post_comments.count, href: post_path(post)
         end
-        it  'いいね数が表示され,いいねしたユーザー一覧へのリンクが正しい' do
-          expect(page).to have_link post.favorites.count,href: from_favorite_path(post)
+        it 'いいね数が表示され,いいねしたユーザー一覧へのリンクが正しい' do
+          expect(page).to have_link post.favorites.count, href: from_favorite_path(post)
         end
-        it  '投稿時間が表示される' do
+        it '投稿時間が表示される' do
           expect(page).to have_content post.created_at.strftime("%Y/%m/%d %H:%M")
         end
         it '他人の投稿は表示されない' do
@@ -117,7 +116,6 @@ RSpec.describe Public::CustomersController, type: :controller do
         end
       end
     end
-
 
     describe '自分のユーザ情報編集画面のテスト' do
       before do
@@ -166,7 +164,7 @@ RSpec.describe Public::CustomersController, type: :controller do
           choose "customer_is_show_true"
           fill_in 'customer[height]', with: "165"
           fill_in 'customer[weight]', with: "55"
-          fill_in 'customer[fat_percentage]',with: "30"
+          fill_in 'customer[fat_percentage]', with: "30"
           click_button 'プロフィールを変更する'
         end
 
@@ -198,7 +196,7 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(current_path).to eq '/customers/' + customer.id.to_s
         end
       end
-    end #ユーザー情報更新のテスト
+    end # ユーザー情報更新のテスト
 
     describe '投稿一覧画面のテスト' do
       let!(:post_comment) { create(:post_comment, post: post, customer: customer) }
@@ -216,11 +214,11 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(page).to have_link post.title, href: post_path(post)
           expect(page).to have_link eat_post.title, href: post_path(eat_post)
         end
-        it   '自分の投稿と他人の投稿の本文が表示される' do
+        it '自分の投稿と他人の投稿の本文が表示される' do
           expect(page).to have_content post.body
           expect(page).to have_content eat_post.body
         end
-        it   '自分の投稿と他人の投稿の投稿時間が表示される' do
+        it '自分の投稿と他人の投稿の投稿時間が表示される' do
           expect(page).to have_content post.updated_at.strftime("%Y/%m/%d %H:%M")
           expect(page).to have_content eat_post.updated_at.strftime("%Y/%m/%d %H:%M")
         end
@@ -228,24 +226,24 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(page).to have_link post.customer.username, href: customer_path(post.customer)
           expect(page).to have_link eat_post.customer.username, href: customer_path(eat_post.customer)
         end
-        it   'トレーニングの投稿一覧へのリンクが表示され、リンク先が正しい' do
+        it 'トレーニングの投稿一覧へのリンクが表示され、リンク先が正しい' do
           expect(page).to have_link post.status, href: posts_training_path
         end
-        it   '食事の投稿一覧へのリンクが表示され、リンク先が正しい' do
+        it '食事の投稿一覧へのリンクが表示され、リンク先が正しい' do
           expect(page).to have_link eat_post.status, href: posts_eat_path
         end
-        it   '情報の共有の投稿一覧へのリンクが表示され、リンク先が正しい' do
+        it '情報の共有の投稿一覧へのリンクが表示され、リンク先が正しい' do
           expect(page).to have_link info_post.status, href: posts_info_path
         end
-        it   'コメント数が表示され、投稿詳細へのリンク先が正しい' do
-          expect(page).to have_link post.post_comments.count,href: post_path(post)
+        it 'コメント数が表示され、投稿詳細へのリンク先が正しい' do
+          expect(page).to have_link post.post_comments.count, href: post_path(post)
         end
-        it   'いいね数が表示され、いいねが押せる' do
-          expect(page).to have_link post.favorites.count,href: post_favorites_path(post)
+        it 'いいね数が表示され、いいねが押せる' do
+          expect(page).to have_link post.favorites.count, href: post_favorites_path(post)
         end
       end
     end
-    
+
     describe '新規投稿画面のテスト' do
       context '投稿成功のテスト' do
         before do
@@ -263,7 +261,7 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(current_path).to eq '/customers/' + post.customer.id.to_s
         end
       end
-    end #投稿成功のテスト
+    end # 投稿成功のテスト
 
     describe '自分の投稿詳細画面のテスト' do
       before do
@@ -284,7 +282,7 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(page).to have_content post.body
         end
       end
-    end  #投稿詳細ページのテスト
+    end # 投稿詳細ページのテスト
 
     describe '自分の投稿編集画面のテスト' do
       before do
@@ -330,19 +328,20 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(post.reload.status).not_to eq @post_old_status
         end
         it 'リダイレクト先が,マイページになっている' do
-         expect(current_path).to eq '/customers/' + post.customer.id.to_s
+          expect(current_path).to eq '/customers/' + post.customer.id.to_s
         end
       end
-    end #投稿編集のテスト
+    end # 投稿編集のテスト
 
-  describe '自分のマイページの公開ステータスに対するテスト' do
+    describe '自分のマイページの公開ステータスに対するテスト' do
       before do
-        #公開ステータスを公開中に変更
+        # 公開ステータスを公開中に変更
         visit edit_customer_path(customer)
         @customer_old_is_show = choose "customer_is_show_false"
         choose "customer_is_show_true"
         click_button 'プロフィールを変更する'
       end
+
       it '公開ステータスが正しく更新される' do
         expect(customer.reload.is_show).not_to eq @customer_old_is_show
       end
@@ -351,7 +350,8 @@ RSpec.describe Public::CustomersController, type: :controller do
         before do
           visit customer_path(customer)
         end
-        #未公開の場合はデフォルトで設定しているのでマイページの表示の確認でテスト済み
+        # 未公開の場合はデフォルトで設定しているのでマイページの表示の確認でテスト済み
+
         it '公開中でも自分のマイページではBodyDataが表示される' do
           expect(page).to have_content customer.height
           expect(page).to have_content customer.weight
@@ -360,12 +360,13 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(page).to have_content customer.sex
         end
       end
-    end #自分のマイページの公開ステータスに対するテスト
+    end # 自分のマイページの公開ステータスに対するテスト
 
     describe '他人のマイページに対するテスト BodyDataが未公開の場合' do
       before do
         visit customer_path(other_customer)
       end
+
       context '他人のマイページの表示の確認' do
         it 'ユーザー情報編集のリンクは表示されない' do
           expect(page).not_to have_link 'ユーザー情報編集', href: edit_customer_path(other_customer)
@@ -378,14 +379,14 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(page).not_to have_content other_customer.sex
         end
       end
-    end #他人のマイページの表示の確認 BodyDataが未公開の場合
+    end # 他人のマイページの表示の確認 BodyDataが未公開の場合
 
     describe '他人のマイページに対するテスト BodyDataが公開の場合 ' do
       before do
         visit customer_path(true_customer)
-        #STDOUT.puts "@@@@@@@@@@@@@@"
-        #STDOUT.puts  true_customer.is_show
-        #STDOUT.puts "@@@@@@@@@@@@@@".      true_customerの公開ステータス確認時にコメントアウトを外して使用
+        # STDOUT.puts "@@@@@@@@@@@@@@"
+        # STDOUT.puts  true_customer.is_show
+        # STDOUT.puts "@@@@@@@@@@@@@@".      true_customerの公開ステータス確認時にコメントアウトを外して使用
       end
 
       context '他人のマイページの表示の確認' do
@@ -401,7 +402,6 @@ RSpec.describe Public::CustomersController, type: :controller do
           expect(page).to have_content true_customer.sex
         end
       end
-    end  #他人のマイページの表示の確認
-
+    end # 他人のマイページの表示の確認
   end # ログイン,投稿が作られた状態している状態
 end

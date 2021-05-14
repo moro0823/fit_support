@@ -5,15 +5,16 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   attachment :profile_image
-  enum sex: { "男性": 0, "女性": 1}
+  enum sex: { "男性": 0, "女性": 1 }
   validates :username, presence: true
   has_many :posts, dependent: :destroy
-  has_many :post_comments,dependent: :destroy
+  has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorited_posts, through: :favorites, source: :post
-
-  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
-  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
+  # フォロー取得
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy 
+  # フォロワー取得
+  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy 
   has_many :following_customer, through: :follower, source: :followed # 自分がフォローしている人
   has_many :follower_customer, through: :followed, source: :follower # 自分をフォローしている人
 
@@ -33,7 +34,7 @@ class Customer < ApplicationRecord
   end
 
   def already_favorited?(post)
-    self.favorites.exists?(post_id: post.id)
+    favorites.exists?(post_id: post.id)
   end
 
   scope :search, -> (search_params) do
@@ -41,15 +42,15 @@ class Customer < ApplicationRecord
     return if search_params.blank?
 
     # パラメータを指定して検索を実行する
-      sex_like(search_params[:sex])
-      .age_from(search_params[:age_from])
-      .age_to(search_params[:age_to])
-      .height_from(search_params[:height_from])
-      .height_to(search_params[:height_to])
-      .weight_from(search_params[:weight_from])
-      .weight_to(search_params[:weight_to])
-      .fat_percentage_from(search_params[:fat_percentage_from])
-      .fat_percentage_to(search_params[:fat_percentage_to])
+    sex_like(search_params[:sex]).
+      age_from(search_params[:age_from]).
+      age_to(search_params[:age_to]).
+      height_from(search_params[:height_from]).
+      height_to(search_params[:height_to]).
+      weight_from(search_params[:weight_from]).
+      weight_to(search_params[:weight_to]).
+      fat_percentage_from(search_params[:fat_percentage_from]).
+      fat_percentage_to(search_params[:fat_percentage_to])
   end
 
   # 性別が存在する場合、gender_isで検索する
@@ -69,14 +70,13 @@ class Customer < ApplicationRecord
 
   scope :search_friend, -> (search_friend_params) do
     return if search_friend_params.blank?
-      username(search_friend_params[:username])
+    username(search_friend_params[:username])
   end
-  scope :username, -> (username) { where('username LIKE ?', "%#{username}%") if username.present? }
 
   scope :search_admin_customer, -> (search_admin_customer_params) do
     return if search_admin_customer_params.blank?
-      username(search_admin_customer_params[:username])
+    username(search_admin_customer_params[:username])
   end
-
+  
+  scope :username, -> (username) { where('username LIKE ?', "%#{username}%") if username.present? }
 end
-

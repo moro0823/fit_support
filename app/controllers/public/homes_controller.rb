@@ -1,5 +1,4 @@
 class Public::HomesController < ApplicationController
-
   def top
     @posts = AdminPost.where(is_show: true).last(3).reverse
   end
@@ -17,7 +16,6 @@ class Public::HomesController < ApplicationController
     @posts = @genre.admin_posts.where(is_show: true).page(params[:page]).reverse_order
   end
 
-
   def guest_sign_in
     customer = Customer.find_or_create_by!(email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64
@@ -34,5 +32,4 @@ class Public::HomesController < ApplicationController
     sign_in admin
     redirect_to root_path, notice: '管理者としてログインしました'
   end
-
 end

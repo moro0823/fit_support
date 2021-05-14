@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Public::CustomersController, type: :controller do
-
   describe 'トップ画面のテスト' do
     before do
       visit root_path
@@ -36,7 +35,6 @@ RSpec.describe Public::CustomersController, type: :controller do
         log_in_link = find_all('a')[5].native.inner_text
         expect(page).to have_link log_in_link, href: new_customer_session_path
       end
-
     end
   end
 
@@ -53,7 +51,6 @@ RSpec.describe Public::CustomersController, type: :controller do
   end
 
   describe 'ヘッダーのテスト: ログインしていない場合' do
-
     before do
       visit root_path
     end
@@ -145,9 +142,9 @@ RSpec.describe Public::CustomersController, type: :controller do
 
     before do
       visit new_customer_session_path
-        fill_in 'customer[email]', with: customer.email
-        fill_in 'customer[password]', with: customer.password
-        click_button 'ログイン'
+      fill_in 'customer[email]', with: customer.email
+      fill_in 'customer[password]', with: customer.password
+      click_button 'ログイン'
     end
 
     context 'ヘッダーの表示を確認' do
@@ -181,14 +178,10 @@ RSpec.describe Public::CustomersController, type: :controller do
         expect(post_new_link).to match("友達を探す")
       end
 
-
       it '左上か7番目のリンクが「ログアウト」である' do
         logout_link = find_all('a')[7].native.inner_text
         expect(logout_link).to match("ログアウト")
       end
     end
   end
-
-
-
-end #一番上のend
+end # 一番上のend

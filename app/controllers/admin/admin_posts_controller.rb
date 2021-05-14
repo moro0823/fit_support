@@ -1,5 +1,4 @@
 class Admin::AdminPostsController < ApplicationController
-
   def index
     @posts = AdminPost.all.page(params[:page]).reverse_order
     @genres = Genre.all
@@ -40,7 +39,7 @@ class Admin::AdminPostsController < ApplicationController
   def destroy
     @post = AdminPost.find(params[:id])
     if @post.destroy
-      redirect_to admin_posts_path, alert:  '投稿を削除しました'
+      redirect_to admin_posts_path, alert: '投稿を削除しました'
     else
       flash.now[:alert] = '削除できませんでした'
       redirect_to admin_post_path(@post)
@@ -49,8 +48,7 @@ class Admin::AdminPostsController < ApplicationController
 
   private
 
-    def post_params
-      params.require(:admin_post).permit(:genre_id, :title, :image, :body, :youtube_url, :is_show)
-    end
-
+  def post_params
+    params.require(:admin_post).permit(:genre_id, :title, :image, :body, :youtube_url, :is_show)
+  end
 end

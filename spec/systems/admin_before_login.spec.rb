@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Admin::CustomersController, type: :controller do
-
   describe 'ユーザログイン' do
     let(:admin_user) { create(:admin_user) }
 
@@ -34,15 +33,14 @@ RSpec.describe Admin::CustomersController, type: :controller do
     end
   end
 
-
   describe 'ヘッダーのテスト: ログインしている場合' do
     let(:admin_user) { create(:admin_user) }
 
     before do
       visit new_admin_user_session_path
-        fill_in 'admin_user[email]', with: admin_user.email
-        fill_in 'admin_user[password]', with: admin_user.password
-        click_button 'ログイン'
+      fill_in 'admin_user[email]', with: admin_user.email
+      fill_in 'admin_user[password]', with: admin_user.password
+      click_button 'ログイン'
     end
 
     context 'ヘッダーの表示を確認' do

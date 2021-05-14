@@ -26,9 +26,7 @@ class Public::FavoritesController < ApplicationController
 
   def set_post
     @post = Post.find_by(id: params[:post_id])
-    #いいねを押した（または現在表示している）投稿情報を取得し、@postに格納
-    #before_actionでcreate,destroyが行われる前にidを取得
+    # いいねを押した（または現在表示している）投稿情報を取得し、@postに格納
+    # before_actionでcreate,destroyが行われる前にidを取得
   end
-
 end
-

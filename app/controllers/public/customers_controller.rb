@@ -30,18 +30,17 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to customer_path(@customer),notice: 'ユーザー情報を更新しました'
+      redirect_to customer_path(@customer), notice: 'ユーザー情報を更新しました'
     else
       flash.now[:alert] = 'ユーザー情報の更新に失敗しました'
-       render :edit
+      render :edit
     end
   end
-
 
   private
 
   def customer_params
-    params.require(:customer).permit(:username, :email, :profile_image, :age, :height, :weight, :fat_percentage,:sex, :is_show ,:introduction)
+    params.require(:customer).permit(:username, :email, :profile_image, :age, :height, :weight,
+                                     :fat_percentage, :sex, :is_show, :introduction)
   end
-
 end
