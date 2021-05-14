@@ -66,7 +66,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy
-      redirect_to customer_path(current_customer), alert:  '投稿を削除しました'
+      redirect_to customer_path(current_customer), alert: '投稿を削除しました'
     else
       flash.now[:alert] = '削除できませんでした'
       redirect_to customer_path(current_customer)
@@ -75,8 +75,7 @@ class Public::PostsController < ApplicationController
 
   private
 
-    def post_params
-      params.require(:post).permit(:customer_id, :title, :body, :status, :day, post_images_images: [])
-    end
-
+  def post_params
+    params.require(:post).permit(:customer_id, :title, :body, :status, :day, post_images_images: [])
+  end
 end

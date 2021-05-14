@@ -33,7 +33,7 @@
         <%= f.label :"画像(任意)" %><br />
           </div>
           <%= attachment_image_tag @post, :image, :fill,80,80 %>
-          <%= f.attachment_field :image ,placeholder: "画像" %>
+          <%= f.attachment_field :post_images_images, multiple: true %>
         </div>
 
     <div class="actions mt-3 mb-3">

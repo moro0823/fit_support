@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-
-    devise_for :admin_users, controllers: {
+  devise_for :admin_users, controllers: {
     sessions: 'admin_users/sessions',
     passwords: 'admin_users/passwords',
   }
 
-  devise_for :customers,controllers: {
+  devise_for :customers, controllers: {
     sessions: 'costomers/sessions',
     passwords: 'costomers/passwords',
-    registrations: 'costomers/registrations'
+    registrations: 'costomers/registrations',
   }
 
   scope module: :public do
@@ -43,13 +42,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :customers, only: [:index, :show]
-    resources :genres, only: [:index,:show, :edit, :create, :update,:destroy]
+    resources :genres, only: [:index, :show, :edit, :create, :update, :destroy]
     get 'customer/post' => 'customers#post'
-
   end
 
   scope module: :admin do
     resources :admin_posts
   end
-
 end

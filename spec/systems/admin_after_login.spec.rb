@@ -6,11 +6,11 @@ RSpec.describe Admin::CustomersController, type: :controller do
     let!(:customer) { create(:customer) }
     let!(:post) { create(:post, customer: customer) }
     let!(:eat_post) { create(:eat_post, customer: customer) }
-    let!(:genre) { create(:genre,name:"NEWプログラム") }
-    let!(:other_genre) { create(:genre,name:"営業情報") }
-    let!(:admin_post) { create(:admin_post,is_show:"未公開", genre: genre )}
-    let!(:true_admin_post) { create(:true_admin_post,is_show:"公開中", genre: genre ) }
-    #admin_post_id = 1 true_admin_post_id = 2
+    let!(:genre) { create(:genre, name: "NEWプログラム") }
+    let!(:other_genre) { create(:genre, name: "営業情報") }
+    let!(:admin_post) { create(:admin_post, is_show: "未公開", genre: genre) }
+    let!(:true_admin_post) { create(:true_admin_post, is_show: "公開中", genre: genre) }
+    # admin_post_id = 1 true_admin_post_id = 2
 
     before do
       visit new_admin_user_session_path
@@ -49,13 +49,13 @@ RSpec.describe Admin::CustomersController, type: :controller do
           is_expected.to eq "/admin/genres"
         end
       end
-    end #ヘッダーのテスト: ログインしている場
-
+    end # ヘッダーのテスト: ログインしている場
 
     describe "ユーザー投稿一覧のテスト" do
       before do
         visit admin_customer_post_path
       end
+
       context "表示の確認" do
         it 'URLが正しい' do
           expect(current_path).to eq '/admin/customer/post'
@@ -73,7 +73,7 @@ RSpec.describe Admin::CustomersController, type: :controller do
       context '投稿成功のテスト' do
         before do
           visit new_admin_post_path
-          select "NEWプログラム",  from: "admin_post[genre_id]"
+          select "NEWプログラム", from: "admin_post[genre_id]"
           fill_in 'admin_post[title]', with: Faker::Lorem.characters(number: 10)
           fill_in 'admin_post[body]', with: Faker::Lorem.characters(number: 30)
         end
@@ -86,7 +86,7 @@ RSpec.describe Admin::CustomersController, type: :controller do
           expect(current_path).to eq edit_admin_post_path(3)
         end
       end
-    end #投稿成功のテスト
+    end # 投稿成功のテスト
 
     describe '管理者の投稿詳細画面のテスト' do
       before do
@@ -109,16 +109,15 @@ RSpec.describe Admin::CustomersController, type: :controller do
         it '削除ボタンが表示される' do
           expect(page).to have_link "削除", href: admin_post_path(admin_post)
         end
-        it  '投稿時間が表示される' do
+        it '投稿時間が表示される' do
           expect(page).to have_content admin_post.updated_at.strftime("%Y/%m/%d %H:%M")
         end
       end
-    end  #投稿詳細ページのテスト
+    end  # 投稿詳細ページのテスト
 
     describe '管理者の投稿編集画面のテスト' do
       before do
         visit edit_admin_post_path(admin_post)
-
       end
 
       context '表示内容の確認' do
@@ -150,7 +149,7 @@ RSpec.describe Admin::CustomersController, type: :controller do
           @admin_post_youtube_url = admin_post.youtube_url
           @admin_post_is_show = choose "admin_post_is_show_false"
           @admin_post_genre = admin_post.genre.name
-          select "営業情報",  from: "admin_post[genre_id]"
+          select "営業情報", from: "admin_post[genre_id]"
           fill_in 'admin_post[title]', with: Faker::Lorem.characters(number: 9)
           fill_in 'admin_post[body]', with: Faker::Lorem.characters(number: 19)
           fill_in 'admin_post[youtube_url]', with: Faker::Lorem.characters(number: 10)
@@ -178,10 +177,9 @@ RSpec.describe Admin::CustomersController, type: :controller do
           expect(current_path).to eq "/admin_posts"
         end
       end
-    end  #投稿更新のテスト
+    end  # 投稿更新のテスト
 
     describe '管理者の投稿一覧画面のテスト' do
-
       before do
         visit admin_posts_path
       end
@@ -193,13 +191,13 @@ RSpec.describe Admin::CustomersController, type: :controller do
         it '管理者の投稿とタイトルのリンク先がそれぞれ正しい' do
           expect(page).to have_link admin_post.title, href: admin_post_path(admin_post)
         end
-        it  '管理者の投稿の本文が表示される' do
+        it '管理者の投稿の本文が表示される' do
           expect(page).to have_content admin_post.body
         end
-        it  '投稿ジャンルの一覧へのリンクが表示される' do
+        it '投稿ジャンルの一覧へのリンクが表示される' do
           expect(page).to have_link genre.name, href: admin_genre_path(genre)
         end
       end
-    end #管理者の投稿一覧のテスト
-  end #ログインした状態
+    end # 管理者の投稿一覧のテスト
+  end # ログインした状態
 end

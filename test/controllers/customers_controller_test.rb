@@ -5,5 +5,4 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
     get customers_show_url
     assert_response :success
   end
-
 end

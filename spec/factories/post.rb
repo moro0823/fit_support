@@ -30,5 +30,4 @@ FactoryBot.define do
     youtube_url { Faker::Lorem.characters(number: 8) }
     is_show { "公開中" }
   end
-
 end
