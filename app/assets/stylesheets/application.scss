@@ -100,6 +100,15 @@
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+.favorite-sample_image{
+  width: 90%;
+  height: 700px;
+  background-image:image-url("img/favorite_sample.png");
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+}
+
 
 /*ボタン*/
 .btn-warning{
@@ -243,4 +252,3 @@ html, body{
  }
 
 }
-//require_* statement.
