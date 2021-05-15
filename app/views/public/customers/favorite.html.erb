@@ -2,11 +2,11 @@
     <div class="box mt-3">
       <h2 class="title mt-5">いいねした投稿一覧</h2>
       <h3 class="mt-3" style="color:red;">いいねをすることで参考になった投稿をすぐ見返すことができます！</h3>
-      <h4 class="mt-3">自分投稿もいいねしておくことでお気に入りの投稿もすぐにみることも可能です！</h4>
+      <h4 class="mt-3">自分の投稿もいいねしておくことでお気に入りの投稿もすぐにみることも可能です！</h4>
       <% if @favorite_posts.count == 0 %>
         <div class="mt-5"><%= link_to "投稿一覧からお気に入り投稿を探す",posts_path, class:"btn btn-outline-info" %></div>
         <h4 class="mt-5">参考画像</h4>
-         <img class="favorite-image" src="/assets/favorite_sample.png" style="width:800px; height:600px;">
+         <div class="favorite-sample_image"></div>
 
       <% else %>
         <% @favorite_posts.each do |posts| %>
@@ -28,12 +28,18 @@
                     <% end %>
                   </p>
                   <p class="card-text"><%= simple_format posts.body %></p>
-                  <div>
-                    <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
-                  </div>
+                <div>
+                  <% if posts.post_images.present? %>
+                    <div class="slider">
+                      <% posts.post_images.each do |image| %>
+                        <%= attachment_image_tag image, :image, :fill, 300, 300, format: "jpeg" %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             <div class="card-footer bg-transparent border-success">
-              <p>Post Day : <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+              <p>投稿日 : <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></p>
               <%= link_to post_customer_favorite_path(posts), method: :delete do %>
                 <p class="btn btn-outline-danger mt-2">いいねを取り消す</p>
               <% end %>
