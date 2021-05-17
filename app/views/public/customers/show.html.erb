@@ -29,9 +29,11 @@
 
         <div class="card-body ">
            <h5 class="card-title">ユーザー情報</h5>
+              <% if @customer.id != current_customer.id %>
+　　　　　　　  <p><%= link_to "Follow: #{@customer.following_customer.where.not(id: current_customer.id).count}",customer_follower_path(@customer),class:"btn btn-outline-danger" %></p>
+                <p><%= link_to "Follower: #{@customer.follower_customer.where.not(id: current_customer.id).count}",customer_followed_path(@customer),class:"btn btn-outline-danger" %></p>
+              <% end %>
            <p class="card-text">
-              <p>フォローワー</p>
-              <p>フォロー中</p>
             <% if @customer == current_customer || @customer.is_show %>
             <!--ログイン中のユーザーのマイページの時または公開中に設定しているユーザーのマイページはBodydataを表示する-->
               <p>---Body Data---</br></p>
@@ -59,7 +61,7 @@
             <%= link_to "いいねした投稿一覧", customer_favorite_path,class:"btn btn-outline-danger" %>
           </p>
           <% else %>
-            <p>メッセージを送る</p>
+            <%= link_to 'チャットする', chat_path(@customer.id),class:"btn btn-outline-danger" %>
           <% end %>
       </div>
       </div>
