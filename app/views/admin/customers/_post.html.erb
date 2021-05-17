@@ -16,7 +16,15 @@
                   <h4 class="card-text-title"><%= posts.title %></h4>
                   <p class="card-text"><%= simple_format posts.body %></p>
                   <div>
-                    <p><%= attachment_image_tag posts,:image, :fill,60,60 %></p>
+                    <p>
+                    <% if posts.post_images.present? %>
+                        <% posts.post_images.each do |image| %>
+                          <span class="mr-2">
+                            <%= attachment_image_tag image, :image, :fill, 100, 100, format: "jpeg" %>
+                          </span>
+                        <% end %>
+                    <% end %>
+                    </p>
                   </div>
               </div>
             <div class="card-footer bg-transparent border-success">
