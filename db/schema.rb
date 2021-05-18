@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_012319) do
+ActiveRecord::Schema.define(version: 2021_05_18_023132) do
+
+  create_table "admin_post_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "customer_id"
+    t.integer "admin_post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admin_posts", force: :cascade do |t|
     t.integer "genre_id"
@@ -74,6 +82,14 @@ ActiveRecord::Schema.define(version: 2021_05_17_012319) do
   create_table "favorites", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "from_admin_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "admin_user_id"
+    t.integer "admin_post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

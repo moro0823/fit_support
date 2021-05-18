@@ -21,6 +21,7 @@ class Customer < ApplicationRecord
   has_many :customer_rooms
   has_many :chats
   has_many :rooms, through: :customer_rooms
+  has_many :admin_post_comments, dependent: :destroy
 
   # ユーザーをフォローする
   def follow(customer_id)

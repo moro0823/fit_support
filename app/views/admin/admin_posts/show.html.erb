@@ -13,29 +13,96 @@
         <div class="d-flex justify-content-center">
           <div class="card border-warning mt-3 mb-5" style="width: 36rem;">
             <div class="card-header bg-transparent border-warning">
-              <h3><%= link_to @post.genre.name,admin_genre_path(@post.genre.id),class:"text-danger" %></h3>
+              <h3><%= link_to @admin_post.genre.name,admin_genre_path(@admin_post.genre.id),class:"text-danger" %></h3>
             </div>
             <div class="card-body">
-                  <h4 class ="card-title"><%=@post.title %></h4>
-                  <p class="card-text"><%= simple_format @post.body %></p>
+                  <h4 class ="card-title"><%=@admin_post.title %></h4>
+                  <p class="card-text"><%= simple_format @admin_post.body %></p>
                   <div>
-                    <% if @post.youtube_url.present? %>
-                      <iframe width="500" height="315" src="https://www.youtube.com/embed/<%= @post.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <% if @admin_post.youtube_url.present? %>
+                      <iframe width="500" height="315" src="https://www.youtube.com/embed/<%= @admin_post.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <% end %>
                   </div>
                   <div>
-                    <p><%= attachment_image_tag @post,:image, size:"500x315" %></p>
+                    <p><%= attachment_image_tag @admin_post,:image, size:"500x315" %></p>
                   </div>
             </div>
             <div class="card-footer bg-transparent border-warning">
-              <p class="mt-2 mb-3">更新日 : <%= @post.updated_at.strftime('%Y/%m/%d %H:%M') %></p>
+              <p class="mt-2 mb-3">
+                更新日 : <%= @admin_post.updated_at.strftime('%Y/%m/%d %H:%M') %>
+              </p>
               <% if admin_user_signed_in? %>
-                <span><%= link_to "編集", edit_admin_post_path(@post),class:"btn btn-success mr-3" %></span>
-                <span><%= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %></span>
+                <span><%= link_to "編集", edit_admin_post_path(@admin_post),class:"btn btn-success mr-3" %></span>
+                <span><%= link_to "削除", admin_post_path(@admin_post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %></span>
               <% end %>
             </div>
           </div>
         </div>
+
+        <% if customer_signed_in? %>
+        <div class="new-comment">
+            <%= form_with(model:[@admin_post, @admin_post_comment], local:true )  do |f| %>
+              <p><%= f.text_area :comment,placeholder: "ユーザー用 コメントをここに",size:"50x5" %></p>
+              <p><%= f.submit "コメントする", class:"btn btn-primary mt-3" %></p>
+            <% end %>
+        </div>
+        <% end %>
+
+        <% if admin_user_signed_in? %>
+        <div class="new-comment">
+            <%= form_with(model:[@admin_post, @from_admin_comment], local:true )  do |f| %>
+              <p><%= f.text_area :comment,placeholder: "管理者用 コメントをここに",size:"50x5" %></p>
+              <p><%= f.submit "コメントする", class:"btn btn-primary mt-3" %></p>
+            <% end %>
+        </div>
+        <% end %>
+
+        <% @instances.each do |instance| %>
+          <% if instance.class == FromAdminComment %>
+              <div class="d-flex justify-content-center">
+                <div class="card bg-light mb-3 mt-3" style="width: 24rem;">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <%= instance.created_at.strftime('%Y/%m/%d %H:%M') %>
+                    </h5>
+                    <p class="card-text"><%= simple_format instance.comment %></p>
+                   </div>
+                  <div class="card-footer">
+                    <% if admin_user_signed_in? %>
+                      <% if instance.admin_user.id == current_admin_user.id %>
+                        <%= link_to "削除", admin_post_from_admin_comment_path(instance.admin_post, instance), method: :delete, class:"btn btn-outline-danger" %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+            <% else %>
+            <div class="d-flex justify-content-center">
+              <div class="card bg-light mb-3 mt-3" style="width: 24rem;">
+                <div class="card-header">
+                    <%=attachment_image_tag instance.customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2  mr-4 rounded-circle"; %>
+                    <%=link_to instance.customer.username,customer_path(instance.customer) %>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= instance.created_at.strftime('%Y/%m/%d %H:%M') %>
+                  </h5>
+                  <p class="card-text"><%= simple_format instance.comment %></p>
+                 </div>
+                  <div class="card-footer">
+                    <% if customer_signed_in? %>
+                      <% if instance.customer == current_customer %>
+                        <%= link_to "削除", admin_post_admin_post_comment_path(instance.admin_post, instance), method: :delete, class:"btn btn-outline-danger" %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
       <div class="down"></div>
     </div>
   </div>
