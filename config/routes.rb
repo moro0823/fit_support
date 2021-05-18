@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'chats/show'
+
   devise_for :admin_users, controllers: {
     sessions: 'admin_users/sessions',
     passwords: 'admin_users/passwords',
@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show]
     resources :genres, only: [:index, :show, :edit, :create, :update, :destroy]
     get 'customer/post' => 'customers#post'
+    resources :admin_users, only: [:show, :edit, :update]
   end
 
   scope module: :admin do
@@ -58,5 +59,7 @@ Rails.application.routes.draw do
       resources :from_admin_comments, only: [:create, :destroy]
     end
   end
-  
+
+
+
 end

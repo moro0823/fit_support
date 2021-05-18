@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_18_023132) do
+ActiveRecord::Schema.define(version: 2021_05_18_125519) do
 
   create_table "admin_post_comments", force: :cascade do |t|
     t.text "comment"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_05_18_023132) do
     t.boolean "is_show", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "admin_user_id"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -39,6 +40,12 @@ ActiveRecord::Schema.define(version: 2021_05_18_023132) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "body"
+    t.string "phone_number"
+    t.string "postal_code"
+    t.string "adrress"
+    t.string "image_id"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
@@ -98,6 +105,7 @@ ActiveRecord::Schema.define(version: 2021_05_18_023132) do
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "admin_user_id"
   end
 
   create_table "post_comments", force: :cascade do |t|

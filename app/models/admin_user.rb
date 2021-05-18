@@ -4,5 +4,7 @@ class AdminUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :from_admin_comments, dependent: :destroy
-  has_many :admin_users
+  has_many :genres
+  has_many :admin_posts
+  attachment :image
 end

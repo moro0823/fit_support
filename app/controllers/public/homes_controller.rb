@@ -8,7 +8,6 @@ class Public::HomesController < ApplicationController
 
   def admin_posts
     @posts = AdminPost.where(is_show: true).page(params[:page]).reverse_order
-    @genres = Genre.all
   end
 
   def admin_posts_show
