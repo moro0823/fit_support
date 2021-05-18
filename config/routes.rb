@@ -53,6 +53,10 @@ Rails.application.routes.draw do
   end
 
   scope module: :admin do
-    resources :admin_posts
+    resources :admin_posts do
+      resources :admin_post_comments, only: [:create, :destroy]
+      resources :from_admin_comments, only: [:create, :destroy]
+    end
   end
+  
 end

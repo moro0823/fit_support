@@ -19,7 +19,15 @@ class Admin::AdminPostsController < ApplicationController
   end
 
   def show
-    @post = AdminPost.find(params[:id])
+    @admin_post = AdminPost.find(params[:id])
+    @admin_post_comment = AdminPostComment.new
+    @from_admin_comment = FromAdminComment.new
+    @admin_post_comments = @admin_post.admin_post_comments.all
+    @from_admin_comments = @admin_post.from_admin_comments.all
+    # それぞれの複数インスタンスを1つの配列にする
+    @instances = @admin_post_comments | @from_admin_comments
+    # 作成降順に並び替え
+    @instances.sort!{ |a, b| b.created_at <=> a.created_at }
   end
 
   def edit
