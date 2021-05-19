@@ -23,6 +23,7 @@ class Customer < ApplicationRecord
   has_many :rooms, through: :customer_rooms
   has_many :admin_post_comments, dependent: :destroy
   has_many :my_fitness_places, dependent: :destroy
+  has_many :personals, dependent: :destroy
 
   # ユーザーをフォローする
   def follow(customer_id)

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="box mt-5">
+    <button type="button" class="btn btn-primary btn-lg mt-5" data-toggle="modal" data-target="#exampleModal">
+      スタッフを追加する
+    </button>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">スタッフの追加</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <%= form_with model: @staff, url:"/admin/staffs",  local: true do |f| %>
+            <div class="modal-body">
+              <%= f.label :name, "スタッフ名" %>
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                <%= f.submit "登録する", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="index">
+      <table class="table mt-5">
+        <% @staffs.each do |staff| %>
+        <tbody>
+        <tr class="table-light">
+          <td><%=link_to staff.name, admin_staff_path(staff) %></td>
+          <td><%= link_to "編集", edit_admin_staff_path(staff),class:"btn btn-success" %></td>
+          <td><%= link_to "削除", admin_staff_path(staff), method: :delete,"data-confirm" => "本当に削除しますか？削除するとこのスタッフの担当していたカルテも削除されます", class:"btn btn-danger" %></td>
+        </tr>
+        </tbody>
+         <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="down-more-all"></div>
+</div>
+

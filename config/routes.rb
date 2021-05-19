@@ -53,6 +53,8 @@ Rails.application.routes.draw do
     resources :admin_users, only: [:show, :edit, :update, :index] do
       resource :my_fitness_places, only: [:create, :destroy]
     end
+    resources :staffs, only: [:new, :show, :edit, :create, :update, :destroy]
+    resource :personal, only: [:create, :destroy]
   end
 
   scope module: :admin do
