@@ -32,10 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-botton:3px;">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item mr-3">
-                  <%= link_to "マイ施設を登録する", admin_admin_users_path, class: "btn btn-outline-light" %>
-                </li>
-                <li class="nav-item mr-3">
-                  <%= link_to "スポーツクラブからの情報一覧", public_admin_posts_path, class: "btn btn-outline-light" %>
+                  <%= link_to "マイ施設からの情報一覧", public_admin_posts_path, class: "btn btn-outline-light" %>
                 </li>
                 <li class="nav-item mr-3">
                   <%= link_to "マイページ", customer_path(current_customer), class: "btn btn-outline-light" %>
@@ -113,7 +110,7 @@
                     <%= link_to "アプリ紹介", home_about_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
-                    <%= link_to "スポーツクラブからの情報一覧を見る", public_admin_posts_path, class: "btn btn-outline-light" %>
+                    <%= link_to "施設を探す", admin_admin_users_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
                     <%= link_to "投稿を見てみる", posts_path, class: "btn btn-outline-light" %>

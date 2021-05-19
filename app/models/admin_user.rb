@@ -10,6 +10,7 @@ class AdminUser < ApplicationRecord
 
   has_many :my_fitness_places, dependent: :destroy
 
+
   def record_by?(customer)
     my_fitness_places.where(customer_id: customer.id).exists?
   end

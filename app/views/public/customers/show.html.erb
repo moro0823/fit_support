@@ -68,6 +68,7 @@
             <% @my_fitness_places.each do |my_fitness_place| %>
               <p><%= my_fitness_place.admin_user.name %></p>
             <% end %>
+          <%= link_to "マイ施設の登録,解除", admin_admin_users_path, class: "btn btn-warning" %>
           <% end %>
         </div>
       </div>

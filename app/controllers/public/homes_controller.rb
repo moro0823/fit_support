@@ -1,6 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
-    @posts = AdminPost.where(is_show: true).last(3).reverse
+    @admin_user = AdminUser.last(3).reverse
   end
 
   def about
