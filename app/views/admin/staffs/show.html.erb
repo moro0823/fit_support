@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="box mt-3">
+    <h2 class="admin-title mt-5"><%= @staff.name %></h2>
+      <div class="index">
+        <table class="table mt-5">
+          <h3 class="mt-5">担当ユーザー一覧</h2>
+          <tbody>
+            <% @personals.each do |personal| %>
+            <tr class="table-light">
+              <td><%= personal.customer.username %> </td>
+              <td>カルテ作成</td>
+            </tr>
+            <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="down-more-all"></div>
+</div>
