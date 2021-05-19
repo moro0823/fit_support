@@ -6,7 +6,7 @@
       <div class="label">
         <%= f.label :"投稿ジャンルの選択（必須）" %>
       </div>
-      <%= f.collection_select :genre_id, Genre.all, :id, :name,:include_blank => "選択してください", size: 30 %>
+      <%= f.collection_select :genre_id, current_admin_user.genres.all, :id, :name,:include_blank => "選択してください", size: 30 %>
     </div>
 
     <div class="field mt-3">

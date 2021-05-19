@@ -1,7 +1,7 @@
 class Admin::AdminPostsController < ApplicationController
   def index
-    @posts = AdminPost.all.page(params[:page]).reverse_order
-    @genres = Genre.all
+    @posts = current_admin_user.admin_posts.all.page(params[:page]).reverse_order
+    @genres = current_admin_user.genres.all
   end
 
   def new
@@ -10,6 +10,7 @@ class Admin::AdminPostsController < ApplicationController
 
   def create
     @post = AdminPost.new(post_params)
+    @post.admin_user_id = current_admin_user.id
     if @post.save
       redirect_to edit_admin_post_path(@post), notice: "最終確認してよろしければ公開中に変更して更新してください"
     else

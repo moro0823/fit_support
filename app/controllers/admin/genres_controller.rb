@@ -1,11 +1,15 @@
 class Admin::GenresController < ApplicationController
   def index
-    @genres = Genre.all
+    @admin_user = current_admin_user
+    @genres = @admin_user.genres.all
     @genre = Genre.new
   end
 
   def create
-    @genre = Genre.create(genre_params)
+    @genre = Genre.new(genre_params)
+    @genre.admin_user_id = current_admin_user.id
+    @genre.save
+    redirect_back(fallback_location: root_path)
     @genres = Genre.all
   end
 

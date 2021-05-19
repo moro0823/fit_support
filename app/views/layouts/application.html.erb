@@ -32,7 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-botton:3px;">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item mr-3">
-                  <%= link_to "スポーツクラブからの情報一覧", public_admin_posts_path, class: "btn btn-outline-light" %>
+                  <%= link_to "マイ施設からの情報一覧", public_admin_posts_path, class: "btn btn-outline-light" %>
                 </li>
                 <li class="nav-item mr-3">
                   <%= link_to "マイページ", customer_path(current_customer), class: "btn btn-outline-light" %>
@@ -67,6 +67,12 @@
             </button>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto">
+                  <li class="nav-item mr-3">
+                    <%= link_to "施設情報", admin_admin_user_path(current_admin_user), class: "btn btn-outline-light" %>
+                  </li>
+                  <li class="nav-item mr-3">
+                    <%= link_to "施設情報編集", edit_admin_admin_user_path(current_admin_user), class: "btn btn-outline-light" %>
+                  </li>
                   <li class="nav-item mr-3">
                     <%= link_to "ユーザーを探す", admin_customers_path, class: "btn btn-outline-light" %>
                   </li>
@@ -104,7 +110,7 @@
                     <%= link_to "アプリ紹介", home_about_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
-                    <%= link_to "スポーツクラブからの情報一覧を見る", public_admin_posts_path, class: "btn btn-outline-light" %>
+                    <%= link_to "施設を探す", admin_admin_users_path, class: "btn btn-outline-light" %>
                   </li>
                   <li class="nav-item mr-3">
                     <%= link_to "投稿を見てみる", posts_path, class: "btn btn-outline-light" %>
@@ -117,8 +123,12 @@
                   <div class="nav-text mr-3">
                     <%= link_to "アカウント作成済みの方はこちらから", new_customer_session_path, class: "btn btn-outline-light"  %>
                   </div>
-                  <div class="nav-text">
+                  <div class="nav-text mr-3">
                     <%= link_to "管理者用ログイン", new_admin_user_session_path, class: "btn btn-outline-light"  %>
+                    <!--すぐに管理者の機能を試しやすい為-->
+                  </div>
+                  <div class="nav-text">
+                    <%= link_to "スポーツクラブ新規登録",  new_admin_user_registration_path, class: "btn btn-outline-light"  %>
                     <!--すぐに管理者の機能を試しやすい為-->
                   </div>
                 </div>

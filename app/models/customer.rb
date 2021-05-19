@@ -12,16 +12,17 @@ class Customer < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_posts, through: :favorites, source: :post
   # フォロー取得
-  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy 
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   # フォロワー取得
-  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy 
+  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_customer, through: :follower, source: :followed # 自分がフォローしている人
   has_many :follower_customer, through: :followed, source: :follower # 自分をフォローしている人
-  
+
   has_many :customer_rooms
   has_many :chats
   has_many :rooms, through: :customer_rooms
   has_many :admin_post_comments, dependent: :destroy
+  has_many :my_fitness_places, dependent: :destroy
 
   # ユーザーをフォローする
   def follow(customer_id)
@@ -82,6 +83,6 @@ class Customer < ApplicationRecord
     return if search_admin_customer_params.blank?
     username(search_admin_customer_params[:username])
   end
-  
+
   scope :username, -> (username) { where('username LIKE ?', "%#{username}%") if username.present? }
 end

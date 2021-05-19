@@ -2,7 +2,7 @@
     <div class="box mt-3 mb-3">
         <h1 class="title-home pt-5">Welcome To Fit-Support</h1>
         <span class="logo-home ml-2"><%= link_to image_tag('img/logo.jpg',width: '70',class:"mt-2 mb-4 rounded-circle"), '/' %></span>
-        <h4>運動の記録や他の人の投稿からトレーニングメニューの参考にすることができるアプリです！!</h4>
+        <h4>「SNSの機能」　＋　運動をする「人」と「施設」を繋げるアプリです！</h4>
     </div>
 
     <div class="box mt-5">
@@ -16,45 +16,27 @@
 
 
     <div class="box mt-5">
-      <h2 class="subtitle-home">スポーツクラブからの新着情報</h2>
-      <% if admin_user_signed_in? %>
-        <% else %>
-          <div class="mt-3 mb-3"><%= link_to "スポーツクラブからの情報一覧", public_admin_posts_path, class: "btn btn-danger" %></div>
-        <% end %>
+      <h2 class="subtitle-home">新規スポーツクラブ</h2>
+      <p>
+        <h5>アカウントを作成すると自分の通っているスポーツクラブからの情報を受け取れます!</h5>
+      </p>
     </div>
       <div class="info-content">
-        <% @posts.each do |posts| %>
-         <div class="info" style="text-align: center;">
-          <div class="card border-danger mt-3 mb-5" style="width: 22rem;">
-            <div class="card-header bg-transparent border-danger">
-              <% if admin_user_signed_in? %>
-                <h3 class="card-header-title"><%= link_to posts.genre.name, admin_genre_path(posts.genre), class:"text-danger" %></h3>
-              <% else %>
-                <h3 class="card-header-title"><%= link_to posts.genre.name, genre_public_admin_posts_show_path(posts.genre), class:"text-danger" %></h3>
-              <% end %>
-            </div>
-              <div class="card-body">
-                <h4 class="card-text-title"><%= link_to posts.title,admin_post_path(posts),class:"text-dark" %></h4>
-                <p class="card-text"><%= simple_format posts.body %></p>
-                  <div>
-                    <p class="img"><%= attachment_image_tag posts,:image, size:"300x200" %></p>
-                  </div>
-                  <% if posts.youtube_url.present? %>
-                    <div class="youtube">
-                      <iframe width="300" height="200" src="https://www.youtube.com/embed/<%= posts.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <% end %>
-                </div>
-              <div class="card-footer bg-transparent warning">
-                <div>
-                  <span class="mr-3">
-                    更新日: <%= posts.updated_at.strftime('%Y/%m/%d %H:%M') %>
-                  </span>
-                  <span class="ml-3"><%= link_to posts.admin_post_comments.count + posts.from_admin_comments.count, admin_post_path(posts.id), class:"far fa-comment-dots"%></span>
-                 </div>
-              </div>
-            </div>
+        <% @admin_user.each do |admin_user| %>
+        <div class="info" style="text-align: center;">
+        <div class="card mt-5" style="width: 21rem;">
+            <%= attachment_image_tag admin_user, :image, size: "100%x500", fallback: "no_image.png",size: "100%x500"  %>
+          <div class="card-body">
+          <h5 class="card-title" style="font-size: 28px; color: red; "><%= admin_user.name %></h5>
+            <p class="card-text mt-3"><%= admin_user.body %></p>
+            <p class="card-text mt-3">電話番号: <%= admin_user.phone_number %></p>
+            <p class="card-text mt-3">郵便番号: <%= admin_user.postal_code %></p>
+            <p class="card-text mt-3">住所: <%= admin_user.adrress %></p>
+            <p class="card-text mt-3 mb-5">ホームページ</p>
           </div>
+        </div>
+        </div>
         <% end %>
+
       </div>
- </div>
+    </div>
