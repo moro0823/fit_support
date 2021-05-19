@@ -1,0 +1,2 @@
+module MyFitnessPlacesHelper
+end

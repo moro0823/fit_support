@@ -1,6 +1,6 @@
  <div class ="container">
     <div class="box mt-3">
-      <h2 class="title mt-5"><%= @admin_user.name %>の情報</h2>
+      <h2 class="admin-title mt-5"><%= @admin_user.name %>の情報</h2>
         <div class="d-flex justify-content-center">
           <div class="card mt-5" style="width: 50rem;">
             <%= attachment_image_tag @admin_user, :image, size: "100%x500", fallback: "no_image.png",size: "100%x500"  %>
@@ -10,8 +10,8 @@
             <p class="card-text mt-3">電話番号: <%= @admin_user.phone_number %></p>
             <p class="card-text mt-3">郵便番号: <%= @admin_user.postal_code %></p>
             <p class="card-text mt-3">住所: <%= @admin_user.adrress %></p>
-            <a href="#" class="btn btn-primary">登録する</a>
-            <p class="card-text mt-3 mb-5">登録するとログイン後のスポーツクラブからの情報一覧が</br>
+            <p class="card-text mt-3">ホームページ</p>
+            <p class="card-text mt-5 mb-3">登録するとログイン後のスポーツクラブからの情報一覧が</br>
                                       この施設が投稿した情報のみ表示されるようになります</p>
           </div>
           </div>

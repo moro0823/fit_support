@@ -1,0 +1,31 @@
+ <div class ="container">
+    <div class="box mt-5">
+      <h2 class="title mt-5 mb-5">登録している施設一覧</h2>
+      <% @admin_users.each do |admin_user| %>
+        <div class="d-flex justify-content-center">
+          <div class="card mt-2" style="width: 35rem;">
+            <%= attachment_image_tag admin_user, :image, size: "100%x350", fallback: "no_image.png",size: "100%x350"  %>
+          <div class="card-body">
+          <h5 class="card-title" style="font-size: 50px; color: red;"><%= admin_user.name %></h5>
+            <p class="card-text mt-3"><%= admin_user.body %></p>
+            <p class="card-text mt-3">電話番号: <%= admin_user.phone_number %></p>
+            <p class="card-text mt-3">郵便番号: <%= admin_user.postal_code %></p>
+            <p class="card-text mt-3">住所: <%= admin_user.adrress %></p>
+            <p class="card-text mt-3">ホームページ</p>
+            <% if admin_user.record_by?(current_customer) %>
+            <p>
+              <%= link_to "登録を解除する", admin_admin_user_my_fitness_places_path(admin_user_id: admin_user.id), method: :delete, class: "btn btn-danger" %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to "登録する", admin_admin_user_my_fitness_places_path(admin_user_id: admin_user.id), method: :post, class: "btn btn-primary" %>
+            </p>
+            <% end %>
+            <p class="card-text mt-3 mb-3">登録するとログイン後のスポーツクラブからの情報一覧が</br>
+                                      この施設が投稿した情報のみ表示されるようになります</p>
+          </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>

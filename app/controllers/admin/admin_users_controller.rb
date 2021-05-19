@@ -4,6 +4,10 @@ class Admin::AdminUsersController < ApplicationController
     @admin_user = AdminUser.find(params[:id])
   end
 
+  def index
+    @admin_users = AdminUser.all.page(params[:page])
+  end
+
   def edit
     @admin_user = current_admin_user
   end

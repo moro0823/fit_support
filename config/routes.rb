@@ -50,7 +50,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show]
     resources :genres, only: [:index, :show, :edit, :create, :update, :destroy]
     get 'customer/post' => 'customers#post'
-    resources :admin_users, only: [:show, :edit, :update]
+    resources :admin_users, only: [:show, :edit, :update, :index] do
+      resource :my_fitness_places, only: [:create, :destroy]
+    end
   end
 
   scope module: :admin do

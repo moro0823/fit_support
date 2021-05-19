@@ -7,7 +7,7 @@ class Public::HomesController < ApplicationController
   end
 
   def admin_posts
-    @posts = AdminPost.where(is_show: true).page(params[:page]).reverse_order
+    @my_fitness_places = current_customer.my_fitness_places
   end
 
   def admin_posts_show

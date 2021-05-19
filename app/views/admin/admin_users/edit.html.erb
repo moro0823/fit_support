@@ -1,6 +1,6 @@
 <div class ="container">
   <div class="box mt-3">
-    <h2 class="title mt-5">施設情報編集</h2>
+    <h2 class="admin-title mt-5">施設情報編集</h2>
       <%= form_with model: @admin_user,url:admin_admin_user_path, local:true do |f| %>
         <div class="field mt-3">
           <div class="label">
@@ -43,6 +43,13 @@
             <%= f.label :"住所" %><br />
           </div>
             <%= f.text_field :adrress, placeholder: "住所",size:"70x10" %>
+        </div>
+
+        <div class="field mt-3 mb-5">
+          <div class="label">
+            <%= f.label :"住所" %><br />
+          </div>
+            <%= f.text_field :homepage_url, placeholder: "URL",size:"70x10" %>
         </div>
 
         <%= f.submit "施設情報を変更する",class: "btn btn-warning mb-5" %>
