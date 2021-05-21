@@ -70,6 +70,8 @@ gem "pry-byebug"
 gem 'kaminari', '~> 1.2.1'
 gem 'rubocop-airbnb'
 gem 'simple_calendar', '~> 2.0'
+gem 'chartkick'
+gem 'groupdate'
 
 gem 'dotenv-rails'
 group :production do

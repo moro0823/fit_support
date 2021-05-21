@@ -3,7 +3,6 @@ class Admin::StaffsController < ApplicationController
     @admin_user = current_admin_user
     @staff = Staff.new
     @staffs = @admin_user.staffs.all
-
   end
 
   def create

@@ -1,5 +1,4 @@
 class Admin::NotesController < ApplicationController
-
   def new
     @karute = params[:karute_id]
     @note = Note.new
@@ -26,7 +25,7 @@ class Admin::NotesController < ApplicationController
   def update
     @note = Note.find(params[:id])
     if @note.update(note_params)
-      redirect_to admin_karute_path(@note.karute_id), notice: "更新しました"
+      redirect_to admin_karute_note_path(karute_id: @note.karute, id: @note), notice: "更新しました"
     else
       flash[:alert] = '更新に失敗しました'
       render :edit
@@ -48,5 +47,4 @@ class Admin::NotesController < ApplicationController
   def note_params
     params.require(:note).permit(:karute_id, :author, :menu, :comment, :eat, :weight, :start_time)
   end
-
 end

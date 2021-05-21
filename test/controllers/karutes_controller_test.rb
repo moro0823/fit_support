@@ -5,5 +5,4 @@ class KarutesControllerTest < ActionDispatch::IntegrationTest
     get karutes_show_url
     assert_response :success
   end
-
 end

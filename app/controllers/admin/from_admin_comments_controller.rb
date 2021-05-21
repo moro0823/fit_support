@@ -1,5 +1,5 @@
 class Admin::FromAdminCommentsController < ApplicationController
-    before_action :authenticate_admin_user!
+  before_action :authenticate_admin_user!
 
   def destroy
     @from_admin_comment = FromAdminComment.find(params[:id]).destroy
@@ -19,5 +19,4 @@ class Admin::FromAdminCommentsController < ApplicationController
   def from_admin_comment_params
     params.require(:from_admin_comment).permit(:comment)
   end
-
 end

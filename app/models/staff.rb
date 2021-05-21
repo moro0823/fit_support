@@ -6,5 +6,4 @@ class Staff < ApplicationRecord
   def recorded_by?(customer)
     personals.where(customer_id: customer.id).exists?
   end
-  
 end

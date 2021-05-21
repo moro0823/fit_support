@@ -1,5 +1,4 @@
 class Admin::PersonalsController < ApplicationController
-
   def create
     @personal = Personal.new(personal_params)
     if @personal.save
@@ -9,7 +8,6 @@ class Admin::PersonalsController < ApplicationController
       redirect_to admin_customers_path
     end
   end
-
 
   def destroy
     @personal = Personal.find(params[:id])

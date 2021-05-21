@@ -17,7 +17,10 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require_tree
+
+//= require chartkick
+//= require Chart.bundle
 
 /* global $*/
  document.addEventListener("turbolinks:load", function () {

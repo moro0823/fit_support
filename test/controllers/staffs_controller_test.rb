@@ -15,5 +15,4 @@ class StaffsControllerTest < ActionDispatch::IntegrationTest
     get staffs_show_url
     assert_response :success
   end
-
 end

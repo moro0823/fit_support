@@ -5,5 +5,4 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     get notes_new_url
     assert_response :success
   end
-
 end

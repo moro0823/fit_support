@@ -7,7 +7,7 @@
       <div class="label">
         <%= f.label :"トレーニング日"  %>
       </div>
-        <%= f.datetime_select :start_time %>
+        <%= f.date_select :start_time %>
     </div>
 
     <div class="field mt-3">
@@ -15,6 +15,13 @@
         <%= f.label :"作成者" %>
       </div>
         <%= f.text_field :author, required: true, size:"60x10"%>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"今日の体重" %>
+      </div>
+        <%= f.number_field :weight, class: "weight", min: 20, max: 150,step: "0.1", size:"60x10"%> kg
     </div>
 
     <div class="field mt-3">

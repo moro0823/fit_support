@@ -1,5 +1,4 @@
 class Admin::KarutesController < ApplicationController
-
   def create
     @karute = Karute.new(karute_params)
     if @karute.save
@@ -13,6 +12,7 @@ class Admin::KarutesController < ApplicationController
   def show
     @karute = Karute.find_by(id: params[:id])
     @notes = @karute.notes
+    @data = @notes.group_by_day(:start_time, series: false).sum(:weight)
   end
 
   def edit
@@ -34,5 +34,4 @@ class Admin::KarutesController < ApplicationController
   def karute_params
     params.require(:karute).permit(:customer_id, :staff_id, :customer_name, :staff_name, :next_goal, :goal, :memo)
   end
-
 end

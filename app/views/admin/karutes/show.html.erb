@@ -29,11 +29,19 @@
               <%= link_to note.author, admin_karute_note_path(karute_id: @karute, id: note) %>
             </div>
           <% end %>
+
       <% end %>
     </div>
   </div>
   <div class="mt-3 pb-5">
     <%= link_to "記録する", new_admin_karute_note_path(@karute), class: "btn btn-primary" %>
+  </div>
+  <div class="gurafu pb-5 mb-5" style="background-color:white;">
+    <h2 class="ml-3 pt-3 pb-3" style="color: red;">体重の遷移</h2>
+
+    <%= line_chart @data,curve: false, min: @data.values.min.to_i - 5, max: @data.values.max.to_i + 5,
+        xtitle: "日付", ytitle: "Kg", width: "100%", height: "500px" %>
+        <!--グラフの縦軸を一番低い体重から-10を最小値,一番高い体重から+10を最大値に設定-->
   </div>
 </div>
 
