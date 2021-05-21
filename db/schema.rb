@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_012319) do
+ActiveRecord::Schema.define(version: 2021_05_20_123712) do
+
+  create_table "admin_post_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "customer_id"
+    t.integer "admin_post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admin_posts", force: :cascade do |t|
     t.integer "genre_id"
@@ -21,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_012319) do
     t.boolean "is_show", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "admin_user_id"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -31,6 +40,13 @@ ActiveRecord::Schema.define(version: 2021_05_17_012319) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "body"
+    t.string "phone_number"
+    t.string "postal_code"
+    t.string "adrress"
+    t.string "image_id"
+    t.string "homepage_url"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
@@ -78,8 +94,55 @@ ActiveRecord::Schema.define(version: 2021_05_17_012319) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "from_admin_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "admin_user_id"
+    t.integer "admin_post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "genres", force: :cascade do |t|
     t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "admin_user_id"
+  end
+
+  create_table "karutes", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "staff_id"
+    t.string "customer_name"
+    t.string "staff_name"
+    t.text "next_goal"
+    t.text "goal"
+    t.string "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "my_fitness_places", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.integer "karute_id"
+    t.string "author"
+    t.text "menu"
+    t.text "comment"
+    t.text "eat"
+    t.string "weight"
+    t.datetime "start_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "personals", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "staff_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -117,6 +180,13 @@ ActiveRecord::Schema.define(version: 2021_05_17_012319) do
   end
 
   create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.text "name"
+    t.integer "admin_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

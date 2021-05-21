@@ -2,6 +2,8 @@ class Admin::CustomersController < ApplicationController
   def index
     @search_admin_customers_params = customer_search_admin_params
     @search_admin_customers = Customer.search_admin_customer(@search_admin_customers_params)
+    @personal = Personal.new
+    @staffs = current_admin_user.staffs.all
   end
 
   # 投稿一覧表示

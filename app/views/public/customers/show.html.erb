@@ -55,15 +55,28 @@
               <%= link_to "ユーザー情報編集", edit_customer_path(current_customer),class:"btn btn-info" %>
             <% end %>
          </div>
-       <div class="card-footer bg-transparent border-success text-success">
+        <div class="card-footer bg-transparent border-success text-success">
           <% if @customer.id == current_customer.id %>
-          <p>
-            <%= link_to "いいねした投稿一覧", customer_favorite_path,class:"btn btn-outline-danger" %>
-          </p>
+          <p><%= link_to "いいねした投稿一覧", customer_favorite_path,class:"btn btn-danger" %></p>
           <% else %>
             <%= link_to 'チャットする', chat_path(@customer.id),class:"btn btn-outline-danger" %>
           <% end %>
-      </div>
+        </div>
+        <% if @customer.id == current_customer.id %>
+          <div class="card-footer bg-transparent border-success text-success">
+            <h5 style= "color:black;" >登録したスポーツクラブ</h5>
+              <% @my_fitness_places.each do |my_fitness_place| %>
+                <p><%= my_fitness_place.admin_user.name %></p>
+              <% end %>
+            <%= link_to "マイ施設の登録,解除", admin_admin_users_path, class: "btn btn-warning" %>
+          </div>
+          <div class="card-footer bg-transparent border-success text-success">
+            <h5 style= "color:black;" >カルテ</h5>
+              <% @karutes.each do |karute| %>
+                <p style="color: black;">担当者: <%= link_to karute.staff_name, admin_karute_path(karute) %></p>
+              <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
 

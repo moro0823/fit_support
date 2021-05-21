@@ -1,0 +1,58 @@
+<div class ="container">
+  <div class="box mt-3">
+    <h2 class="admin-title mt-5">施設情報編集</h2>
+      <%= form_with model: @admin_user,url:admin_admin_user_path, local:true do |f| %>
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"施設紹介画像" %><br />
+          </div>
+          <%= attachment_image_tag @admin_user, :image, :fill,100,100 %>
+          <%= f.attachment_field :image, placeholder: "施設紹介画像" %>
+        </div>
+
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"施設名" %><br />
+          </div>
+            <%= f.text_field :name, autofocus: true, placeholder: "施設名",size: "50x10" %>
+        </div>
+
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"紹介文" %><br />
+          </div>
+            <%= f.text_area :body, placeholder: "施設紹介",size: "50x10" %>
+        </div>
+
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"電話番号" %><br />
+          </div>
+            <%= f.telephone_field :phone_number, placeholder: "電話番号",size:"50x10" %>
+        </div>
+
+        <div class="field mt-3">
+          <div class="label">
+            <%= f.label :"郵便番号" %><br />
+          </div>
+            <%= f.text_field :postal_code, placeholder: "郵便番号",size:"50x10" %>
+        </div>
+
+        <div class="field mt-3 mb-5">
+          <div class="label">
+            <%= f.label :"住所" %><br />
+          </div>
+            <%= f.text_field :adrress, placeholder: "住所",size:"70x10" %>
+        </div>
+
+        <div class="field mt-3 mb-5">
+          <div class="label">
+            <%= f.label :"URL" %><br />
+          </div>
+            <%= f.text_field :homepage_url, placeholder: "URL",size:"70x10" %>
+        </div>
+
+        <%= f.submit "施設情報を変更する",class: "btn btn-warning mb-5" %>
+        <% end %>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 class Admin::AdminPostsController < ApplicationController
   def index
-    @posts = AdminPost.all.page(params[:page]).reverse_order
-    @genres = Genre.all
+    @posts = current_admin_user.admin_posts.all.page(params[:page]).reverse_order
+    @genres = current_admin_user.genres.all
   end
 
   def new
@@ -10,6 +10,7 @@ class Admin::AdminPostsController < ApplicationController
 
   def create
     @post = AdminPost.new(post_params)
+    @post.admin_user_id = current_admin_user.id
     if @post.save
       redirect_to edit_admin_post_path(@post), notice: "最終確認してよろしければ公開中に変更して更新してください"
     else
@@ -19,7 +20,15 @@ class Admin::AdminPostsController < ApplicationController
   end
 
   def show
-    @post = AdminPost.find(params[:id])
+    @admin_post = AdminPost.find(params[:id])
+    @admin_post_comment = AdminPostComment.new
+    @from_admin_comment = FromAdminComment.new
+    @admin_post_comments = @admin_post.admin_post_comments.all
+    @from_admin_comments = @admin_post.from_admin_comments.all
+    # それぞれの複数インスタンスを1つの配列にする
+    @instances = @admin_post_comments | @from_admin_comments
+    # 作成降順に並び替え
+    @instances.sort! { |a, b| b.created_at <=> a.created_at }
   end
 
   def edit

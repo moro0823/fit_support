@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="box mt-3">
+    <h2 class="admin-title mt-5"><%= @staff.name %></h2>
+      <div class="index">
+        <table class="table mt-5">
+          <h3 class="mt-5">担当ユーザー一覧</h2>
+          <tbody>
+
+            <% @personals.each do |personal| %>
+            <tr class="table-light">
+              <td><%= personal.customer.username %> </td>
+              <td>
+                <!--ユーザーとスタッフとの間にカルテがあるかないかを確かめる-->
+                <% if personal.customer.recorded_by?(@staff) %>
+                  <% @karute = Karute.find_by(staff_id: @staff, customer_id: personal.customer) %>
+                  <!--カルテのIDを指定-->
+                  <%= link_to "カルテへ",admin_karute_path(@karute), class: "btn btn-primary" %>
+                <% else %>
+                  <%= form_with model: @karute, url:admin_karutes_path, method: :post, local:true do |f| %>
+                    <%= f.hidden_field :customer_id, :value => personal.customer.id %>
+                    <%= f.hidden_field :customer_name, :value => personal.customer.username %>
+                    <%= f.hidden_field :staff_id, :value => personal.staff.id %>
+                    <%= f.hidden_field :staff_name, :value => personal.staff.name %>
+                    <%= f.submit "カルテ作成", class: "btn btn-warning ml-2" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td><%= link_to "登録解除",admin_personal_path(personal), method: :delete, local: true,
+                      "data-confirm" => "本当に解除しますか？このユーザーのカルテは再度登録することで見ることが可能です",class: "btn btn-danger" %></td>
+            </tr>
+            <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="down-more-all"></div>
+</div>

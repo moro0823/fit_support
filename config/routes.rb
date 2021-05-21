@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'chats/show'
   devise_for :admin_users, controllers: {
     sessions: 'admin_users/sessions',
     passwords: 'admin_users/passwords',
@@ -32,7 +31,7 @@ Rails.application.routes.draw do
     get 'chat/:id' => 'chats#show', as: 'chat'
     resources :chats, only: [:create]
     resources :rooms do
-      delete 'chat/:id' => 'chats#destroy', as:"chat"
+      delete 'chat/:id' => 'chats#destroy', as: "chat"
     end
 
     resources :posts do
@@ -50,9 +49,20 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show]
     resources :genres, only: [:index, :show, :edit, :create, :update, :destroy]
     get 'customer/post' => 'customers#post'
+    resources :admin_users, only: [:show, :edit, :update, :index] do
+      resource :my_fitness_places, only: [:create, :destroy]
+    end
+    resources :staffs, only: [:new, :show, :edit, :create, :update, :destroy]
+    resources :personals, only: [:create, :destroy]
+    resources :karutes, only: [:show, :create, :update, :edit] do
+      resources :notes
+    end
   end
 
   scope module: :admin do
-    resources :admin_posts
+    resources :admin_posts do
+      resources :admin_post_comments, only: [:create, :destroy]
+      resources :from_admin_comments, only: [:create, :destroy]
+    end
   end
 end

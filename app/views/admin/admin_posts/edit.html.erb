@@ -1,12 +1,12 @@
 <div class="container">
   <div class="box mt-3">
-    <h2 class="title mt-3">編集画面</h2>
+    <h2 class="admin-title mt-5">投稿編集画面</h2>
     <%= form_with model: @post, url:admin_post_path(@post), local:true do |f| %>
     <div class="field mt-3">
       <div class="label">
         <%= f.label :"投稿ジャンルの選択（必須）" %>
       </div>
-      <%= f.collection_select :genre_id, Genre.all, :id, :name,:include_blank => "選択してください", size: 30 %>
+      <%= f.collection_select :genre_id, current_admin_user.genres, :id, :name,:include_blank => "選択してください", size: 30 %>
     </div>
 
     <div class="field mt-3">

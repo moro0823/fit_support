@@ -1,6 +1,6 @@
 <div class="container">
   <div class="box mt-3 mb-3">
-    <h2 class="pt-5">パーソナルトレーニングをする際</br>お客様の投稿を確認するためにご活用ください</h2>
+    <h2 class="pt-5">パーソナルトレーニングをする際</br>自分の担当のお客様を登録できます</h2>
     <div class="form">
         <%= form_with(scope: :search_admin_customer, url: admin_customers_path, method: :get, local: true) do |f| %>
           <div class="field mt-3">
@@ -15,6 +15,7 @@
         <% end %>
     </div>
     <h2 class="admin_title mt-3">ユーザー一覧</h2>
+    <h5 class="mt-2">※この施設をMY施設に登録したユーザーのみ表示されます</h5>
   </div>
     <% if @search_admin_customers == [] %>
       <div class="box mt-3 mb-3">
@@ -30,10 +31,12 @@
             <th>性別</th>
             <th>年齢</th>
             <th>公開設定</th>
+            <th>登録</th>
           </tr>
         </thead>
         <tbody>
           <% @search_admin_customers.each do |customer| %>
+          <% if customer.my_fitness_places.exists?(admin_user_id: current_admin_user.id) %>
           <tr class="table-light">
             <td>
               <%= link_to admin_customer_path(customer) do %>
@@ -50,7 +53,15 @@
                 <p class="text-secondary">非公開</p>
               <% end %>
             </td>
-           </tr>
+            <td>
+              <%= form_with model: @personal, url:admin_personals_path, local:true do |f| %>
+                <%= f.hidden_field :customer_id, :value => customer.id %>
+                <%= f.collection_select :staff_id, @staffs, :id, :name, { prompt: "スタッフ選択" } %>
+                <%= f.submit "登録する", class: "btn btn-danger ml-2" %>
+              <% end %>
+            </td>
+            </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

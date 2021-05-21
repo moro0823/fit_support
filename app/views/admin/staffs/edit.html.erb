@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="box mt-5">
+    <div class="back pt-5 mb-5">
+      <%= link_to "スタッフ一覧に戻る", new_admin_staff_path, class:"btn btn-success" %>
+    </div>
+
+    <div class="form mt-3">
+      <%= form_with model: @staff, url: admin_staff_path(@staff), remote: true do |f| %>
+        <div class="text">
+          <%= f.text_field :name,size: "30x10" %>
+        </div>
+        <div class="btn mt-3">
+          <%= f.submit "変更する", class: "btn btn-primary mt-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="down-more-all"></div>
+</div>
