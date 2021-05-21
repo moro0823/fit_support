@@ -6,6 +6,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @posts = @customer.posts.all.page(params[:page]).reverse_order
     @my_fitness_places = current_customer.my_fitness_places
+    @karutes = Karute.where(customer_id: current_customer)
   end
 
   def favorite

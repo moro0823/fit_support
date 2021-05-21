@@ -3,7 +3,6 @@ class Admin::StaffsController < ApplicationController
     @admin_user = current_admin_user
     @staff = Staff.new
     @staffs = @admin_user.staffs.all
-
   end
 
   def create
@@ -16,7 +15,8 @@ class Admin::StaffsController < ApplicationController
 
   def show
     @staff = Staff.find(params[:id])
-    @personals = Personal.where(staff_id: @staff.id)
+    @personals = Personal.where(staff_id: @staff)
+    @karute = Karute.new
   end
 
   def edit

@@ -1,5 +1,4 @@
-class  Admin::MyFitnessPlacesController < ApplicationController
-
+class Admin::MyFitnessPlacesController < ApplicationController
   def create
     @admin_user = AdminUser.find(params[:admin_user_id])
     @my_fitness_place = MyFitnessPlace.new(admin_user_id: @admin_user.id)

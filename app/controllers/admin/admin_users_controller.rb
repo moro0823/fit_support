@@ -1,5 +1,4 @@
 class Admin::AdminUsersController < ApplicationController
-
   def show
     @admin_user = AdminUser.find(params[:id])
   end
@@ -27,5 +26,4 @@ class Admin::AdminUsersController < ApplicationController
   def admin_user_params
     params.require(:admin_user).permit(:name, :body, :phone_number, :postal_code, :adrress, :image)
   end
-
 end

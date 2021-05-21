@@ -28,7 +28,7 @@ class Admin::AdminPostsController < ApplicationController
     # それぞれの複数インスタンスを1つの配列にする
     @instances = @admin_post_comments | @from_admin_comments
     # 作成降順に並び替え
-    @instances.sort!{ |a, b| b.created_at <=> a.created_at }
+    @instances.sort! { |a, b| b.created_at <=> a.created_at }
   end
 
   def edit
