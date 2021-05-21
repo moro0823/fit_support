@@ -5,13 +5,20 @@ class Admin::PersonalsController < ApplicationController
     if @personal.save
       redirect_to admin_staff_path(@personal.staff.id), notice: '登録しました'
     else
-      flash.now[:alert] = '登録できませんでした'
+      flash[:alert] = 'すでに登録済みです'
       redirect_to admin_customers_path
     end
   end
 
 
   def destroy
+    @personal = Personal.find(params[:id])
+    if @personal.destroy
+      redirect_to admin_staff_path(@personal.staff.id), alert: 'ユーザー登録を解除しました'
+    else
+      flash[:alert] = '削除できませんでした'
+      redirect_to admin_staff_path(@personal.staff.id)
+    end
   end
 
   private

@@ -24,6 +24,7 @@ class Customer < ApplicationRecord
   has_many :admin_post_comments, dependent: :destroy
   has_many :my_fitness_places, dependent: :destroy
   has_many :personals, dependent: :destroy
+  has_many :karutes, dependent: :destroy
 
   # ユーザーをフォローする
   def follow(customer_id)
@@ -42,6 +43,10 @@ class Customer < ApplicationRecord
 
   def already_favorited?(post)
     favorites.exists?(post_id: post.id)
+  end
+
+  def recorded_by?(staff)
+    karutes.where(staff_id: staff.id).exists?
   end
 
   scope :search, -> (search_params) do

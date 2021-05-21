@@ -54,7 +54,10 @@ Rails.application.routes.draw do
       resource :my_fitness_places, only: [:create, :destroy]
     end
     resources :staffs, only: [:new, :show, :edit, :create, :update, :destroy]
-    resource :personal, only: [:create, :destroy]
+    resources :personals, only: [:create, :destroy]
+    resources :karutes, only: [:show, :create, :update, :edit] do
+      resources :notes
+    end
   end
 
   scope module: :admin do

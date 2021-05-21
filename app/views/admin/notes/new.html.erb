@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="box mt-3">
+    <h2 class="admin-title mt-5">トレーニングを記録する</h2>
+    <%= form_with model: @note, url:admin_karute_notes_path, method: :post, local:true do |f| %>
+    <%= f.hidden_field :karute_id, :value => @karute %>
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"トレーニング日"  %>
+      </div>
+        <%= f.datetime_select :start_time %>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"作成者" %>
+      </div>
+        <%= f.text_field :author, required: true, size:"60x10"%>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"トレーニング内容" %>
+      </div>
+        <%= f.text_area :menu,size:"60x10"%>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"食事内容" %><br />
+      </div>
+        <%= f.text_area :eat,size:"60x10"%>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"担当者からのコメント" %><br />
+      </div>
+        <%= f.text_area :comment,size:"60x10" %>
+    </div>
+
+    <div class="actions mt-3 mb-3">
+      <%= f.submit "記録する", class: "btn btn-primary mb-5" %>
+    </div>
+    <% end %>
+  </div>
+</div>

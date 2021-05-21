@@ -16,7 +16,8 @@ class Admin::StaffsController < ApplicationController
 
   def show
     @staff = Staff.find(params[:id])
-    @personals = Personal.where(staff_id: @staff.id)
+    @personals = Personal.where(staff_id: @staff)
+    @karute = Karute.new
   end
 
   def edit

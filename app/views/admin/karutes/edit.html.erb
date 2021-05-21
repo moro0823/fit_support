@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="box mt-3">
+    <h2 class="admin-title mt-5">トレーニングシート編集画面</h2>
+    <%= form_with model: @karute, url:admin_karute_path(@karute), local:true do |f| %>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"ユーザー名"  %>
+      </div>
+        <%= f.text_field :customer_name,required: true,size:"60x15" %>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"次までの目標" %>
+      </div>
+        <%= f.text_area :next_goal,size:"60x15"%>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"最終目標" %><br />
+      </div>
+        <%= f.text_area :goal,size:"60x15"%>
+    </div>
+
+    <div class="field mt-3">
+      <div class="label">
+        <%= f.label :"メモ" %><br />
+      </div>
+        <%= f.text_area :memo, placeholder: '運動経歴や運動を行うに当たっての注意事項など自由記入。例: １年前に膝の手術をしたので下半身周りの運動は注意',size:"60x15" %>
+    </div>
+
+    <div class="actions mt-3 mb-3">
+      <%= f.submit "更新する", class: "btn btn-primary mb-5" %>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_102433) do
+ActiveRecord::Schema.define(version: 2021_05_20_123712) do
 
   create_table "admin_post_comments", force: :cascade do |t|
     t.text "comment"
@@ -109,9 +109,33 @@ ActiveRecord::Schema.define(version: 2021_05_19_102433) do
     t.integer "admin_user_id"
   end
 
+  create_table "karutes", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "staff_id"
+    t.string "customer_name"
+    t.string "staff_name"
+    t.text "next_goal"
+    t.text "goal"
+    t.string "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "my_fitness_places", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.integer "karute_id"
+    t.string "author"
+    t.text "menu"
+    t.text "comment"
+    t.text "eat"
+    t.string "weight"
+    t.datetime "start_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

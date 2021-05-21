@@ -1,6 +1,6 @@
 <div class="container">
   <div class="box mt-3 mb-3">
-    <h2 class="pt-5">パーソナルトレーニングをする際</br>お客様の投稿を確認するためにご活用ください</h2>
+    <h2 class="pt-5">パーソナルトレーニングをする際</br>自分の担当のお客様を登録できます</h2>
     <div class="form">
         <%= form_with(scope: :search_admin_customer, url: admin_customers_path, method: :get, local: true) do |f| %>
           <div class="field mt-3">
@@ -54,13 +54,11 @@
               <% end %>
             </td>
             <td>
-
-              <%= form_with model: @personal, url:admin_personal_path, method: :post, local:true do |f| %>
+              <%= form_with model: @personal, url:admin_personals_path, local:true do |f| %>
                 <%= f.hidden_field :customer_id, :value => customer.id %>
                 <%= f.collection_select :staff_id, @staffs, :id, :name, { prompt: "スタッフ選択" } %>
                 <%= f.submit "登録する", class: "btn btn-danger ml-2" %>
               <% end %>
-
             </td>
             </tr>
             <% end %>
