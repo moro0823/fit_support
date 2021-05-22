@@ -9,6 +9,10 @@ class Public::SearchesController < ApplicationController
     @friend_customers = Customer.search_friend(@search_friend_params)
   end
 
+  def search_post
+    @posts = Post.where('title LIKE ? OR body LIKE ?',"%#{params[:search]}%", "%#{params[:search]}%" ).page(params[:page]).reverse_order
+  end
+
   private
 
   # fetchはparams[:search]が空の場合{}をparams[:search]が空でない場合、params[:search]を返す
@@ -21,4 +25,5 @@ class Public::SearchesController < ApplicationController
   def customer_search_friend_params
     params.fetch(:search_friend, {}).permit(:username)
   end
+
 end

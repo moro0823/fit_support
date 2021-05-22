@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
     get 'search' => "searches#search"
     get 'search_friend' => "searches#search_friend", as: :search_friend
+    get 'search_post' => "searches#search_post", as: :search_post
     get 'chat/:id' => 'chats#show', as: 'chat'
     resources :chats, only: [:create]
     resources :rooms do

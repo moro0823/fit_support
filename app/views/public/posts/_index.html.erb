@@ -1,6 +1,13 @@
-  <% posts.each do |posts| %> <!-- @posts → posts -->
-        <div class="d-flex justify-content-center">
-          <div class="card border-success mt-3 mb-5" style="width: 36rem;">
+  <div class="search mt-3 mb-3">
+    <h5>キーワード検索</h5><h6>例：脂肪燃焼・筋トレ</h6>
+      <%= form_tag(search_post_path,:method => 'get') do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag '検索'%>
+      <% end %>
+  </div>
+    <% posts.each do |posts| %><!-- @posts → posts -->
+      <div class="d-flex justify-content-center">
+        <div class="card border-success mt-3 mb-5" style="width: 36rem;">
             <div class="card-header bg-transparent border-success">
               <%= attachment_image_tag posts.customer, :profile_image, :fill, 60, 60, fallback: "no_image.png",size: "60x60",class:"mr-4 mt-2 rounded-circle";  %>
               <%= link_to posts.customer.username, customer_path(posts.customer.id)  %>

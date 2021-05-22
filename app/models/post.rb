@@ -12,4 +12,10 @@ class Post < ApplicationRecord
   validates :status, inclusion: { in: ["トレーニングメニュー", "食事", "情報の共有"] }
   has_many :post_images, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image
+
+  def self.search(search)
+    return if search.blank?
+    
+  end
+
 end
