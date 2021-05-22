@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get 'search' => "searches#search"
     get 'search_friend' => "searches#search_friend", as: :search_friend
     get 'search_post' => "searches#search_post", as: :search_post
+    get 'search_mypage_post' => "searches#search_mypage_post", as: :search_mypage_post
     get 'chat/:id' => 'chats#show', as: 'chat'
     resources :chats, only: [:create]
     resources :rooms do

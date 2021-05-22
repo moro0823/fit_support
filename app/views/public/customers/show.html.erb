@@ -83,7 +83,30 @@
   <!-----------------------------------ここまでサイドバー-------------------------------------------------->
 
     <div class="col-md-7 col-sm-7 col-xs-8 offset-1">
-          <% @posts.each do |posts| %>
+      <% if @customer.id == current_customer.id %>
+      <div class="search mt-3 mb-3" style="display: flex;">
+        <div>
+          <%= form_tag(search_mypage_post_path,:method => 'get') do %>
+            <%= hidden_field_tag :search, 0 %>
+            <%= submit_tag 'トレーニングメニュー', class:"btn btn-danger"%>
+          <% end %>
+        </div>
+        <div class="ml-3">
+          <%= form_tag(search_mypage_post_path,:method => 'get') do %>
+            <%= hidden_field_tag :search, 1 %>
+            <%= submit_tag '食事', class:"btn btn-warning"%>
+          <% end %>
+        </div>
+        <div class="ml-3">
+          <%= form_tag(search_mypage_post_path,:method => 'get') do %>
+            <%= hidden_field_tag :search, 2 %>
+            <%= submit_tag "情報の共有", class:"btn btn-primary"%>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+
+      <% @posts.each do |posts| %>
         <div>
           <div class="card border-success mb-3">
             <div class="card-header bg-transparent border-success">

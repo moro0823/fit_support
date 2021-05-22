@@ -1,0 +1,61 @@
+ <div class ="container">
+  <% if @posts == [] %>
+      <div class="box mt-3 mb-5">
+        <h2 class = "seach-result pt-5">「<%= @status_title.status %>」の投稿はありません</h2>
+        <div class="mt-5"><%= link_to "マイページに戻る", customer_path(current_customer), class: "btn btn-primary" %></div>
+      </div>
+      <div class="down-more-all"></div>
+  <% else %>
+    <div class="box mt-3">
+        <h2 class="title mt-5 mb-4">自分の「<%= @status_title.status %>」の投稿一覧</h2>
+        <div class="mb-2"><%= link_to "マイページに戻る", customer_path(current_customer), class: "btn btn-primary" %></div>
+      <% @posts.each do |posts| %>
+      <div class="d-flex justify-content-center">
+        <div class="card border-success mt-3 mb-5" style="width: 36rem;">
+            <div class="card-header bg-transparent border-success">
+              <%= attachment_image_tag posts.customer, :profile_image, :fill, 60, 60, fallback: "no_image.png",size: "60x60",class:"mr-4 mt-2 rounded-circle";  %>
+              <%= link_to posts.customer.username, customer_path(posts.customer.id)  %>
+            </div>
+              <div class="card-body">
+                <% if posts.status == "トレーニングメニュー" %>
+                  <h5 class="card-title">トレーニングメニュー</h5>
+                <% elsif posts.status == "食事" %>
+                  <h5 class="card-title">食事</h5>
+                <% else posts.status == "情報の共有" %>
+                  <h5 class="card-title">情報の共有</h5>
+                <% end %>
+                  <h4 class="card-text-title"><%= link_to posts.title,post_path(posts.id),class:"text-dark" %></h4>
+                  <p class="card-text"><%= simple_format posts.body %></p>
+                  <div>
+                    <p>
+                    <% if posts.post_images.present? %>
+                        <% posts.post_images.each do |image| %>
+                          <span class="mr-2">
+                            <%= attachment_image_tag image, :image, :fill, 100, 100, format: "jpeg" %>
+                          </span>
+                        <% end %>
+                    <% end %>
+                    </p>
+                  </div>
+              </div>
+            <div class="card-footer bg-transparent border-success">
+              <div>
+                <span class="mr-3"><%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+                <span id="posts_<%= posts.id %>">
+                  <%= render "public/favorites/favorite", posts: posts %>
+                </span>
+                <span class="ml-3"><%= link_to posts.post_comments.count, post_path(posts.id), class:"far fa-comment-dots"%></span>
+             </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="d-flex justify-content-center">
+        <div class="page mb-5">
+          <%= paginate @posts %> <!-- @posts → posts -->
+        </div>
+      </div>
+    </div>
+    <div class ="down-more"></div>
+  <% end %>
+  </div>
