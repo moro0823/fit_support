@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     end
     post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
     post '/homes/guest_admin_sign_in', to: 'homes#guest_admin_sign_in'
+    post '/homes/ather_guest_sign_in', to: 'homes#ather_guest_sign_in'
+    post '/homes/ather_guest_admin_sign_in', to: 'homes#ather_guest_admin_sign_in'
     get 'customer/favorite' => "customers#favorite"
     get 'customer/from_favorite/:id' => "customers#from_favorite", as: :from_favorite
     get 'posts/training' => "posts#training"

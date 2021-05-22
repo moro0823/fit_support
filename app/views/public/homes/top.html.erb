@@ -6,14 +6,23 @@
     </div>
 
     <div class="box mt-5">
-      <span class="link mt-3 mr-5">
-        <%= link_to 'ユーザーの機能をすぐに試す', homes_guest_sign_in_path, method: :post,class: "btn btn-warning btn-lg" %>
-      </span>
-      <span class="link">
-        <%= link_to '管理者の機能をすぐに試す', homes_guest_admin_sign_in_path, method: :post,class: "btn btn-success btn-lg" %>
-      </span>
+      <div class="list-group text-color danger" style="width: 50%; font-size:20px; margin: 0 auto;">
+        <%= link_to homes_guest_sign_in_path, method: :post, class:"list-group-item list-group-item-action" do %>
+          ユーザーの機能をすぐに試す </br>（ユーザー名：ゲスト）
+        <% end %>
+        <%= link_to  homes_guest_admin_sign_in_path, method: :post,class: "list-group-item list-group-item-action list-group-item-info" do %>
+          管理者の機能をすぐに試す</br>（管理者名（施設名）：Fit-Support）
+        <% end %>
+      </div>
+      <div class="list-group mt-5" style="width: 50%; font-size:20px; margin: 0 auto;">
+        <%= link_to  homes_ather_guest_sign_in_path, method: :post, class: "list-group-item list-group-item-action" do %>
+          別のユーザーからログインして機能を確かめる</br>（ユーザー名：アザーゲスト）
+        <% end %>
+        <%= link_to  homes_ather_guest_admin_sign_in_path, method: :post,class: "list-group-item list-group-item-action list-group-item-info" do %>
+          別の管理者からログインして機能を確かめる</br>（管理者名（施設名）：WorkOuter）
+        <% end %>
+      </div>
     </div>
-
 
     <div class="box mt-5">
       <h2 class="subtitle-home">新規スポーツクラブ</h2>
