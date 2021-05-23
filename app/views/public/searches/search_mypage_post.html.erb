@@ -1,11 +1,15 @@
-  <div class="search mt-3 mb-3">
-    <h5>キーワード検索</h5><h6>例：脂肪燃焼・筋トレ</h6>
-      <%= form_tag(search_post_path,:method => 'get') do %>
-        <%= text_field_tag :search %>
-        <%= submit_tag '検索'%>
-      <% end %>
-  </div>
-    <% posts.each do |posts| %><!-- @posts → posts -->
+ <div class ="container">
+  <% if @posts == [] %>
+      <div class="box mt-3 mb-5">
+        <h2 class = "seach-result pt-5">「<%= @status_title.status %>」の投稿はありません</h2>
+        <div class="mt-5"><%= link_to "マイページに戻る", customer_path(current_customer), class: "btn btn-primary" %></div>
+      </div>
+      <div class="down-more-all"></div>
+  <% else %>
+    <div class="box mt-3">
+        <h2 class="title mt-5 mb-4">自分の「<%= @status_title.status %>」の投稿一覧</h2>
+        <div class="mb-2"><%= link_to "マイページに戻る", customer_path(current_customer), class: "btn btn-primary" %></div>
+      <% @posts.each do |posts| %>
       <div class="d-flex justify-content-center">
         <div class="card border-success mt-3 mb-5" style="width: 36rem;">
             <div class="card-header bg-transparent border-success">
@@ -14,11 +18,11 @@
             </div>
               <div class="card-body">
                 <% if posts.status == "トレーニングメニュー" %>
-                  <h5 class="card-title"><%= link_to posts.status,posts_training_path ,class:"text-danger" %></h5>
+                  <h5 class="card-title">トレーニングメニュー</h5>
                 <% elsif posts.status == "食事" %>
-                  <h5 class="card-title"><%= link_to posts.status,posts_eat_path ,class:"text-warning" %></h5>
-                <% else posts.status == "知識" %>
-                  <h5 class="card-title"><%= link_to posts.status,posts_info_path ,class:"text-primary"%></h5>
+                  <h5 class="card-title">食事</h5>
+                <% else posts.status == "情報の共有" %>
+                  <h5 class="card-title">情報の共有</h5>
                 <% end %>
                   <h4 class="card-text-title"><%= link_to posts.title,post_path(posts.id),class:"text-dark" %></h4>
                   <p class="card-text"><%= simple_format posts.body %></p>
@@ -48,6 +52,10 @@
       <% end %>
       <div class="d-flex justify-content-center">
         <div class="page mb-5">
-          <%= paginate posts %> <!-- @posts → posts -->
+          <%= paginate @posts %> <!-- @posts → posts -->
         </div>
       </div>
+    </div>
+    <div class ="down-more"></div>
+  <% end %>
+  </div>

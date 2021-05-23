@@ -1,0 +1,16 @@
+ <div class ="container">
+  <% if @posts == [] %>
+      <div class="box mt-3 mb-5">
+        <h2 class = "seach-result pt-5">「<%= params[:search] %>」の検索結果はありません</h2>
+        <div class="mt-5"><%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-primary" %></div>
+      </div>
+      <div class="down-more-all"></div>
+  <% else %>
+    <div class="box mt-3">
+      <h2 class="title mt-5 mb-4">「<%= params[:search] %>」の検索結果</h2>
+      <div class="mb-2"><%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-primary" %></div>
+      <%= render 'public/posts/index', posts: @posts %>
+    </div>
+    <div class ="down-more"></div>
+  <% end %>
+  </div>

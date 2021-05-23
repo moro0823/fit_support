@@ -32,7 +32,7 @@
                   </div>
               </div>
             <div class="card-footer bg-transparent border-success">
-              <p class="mt-2 mb-3">Post Day : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+              <p class="mt-2 mb-3">投稿日 : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
               <div>
                 <span id="posts_<%= @post.id %>">
                   <%= render "public/favorites/favorite", posts: @post %>
