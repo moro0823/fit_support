@@ -15,12 +15,42 @@
  */
  @import "bootstrap";
  @import "simple_calendar";
+ @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
 
+
+ /*フォント*/
+html, body{
+  font-family: 'Times New Roman','Noto Serif JP', sans-serif;
+  font-size: 20px;
+}
+
+ /*ヘッダーのデザイン*/
+.navbar-expand-lg-admin {
+  height: 100px;
+  background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+}
+
+.navbar-expand-lg-customer {
+  height: 100px;
+  background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
+}
+
+/*アプリ全体の背景画像 */
+.mb-auto{
+  background: linear-gradient(rgba(255,255,255,0.9),rgba(255,255,255,0.9)),image-url("img/logo.jpg");
+}
+
+.container-fluid{
+  margin-top: 30px;
+  width: 80%;
+  height: 100%;
+ background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+}
 
  // admin側のcss
 
  .admin-title{
-   background-color: #FFCC00;
+   border-bottom: solid 3px black;
    display: inline-block;
    font-weight: bold;
  }
@@ -39,7 +69,7 @@
 // customer側のcss
 
 .title{
-   background-color: #FFAAFF;
+   border-bottom: solid 3px black;
    display: inline-block;
    font-weight: bold;
  }
@@ -91,17 +121,11 @@
 }
 
 
-/*アプリ全体の背景画像 */
-.mb-auto{
-  background-image:image-url("img/background.jpg");
-  background-size: cover;
-}
 
-.container{
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-}
 
+
+
+/*いいねした投稿のサンプル画像 */
 .favorite-sample_image{
   width: 90%;
   height: 700px;
@@ -131,7 +155,6 @@
 
 
 
-
 /*カード*/
 
 .card-text-title{
@@ -139,6 +162,7 @@
   display: inline-block;
   text-align: center;
 }
+
 
 .border-dark{
   border-width: 3px;
@@ -157,10 +181,7 @@
 }
 
 
-/*フォント*/
-html, body{
-  font-family: 'Kaushan Script', cursive,serif;
-}
+
 
 /*device関係*/
 .title-down{
@@ -210,7 +231,7 @@ html, body{
 
 /*画像のレスポンシブ*/
  .attachment.admin_post.image{
-    width:100%;
+    width: 100%;
     max-width: 100%;
     height: auto;
   }
@@ -235,6 +256,12 @@ html, body{
 
 /*レスポンシブ対応*/
 @media screen and (max-width: 991px){
+
+  html, body{
+    font-family: 'Times New Roman','Noto Serif JP', sans-serif;
+    font-size: 12px;
+   }
+
   .navbar{
      text-align: center;
   }
@@ -254,3 +281,16 @@ html, body{
  }
 
 }
+
+@media screen and (max-width: 765px){
+  .navbar-expand-lg-customer{
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 864px){
+  .navbar-expand-lg-admin{
+    height: 200px;
+  }
+}
+
