@@ -1,6 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
-    @admin_user = AdminUser.last(3).reverse
+    @admin_user = AdminUser.last(4).reverse
   end
 
   def about

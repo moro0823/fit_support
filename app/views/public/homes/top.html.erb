@@ -2,23 +2,23 @@
     <div class="box mt-3 mb-3">
         <h1 class="title-home pt-5">Welcome To Fit-Support</h1>
         <span class="logo-home ml-2"><%= link_to image_tag('img/logo.jpg',width: '70',class:"mt-2 mb-4 rounded-circle"), '/' %></span>
-        <h4>「SNSの機能」　＋　運動をする「人」と「施設」を繋げるアプリです！</h4>
+        <h4>「SNSの機能」＋「ユーザーと運動施設の連携」を同時に実現したアプリです！</h4>
     </div>
 
     <div class="box mt-5">
       <div class="list-group text-color danger" style="width: 50%; font-size:20px; margin: 0 auto;">
-        <%= link_to homes_guest_sign_in_path, method: :post, class:"list-group-item list-group-item-action" do %>
+        <%= link_to homes_guest_sign_in_path, method: :post, class:"list-group-item list-group-item-warning" do %>
           ユーザーの機能をすぐに試す </br>（ユーザー名：ゲスト）
         <% end %>
-        <%= link_to  homes_guest_admin_sign_in_path, method: :post,class: "list-group-item list-group-item-action list-group-item-info" do %>
+        <%= link_to  homes_guest_admin_sign_in_path, method: :post,class: "list-group-item list-group-item-light" do %>
           管理者の機能をすぐに試す</br>（管理者名（施設名）：Fit-Support）
         <% end %>
       </div>
       <div class="list-group mt-5" style="width: 50%; font-size:20px; margin: 0 auto;">
-        <%= link_to  homes_ather_guest_sign_in_path, method: :post, class: "list-group-item list-group-item-action" do %>
+        <%= link_to  homes_ather_guest_sign_in_path, method: :post, class: "list-group-item list-group-item-warning" do %>
           別のユーザーからログインして機能を確かめる</br>（ユーザー名：アザーゲスト）
         <% end %>
-        <%= link_to  homes_ather_guest_admin_sign_in_path, method: :post,class: "list-group-item list-group-item-action list-group-item-info" do %>
+        <%= link_to  homes_ather_guest_admin_sign_in_path, method: :post,class: "list-group-item list-group-item-light" do %>
           別の管理者からログインして機能を確かめる</br>（管理者名（施設名）：WorkOuter）
         <% end %>
       </div>
@@ -28,12 +28,13 @@
       <h2 class="subtitle-home">新規スポーツクラブ</h2>
       <p>
         <h5>アカウントを作成すると自分の通っているスポーツクラブからの情報を受け取れます!</h5>
+        <p class="pt-3"><%= link_to "施設一覧", admin_admin_users_path, class: "btn btn-primary" %></p>
       </p>
     </div>
       <div class="info-content">
         <% @admin_user.each do |admin_user| %>
         <div class="info" style="text-align: center;">
-        <div class="card mt-5" style="width: 21rem;">
+        <div class="card mt-4" style="width: 20rem;">
             <%= attachment_image_tag admin_user, :image, size: "100%x500", fallback: "no_image.png",size: "100%x500"  %>
           <div class="card-body">
           <h5 class="card-title" style="font-size: 28px; color: red; "><%= admin_user.name %></h5>
@@ -41,11 +42,9 @@
             <p class="card-text mt-3">電話番号: <%= admin_user.phone_number %></p>
             <p class="card-text mt-3">郵便番号: <%= admin_user.postal_code %></p>
             <p class="card-text mt-3">住所: <%= admin_user.adrress %></p>
-            <p class="card-text mt-3 mb-5">ホームページ</p>
           </div>
         </div>
         </div>
         <% end %>
-
       </div>
     </div>

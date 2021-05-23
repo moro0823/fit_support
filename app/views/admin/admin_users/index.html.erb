@@ -1,14 +1,14 @@
  <div class ="container">
     <div class="box mt-5">
       <% if customer_signed_in? %>
-        <h2 class="title mt-5 mb-5">登録可能な施設一覧</h2>
+        <h2 class="title mt-5 mb-3">登録可能な施設一覧</h2>
       <% else %>
-        <h2 class="title mt-5 mb-5">施設一覧</h2>
+        <h2 class="title mt-5 mb-3">施設一覧</h2>
       <% end %>
 
       <% @admin_users.each do |admin_user| %>
         <div class="d-flex justify-content-center">
-          <div class="card mt-2" style="width: 35rem;">
+          <div class="card mt-5" style="width: 80%">
             <%= attachment_image_tag admin_user, :image, size: "100%x350", fallback: "no_image.png",size: "100%x350"  %>
           <div class="card-body">
           <h5 class="card-title" style="font-size: 50px; color: red;"><%= admin_user.name %></h5>
