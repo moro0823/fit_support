@@ -61,7 +61,7 @@
           </div>
           <div class="btn-group mt-3 mr-5">
             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span style="font-size: 20px; color: white;" >利用関係</span>
+              <span style="font-size: 20px; color: white;" >Login Now : <%= current_customer.username %></span>
             </button>
             <ul class="dropdown-menu">
               <li class="ml-2" style ="font-size: 15px"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
@@ -70,6 +70,7 @@
             </ul>
           </div>
           </ul>
+          <div class="loginname" style ="color: white;"></div>
         </nav>
 
      <!--管理者ログイン時ヘッダー-->
@@ -114,7 +115,7 @@
                 </div>
                 <div class="btn-group mr-5 ml-3 mt-3">
                   <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <span style="font-size: 20px; color: white;" >利用関係</span>
+                  <span style="font-size: 20px; color: white;" >Login Now : <%= current_admin_user.name %></span>
                 </button>
                 <ul class="dropdown-menu">
                   <li class="ml-2" style ="font-size: 15px"><%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete %></li>
