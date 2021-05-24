@@ -73,26 +73,12 @@ html, body{
  background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
 }
 
- // admin側のcss
-
+ // 各ページのタイトル（違いが出せるように分けているが今は同じ）
  .admin-title{
    border-bottom: solid 3px black;
    display: inline-block;
    font-weight: bold;
  }
-
-
- .box{
-   text-align: center;
- }
-
- .label{
-   color: red;
-   font-size: 20px;
- }
-
-
-// customer側のcss
 
 .title{
    border-bottom: solid 3px black;
@@ -100,32 +86,16 @@ html, body{
    font-weight: bold;
  }
 
+//要素を中央にするときに使用
+ .box{
+   text-align: center;
+ }
+
+//フォームのラベル
  .label{
    color: red;
    font-size: 20px;
  }
-
-// ヘッダーのcss
-
-/*文字 */
-.btn-outline-light{
-  border-width: 2px;
-  font-size: 15px;
-}
-
-/*配置 */
- .nav-light{
-   display: flex;
- }
-
- .navbar-toggler{
-  background-color: #FFFFFF;
-  border-color: #ffffff;
-}
-
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(51, 51, 51, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
 
 /*ページネーションのデザイン */
 
@@ -145,10 +115,6 @@ html, body{
 .pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
 }
-
-
-
-
 
 
 /*いいねした投稿のサンプル画像 */
@@ -381,5 +347,18 @@ footer{
 
 }
 
+@media screen and (max-width: 500px){
+.admin-top {
+  height: 180px;
+ }
+
+.customer-top{
+  height: 150px;
+ }
+
+.before-login-top{
+   height: 200px;
+}
+}
 
 
