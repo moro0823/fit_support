@@ -21,12 +21,11 @@
     <header class="shadow-sm">
 
       <!--ユーザー、ログイン時のヘッダー-->
+      <p class="main-logo" style="text-align: center;">
+        <%= link_to image_tag('img/logo.jpg',width: '100',class:" mt-1 rounded-circle"), '/' %>
+      </p>
       <% if customer_signed_in? %>
-        <nav class="navbar navbar-expand-lg-customer">
-          <p class="navbar-brand p-1">
-            <%= link_to image_tag('img/logo.jpg',width: '60',class:" mt-1 rounded-circle"), '/' %>
-          </p>
-          <ul class="mr-auto">
+        <ul class="customer-top">
           <div class="btn-group mr-5 ml-3 mt-3">
             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               <span style="font-size: 20px; color: white;" >ユーザー関連</span>
@@ -69,18 +68,13 @@
               <li class="ml-2" style ="font-size: 15px"><%= link_to "ユーザー情報編集", edit_customer_path(current_customer) %></li>
             </ul>
           </div>
-          </ul>
-          <div class="loginname" style ="color: white;"></div>
-        </nav>
+        </ul>
+        <div class="loginname" style ="color: white;"></div>
+
 
      <!--管理者ログイン時ヘッダー-->
         <% elsif admin_user_signed_in? %>
-          <nav class="navbar navbar-expand-lg-admin" style="background-color: #FF8C00;">
-            <p class="navbar-brand p-1">
-              <%= link_to image_tag('img/logo.jpg',width: '60',class:"mt-1 rounded-circle"), '/' %>
-            </p>
-
-              <ul class="mr-auto">
+              <ul class="admin-top">
                 <div class="btn-group mr-5 ml-3 mt-3">
                   <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span style="font-size: 20px; color: white;" >施設関連</span>
@@ -127,44 +121,40 @@
           </nav>
         <!--ログアウト時のヘッダー-->
         <% else %>
-          <nav class="navbar navbar-expand-lg" style="background-color:#FF6347 ;">
-            <p class="navbar-brand p-2">
-              <%= link_to image_tag('img/logo.jpg',width: '70',class:"mt-2 rounded-circle"), '/' %>
-            </p>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item mr-3">
-                    <%= link_to "アプリ紹介", home_about_path, class: "btn btn-outline-light" %>
-                  </li>
-                  <li class="nav-item mr-3">
-                    <%= link_to "施設を探す", admin_admin_users_path, class: "btn btn-outline-light" %>
-                  </li>
-                  <li class="nav-item mr-3">
-                    <%= link_to "投稿を見てみる", posts_path, class: "btn btn-outline-light" %>
-                  </li>
-                </ul>
-                <div class="nav-light">
-                  <div class="nav-text mr-3">
-                    <%= link_to "ユーザーログイン", new_customer_session_path, class: "btn btn-outline-light"  %>
-                  </div>
-                  <div class="nav-text mr-3">
-                    <%= link_to "ユーザーサインイン", new_customer_registration_path, class: "btn btn-outline-light"  %>
-                  </div>
-                  <div class="nav-text mr-3">
-                    <%= link_to "管理者ログイン", new_admin_user_session_path, class: "btn btn-outline-light"  %>
-                    <!--すぐに管理者の機能を試しやすい為-->
-                  </div>
-                  <div class="nav-text">
-                    <%= link_to "管理者サインイン",  new_admin_user_registration_path, class: "btn btn-outline-light"  %>
-                    <!--すぐに管理者の機能を試しやすい為-->
-                  </div>
-                </div>
-              </div>
-             </nav>
-            <% end %>
+          <ul class="before-login-top">
+            <div class="btn-group mr-5 ml-3 mt-3">
+              <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span style="font-size: 20px; color: white;" >ログインせずに試す</span>
+              </button>
+              <ul class="dropdown-menu">
+                  <li class="ml-2" style ="font-size: 15px"><%= link_to "投稿を見てみる", posts_path %></li>
+                  <li class="ml-2 mt-3" style ="font-size: 15px"><%= link_to "施設を探す", admin_admin_users_path %></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li class="ml-2" style ="font-size: 15px"><%= link_to "アプリ紹介", home_about_path %></li>
+              </ul>
+            </div>
+            <div class="btn-group mr-5 ml-3 mt-3">
+              <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span style="font-size: 20px; color: white;" >ユーザーはこちら</span>
+              </button>
+              <ul class="dropdown-menu">
+                  <li class="ml-2" style ="font-size: 15px"><%= link_to "ログイン", new_customer_session_path %></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li class="ml-2" style ="font-size: 15px"><%= link_to "アカウント作成", new_customer_registration_path %></li>
+              </ul>
+            </div>
+            <div class="btn-group mr-5 ml-3 mt-3">
+              <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span style="font-size: 20px; color: white;" >施設管理者はこちら</span>
+              </button>
+              <ul class="dropdown-menu">
+                  <li class="ml-2" style ="font-size: 15px"><%= link_to "管理者ログイン", new_admin_user_session_path %></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li class="ml-2" style ="font-size: 15px"><%= link_to "管理者アカウント作成",  new_admin_user_registration_path %></li>
+              </ul>
+            </div>
+          </ul>
+          <% end %>
         </header>
 
       <main class ="mb-auto">

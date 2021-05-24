@@ -10,10 +10,10 @@
     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">メモ</a>
   </div>
   </nav>
-  <div class="tab-content" id="nav-tabContent" style="height:200px; background-color:white;">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" style="font-size: 50px; text-align: center; padding-top: 50px;"><%= @karute.next_goal %></div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" style="font-size: 50px; text-align: center; padding-top: 50px;"><%= @karute.goal %></div>
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" style="font-size: 20px;"><%= @karute.memo %></div>
+  <div class="tab-content" id="nav-tabContent" style="height:100%; background-color:white;">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" style="font-size: 30px; text-align: center; padding: 50px 0px;"><%= simple_format @karute.next_goal %></div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" style="font-size: 30px; text-align: center; padding: 50px 0px;"><%= simple_format @karute.goal %></div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" style="font-size: 20px; padding: 50px 0px;"><%= simple_format @karute.memo %></div>
   </div>
 
     <div class="mt-3 mb-5">

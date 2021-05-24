@@ -20,6 +20,13 @@
   margin: 0 auto;
 }
 
+/*ゲストユーザーログイン用ボタン */
+ .list-group{
+   width: 50%;
+   font-size: 20px;
+   margin: 0 auto;
+ }
+
 /*Topページのスポーツクラブの情報のタイトル */
 .subtitle-home{
   font-weight: bold;
@@ -34,4 +41,13 @@
 
 .about{
   margin: 0 auto;
+}
+
+
+@media screen and (max-width: 765px){
+  /*ゲストユーザーログイン用ボタン */
+  .list-group{
+    width: 95%;
+    font-size: 13px;
+  }
 }

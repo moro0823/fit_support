@@ -1,12 +1,11 @@
   <div class ="container">
     <div class="box mt-3 mb-3">
         <h1 class="title-home pt-5">Welcome To Fit-Support</h1>
-        <span class="logo-home ml-2"><%= link_to image_tag('img/logo.jpg',width: '70',class:"mt-2 mb-4 rounded-circle"), '/' %></span>
         <h4>「SNSの機能」＋「ユーザーと運動施設の連携」を同時に実現したアプリです！</h4>
     </div>
 
     <div class="box mt-5">
-      <div class="list-group text-color danger" style="width: 50%; font-size:20px; margin: 0 auto;">
+      <div class="list-group text-color danger">
         <%= link_to homes_guest_sign_in_path, method: :post, class:"list-group-item list-group-item-warning" do %>
           ユーザーの機能をすぐに試す </br>（ユーザー名：ゲスト）
         <% end %>
@@ -14,7 +13,7 @@
           管理者の機能をすぐに試す</br>（管理者名（施設名）：Fit-Support）
         <% end %>
       </div>
-      <div class="list-group mt-5" style="width: 50%; font-size:20px; margin: 0 auto;">
+      <div class="list-group mt-5">
         <%= link_to  homes_ather_guest_sign_in_path, method: :post, class: "list-group-item list-group-item-warning" do %>
           別のユーザーからログインして機能を確かめる</br>（ユーザー名：アザーゲスト）
         <% end %>
@@ -35,7 +34,7 @@
         <% @admin_user.each do |admin_user| %>
         <div class="info" style="text-align: center;">
         <div class="card mt-4" style="width: 20rem;">
-            <%= attachment_image_tag admin_user, :image, size: "100%x500", fallback: "no_image.png",size: "100%x500"  %>
+            <%= attachment_image_tag admin_user, :image, fallback: "no_image.png" %>
           <div class="card-body">
           <h5 class="card-title" style="font-size: 28px; color: red; "><%= admin_user.name %></h5>
             <p class="card-text mt-3"><%= admin_user.body %></p>

@@ -13,9 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
  @import "bootstrap";
  @import "simple_calendar";
  @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6b6b;
+}
 
 
  /*フォント*/
@@ -25,14 +33,30 @@ html, body{
 }
 
  /*ヘッダーのデザイン*/
-.navbar-expand-lg-admin {
+.admin-top {
+  padding-top: 10px;
   height: 100px;
+  text-align: center;
   background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
 }
 
-.navbar-expand-lg-customer {
+.customer-top{
+  text-align: center;
   height: 100px;
   background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
+}
+
+.before-login-top{
+  text-align: center;
+  height: 100px;
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+
+.main-logo {
+
+ margin-bottom: 0px;
+ padding-top: 10px;
+ padding-bottom: 10px;
 }
 
 /*アプリ全体の背景画像 */
@@ -166,6 +190,7 @@ html, body{
 
 .border-dark{
   border-width: 3px;
+  margin: 0 auto;
 }
 
 .border-danger{
@@ -178,6 +203,7 @@ html, body{
 
 .border-success{
   border-width: 3px;
+  text-align: center;
 }
 
 
@@ -236,6 +262,12 @@ html, body{
     height: auto;
   }
 
+  .attachment.admin_user.image{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
 /*画像のレスポンシブ*/
  .link-genre{
     display: flex;
@@ -254,6 +286,19 @@ html, body{
     color: red;
 }
 
+/*フォームの大きさ*/
+input[type="text"] {
+  width: 50%;
+  height: 25px;
+    }
+
+.body {
+  width: 50%;
+  height: 100%;
+  padding-bottom: 40px;
+    }
+
+
 /*レスポンシブ対応*/
 @media screen and (max-width: 991px){
 
@@ -261,6 +306,7 @@ html, body{
     font-family: 'Times New Roman','Noto Serif JP', sans-serif;
     font-size: 12px;
    }
+
 
   .navbar{
      text-align: center;
@@ -286,11 +332,34 @@ html, body{
   .navbar-expand-lg-customer{
     height: 200px;
   }
+
+  .input[type="text"] {
+    width: 70%;
+  }
+
+  .body{
+    width: 70%;
+  }
+
+  .dropdown{
+    width: 70%;
+  }
 }
 
 @media screen and (max-width: 864px){
-  .navbar-expand-lg-admin{
-    height: 200px;
-  }
+.admin-top {
+  height: 120px;
+ }
+
+.customer-top{
+  height: 120px;
+ }
+
+.before-login-top{
+   height: 120px;
 }
+
+}
+
+
 
