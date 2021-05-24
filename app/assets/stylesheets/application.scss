@@ -41,12 +41,14 @@ html, body{
 }
 
 .customer-top{
+  padding-top: 10px;
   text-align: center;
   height: 100px;
   background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
 }
 
 .before-login-top{
+  padding-top: 10px;
   text-align: center;
   height: 100px;
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
@@ -298,6 +300,19 @@ input[type="text"] {
   padding-bottom: 40px;
     }
 
+/*フッター*/
+footer {
+  width: 100%;
+  height: 90px;
+  text-align: center;
+  line-height: 90px;
+  background-color: #848282;
+}
+
+.footer-text {
+  color: #fff;
+}
+
 
 /*レスポンシブ対応*/
 @media screen and (max-width: 991px){
@@ -357,6 +372,11 @@ input[type="text"] {
 
 .before-login-top{
    height: 120px;
+}
+
+footer{
+  height: 50px;
+  line-height: 50px;
 }
 
 }
