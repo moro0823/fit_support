@@ -18,14 +18,14 @@
       <div class="label">
         <%= f.label :"タイトル（必須）"  %>
       </div>
-        <%= f.text_field :title,required: true,size:"60x15" %>
+        <%= f.text_field :title,required: true %>
     </div>
 
     <div class="field mt-3">
       <div class="label">
         <%= f.label :"記入欄(必須)" %>
       </div>
-        <%= f.text_area :body,size:"60x15"%>
+        <%= f.text_area :body,required: true %>
     </div>
 
     <div class="field mt-3">

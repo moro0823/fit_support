@@ -32,8 +32,7 @@
           <tr class="table-warning">
             <th>ユーザー名</th>
             <th>投稿数</th>
-            <th>マイページへのリンク</th>
-            <th>フォローボタン</th>
+            <th>フォロー</th>
           </tr>
         </thead>
         <tbody>
@@ -43,18 +42,15 @@
               <%= attachment_image_tag customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2 rounded-circle"; %>
               <%= link_to customer.username,customer_path(customer) %>
             </td>
-            <td>
+            <td class="pt-4">
               <%= customer.posts.count %> 件
             </td>
-            <td>
-              <%= link_to "このユーザーの投稿一覧を見る",customer_path(customer),class:"btn btn-outline-primary" %>
-            </td>
-            <td>
+            <td class="pt-4">
               <% if customer.id != current_customer.id %>
                 <% if current_customer.following?(customer) %>
-                  <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST,class:"btn btn-outline-danger" %>
+                  <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST,class:"btn btn-outline-danger btn-sm" %>
                 <% else %>
-                  <%= link_to 'フォローする', follow_path(customer.id), method: :POST,class:"btn btn-outline-success" %>
+                  <%= link_to 'フォローする', follow_path(customer.id), method: :POST,class:"btn btn-outline-success btn-sm" %>
                 <% end %>
               <% end %>
             </td>
