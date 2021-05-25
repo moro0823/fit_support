@@ -9,6 +9,14 @@
           <a class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
             Katute
           </a>
+          <a class="nav-link" id="nav-message-tab" data-bs-toggle="tab" href="#nav-message" role="tab" aria-controls="nav-message" aria-selected="false">
+            Message
+            <% if unchecked_notifications.any? %>
+            <!--unchecked_notificationsはnotifications_helper.rbに定義-->
+            <!--checked => trueがある時はベルを表示-->
+             <i class="far fa-bell" style="font-size: 0.7em; color: red;"></i>
+            <% end %>
+          </a>
           <% end %>
         </div>
       </nav>
@@ -22,9 +30,9 @@
               <% if @customer.id == current_customer.id %>
                 <p><%= link_to "フォロー中 #{@customer.following_customer.where.not(id: current_customer.id).count}",customer_follower_path(@customer) %></p>
                 <p><%= link_to "フォロワー: #{@customer.follower_customer.where.not(id: current_customer.id).count}",customer_followed_path(@customer) %></p>
-                <p><%= link_to "ユーザー情報編集", edit_customer_path(current_customer),class:"btn btn-outline-info btn-sm" %></p>
-                <p><%= link_to "いいねした投稿", customer_favorite_path,class:"btn btn-outline-danger btn-sm" %></p>
-                <p><%= link_to "マイ施設の編集", admin_admin_users_path, class: "btn btn-outline-warning btn-sm" %></p>
+                <p><%= link_to "ユーザー情報編集", edit_customer_path(current_customer),class:"btn btn-info btn-sm" %></p>
+                <p><%= link_to "いいねした投稿", customer_favorite_path,class:"btn btn-danger btn-sm" %></p>
+                <p><%= link_to "マイ施設の編集", admin_admin_users_path, class: "btn btn-warning btn-sm" %></p>
               <% else %>
                 <% if current_customer.following?(@customer) %>
                   <%= link_to 'フォロー外す', unfollow_path(@customer.id), method: :POST ,class:"btn btn-outline-danger btn-sm"%>
@@ -66,7 +74,7 @@
             <% end %>
 
               <% if @customer.id == current_customer.id %>
-              ---My Fitness Place---
+              ---登録中の施設---
                 <% @my_fitness_places.each do |my_fitness_place| %>
                 <p class="my_fitness_place">
                   ・<%= my_fitness_place.admin_user.name %>
@@ -77,19 +85,35 @@
           </div>
         </div>
       </div>
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-          <% if @customer.id == current_customer.id %>
-              <h5 class="karute mt-3 mb-3" style= "color:black;" >作成中のカルテ</h5>
-              <% @karutes.each do |karute| %>
-                <p style="color: black;">担当者: <%= link_to karute.staff_name, admin_karute_path(karute) %></p>
-              <% end %>
-            </div>
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <% if @customer.id == current_customer.id %>
+          <h5 class="karute mt-3 mb-3" style= "color:black;" >作成中のカルテ</h5>
+          <% if @karutes == [] %>
+            現在、作成中のカルテはありません
+          <% else %>
+            <% @karutes.each do |karute| %>
+            <p style="color: black;">担当者: <%= link_to karute.staff_name, admin_karute_path(karute) %></p>
+            <% end %>
           <% end %>
-        </div>
+        <% end %>
+      </div>
+
+      <div class="tab-pane fade" id="nav-message" role="tabpanel" aria-labelledby="nav-message-tab">
+        <% notifications = @notifications.where.not(visitor_id: current_customer.id) %>
+          <!--自分に対するメッセージは通知に表示しない-->
+        <% if notifications.exists? %>
+          <%= render notifications %>
+          <!--複数形にすることでインスタンスの数だけ部分テンプレートが呼び出される-->
+          <!--１つ１つのnotificationを部分テンプレートで使用できる-->
+
+        <% else %>
+          <h5 class="message mt-3 mb-3" style= "color:black;" >新着メッセージはありません</h5>
+        <% end %>
       </div>
     </div>
+  </div>
 
-  <!-----------------------------------ここまでサイドバー-------------------------------------------------->
+  <!-----------------------------------プロフィール-------------------------------------------------->
 
     <div class="main">
       <% if @customer.id == current_customer.id %>

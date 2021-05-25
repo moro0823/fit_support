@@ -25,6 +25,11 @@ class Customer < ApplicationRecord
   has_many :my_fitness_places, dependent: :destroy
   has_many :personals, dependent: :destroy
   has_many :karutes, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  #active_notifications　=> 自分から送る通知
+  #posssive_notifications => 相手から受け取る通知
+  #紐付ける名前とクラス名が異なるため、明示的にクラス名とIDを指定して紐付け
 
   # ユーザーをフォローする
   def follow(customer_id)
