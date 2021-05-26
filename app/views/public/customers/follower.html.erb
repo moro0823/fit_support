@@ -3,7 +3,7 @@
       <h2 class="title mt-5">フォローしたユーザー一覧</h2>
       <h3 class="mt-5 mb-5"><%= link_to "マイページに戻る", customer_path(@customer),class:"btn btn-outline-info"  %></h3>
   </div>
-    <% if @customer.following_customer.where.not(id: current_customer.id).count == 0 %>
+    <% if @customer.following_customer.count == 0 %>
       <h2 class="mt-5" style="text-align:center;">フォローしているユーザーはいません</h2>
       <div class="down-more-all"></div>
     <% else %>
@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @customer.following_customer.where.not(id: current_customer.id).each do |customer| %>
+          <% @customer.following_customer.each do |customer| %>
           <tr class="table-light">
             <td>
               <%= attachment_image_tag customer, :profile_image, :fill,60,60,fallback: "no_image.png",size:"60x60", class:"mt-2 rounded-circle"; %>
