@@ -48,8 +48,8 @@
             </div>
             <div class="follow mt-3">
               <% if @customer.id != current_customer.id %>
-　　　　　　　  <p><%= link_to "フォロー中: #{@customer.following_customer.where.not(id: current_customer.id).count}",customer_follower_path(@customer) %></p>
-                <p><%= link_to "フォロワー: #{@customer.follower_customer.where.not(id: current_customer.id).count}",customer_followed_path(@customer) %></p>
+　　　　　　　  <p><%= link_to "フォロー中: #{@customer.following_customer.count}",customer_follower_path(@customer) %></p>
+                <p><%= link_to "フォロワー: #{@customer.follower_customer.count}",customer_followed_path(@customer) %></p>
               <% end %>
             </div>
           </div>
