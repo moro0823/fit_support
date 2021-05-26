@@ -3,7 +3,6 @@ class Public::ChatsController < ApplicationController
     @customer = Customer.find(params[:id])
     @rooms = current_customer.customer_rooms.pluck(:room_id)
     @customer_rooms = CustomerRoom.find_by(customer_id: @customer.id, room_id: @rooms)
-    @chat = Chat.find(params[:id])
     # ここまでで、ログインしているユーザーとマイページを表示しているユーザーとの間にチャット部屋があるかを調べる
 
     if @customer_rooms.nil? # チャット部屋がない場合は部屋を新しく作成する
