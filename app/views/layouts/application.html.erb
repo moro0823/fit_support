@@ -6,8 +6,6 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <script src="https://kit.fontawesome.com/721f0cdc29.js" crossorigin="anonymous"></script>
-
-
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -31,10 +29,10 @@
               <span style="font-size: 20px; color: white;" >ユーザー関連</span>
             </button>
             <ul class="dropdown-menu">
-              <li class="ml-2" style ="font-size: 15px"><%= link_to "マイ施設からの情報一覧", public_admin_posts_path %></li>
-              <li class="ml-2 mt-2" style ="font-size: 15px"><%= link_to "マイ施設の登録,解除", admin_admin_users_path%></li>
-              <li><hr class="dropdown-divider"></li>
               <li class="ml-2" style ="font-size: 15px"><%= link_to "マイページ", customer_path(current_customer)%></li>
+              <li><hr class="dropdown-divider"></li>
+                <li class="ml-2" style ="font-size: 15px"><%= link_to "マイ施設からの情報一覧", public_admin_posts_path %></li>
+                <li class="ml-2 mt-2" style ="font-size: 15px"><%= link_to "マイ施設の編集", admin_admin_users_path%></li>
             </ul>
           </div>
           <div class="btn-group mt-3 mr-5">
@@ -43,9 +41,9 @@
             </button>
             <ul class="dropdown-menu">
               <li class="ml-2" style ="font-size: 15px"><%= link_to "投稿を作成", new_post_path  %></li>
-              <li class="ml-2 mt-2" style ="font-size: 15px"><%= link_to "いいねした投稿一覧", customer_favorite_path %></li>
               <li><hr class="dropdown-divider"></li>
-              <li class="ml-2" style ="font-size: 15px"><%= link_to "投稿一覧", posts_path %></li>
+              <li class="ml-2" style ="font-size: 15px"><%= link_to "いいねした投稿一覧", customer_favorite_path %></li>
+              <li class="ml-2 mt-2" style ="font-size: 15px"><%= link_to "全投稿一覧", posts_path %></li>
             </ul>
           </div>
           <div class="btn-group mt-3 mr-5">

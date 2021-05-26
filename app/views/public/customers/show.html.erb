@@ -13,7 +13,7 @@
             Message
             <% if unchecked_notifications.any? %>
             <!--unchecked_notificationsはnotifications_helper.rbに定義-->
-            <!--checked => trueがある時はベルを表示-->
+            <!--checked => true（未読メッセージがある時）はベルを表示-->
              <i class="far fa-bell" style="font-size: 0.7em; color: red;"></i>
             <% end %>
           </a>
@@ -122,7 +122,7 @@
           ジャンルごとの投稿一覧
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li class="ml-2">
+          <li class="ml-2 mr-2">
             <%= form_tag(search_mypage_post_path,:method => 'get') do %>
               <%= hidden_field_tag :search, 0 %>
               <%= submit_tag 'トレーニングメニュー'%>
