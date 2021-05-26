@@ -7,6 +7,8 @@ class Public::CustomersController < ApplicationController
     @posts = @customer.posts.all.page(params[:page]).reverse_order
     @my_fitness_places = current_customer.my_fitness_places
     @karutes = Karute.where(customer_id: current_customer)
+    @notifications = current_customer.passive_notifications.where(checked: 0)
+    #未読のメッセージのみviewページに送る（マイページのメッセージがない文を表示するため）
   end
 
   def favorite

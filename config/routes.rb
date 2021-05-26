@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get 'search_post' => "searches#search_post", as: :search_post
     get 'search_mypage_post' => "searches#search_mypage_post", as: :search_mypage_post
     get 'chat/:id' => 'chats#show', as: 'chat'
+    put "notification/:id" => "notifications#update", as: :notification
     resources :chats, only: [:create]
     resources :rooms do
       delete 'chat/:id' => 'chats#destroy', as: "chat"

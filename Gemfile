@@ -72,6 +72,8 @@ gem 'rubocop-airbnb'
 gem 'simple_calendar', '~> 2.0'
 gem 'chartkick'
 gem 'groupdate'
+gem 'rinku'
+gem 'rails_autolink'
 
 gem 'dotenv-rails'
 group :production do

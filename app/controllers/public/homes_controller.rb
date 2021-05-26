@@ -38,7 +38,7 @@ class Public::HomesController < ApplicationController
       admin.password = "admintest"
     end
     sign_in admin
-    redirect_to root_path, notice: '「Fit Support」管理者としてログインしました'
+    redirect_to new_admin_staff_path, notice: '「Fit Support」管理者としてログインしました'
   end
 
   def ather_guest_admin_sign_in
@@ -46,6 +46,6 @@ class Public::HomesController < ApplicationController
       admin.password = "admintest2"
     end
     sign_in admin
-    redirect_to root_path, notice: '「WorkOuter」 管理者としてログインしました'
+    redirect_to new_admin_staff_path, notice: '「WorkOuter」 管理者としてログインしました'
   end
 end
