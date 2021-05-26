@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_123712) do
+ActiveRecord::Schema.define(version: 2021_05_24_225548) do
 
   create_table "admin_post_comments", force: :cascade do |t|
     t.text "comment"
@@ -136,6 +136,17 @@ ActiveRecord::Schema.define(version: 2021_05_20_123712) do
     t.text "eat"
     t.string "weight"
     t.datetime "start_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "room_id"
+    t.integer "chat_id"
+    t.string "action"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
