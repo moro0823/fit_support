@@ -28,11 +28,6 @@ Fit Support
 # URL
 https://fit-support.work/
 
-
-# 設計書
-https://www.icloud.com/iclouddrive/0LC79qw5MzxaLvu1tGJFIu_hA
-https://www.icloud.com/iclouddrive/0UVcoAzjGe7p1sDqj58LQDsKQ
-
 # チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1fkra7PfZOS3hjmOf3t71C4QsB93uuI8HuyXsFleY9Js/edit?usp=sharing
 
