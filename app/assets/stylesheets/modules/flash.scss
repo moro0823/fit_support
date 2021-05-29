@@ -3,7 +3,6 @@
    background-color: #38AEF0;
    color: #fff;
    text-align: center;
-   height: 50px;
    font-size: 25px;
    line-height: 50px;
  }
@@ -19,13 +18,11 @@
 @media screen and (max-width: 864px){
 .Notification {
  .notice {
-   font-size: 15px;
-   height: 30px;
+   font-size: 12px;
    line-height: 30px;
  }
  .alert {
-   font-size: 15px;
-   height: 30px;
+   font-size: 12px;
    line-height: 30px;
  }
 }
