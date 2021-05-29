@@ -9,7 +9,8 @@ class Public::HomesController < ApplicationController
   def admin_posts
     @my_fitness_places = current_customer.my_fitness_places
   end
-
+  
+  #トップページを登録施設一覧に変更した為、現在は使用していない
   def admin_posts_show
     @genre = Genre.find(params[:genre_id])
     @posts = @genre.admin_posts.where(is_show: true).page(params[:page]).reverse_order

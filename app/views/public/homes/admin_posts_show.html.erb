@@ -1,18 +1,22 @@
+  <!--トップページを登録施設一覧に変更した為、現在は使用していない-->
+  
   <div class ="container">
     <div class="box mt-3">
+      <!--タイトル　一覧に戻るボタン-->
       <h2 class="admin-title mt-5"><%= @genre.name %>一覧</h2>
       <div class="link mt-3">
           <%= link_to "スポーツクラブからの投稿一覧に戻る", public_admin_posts_path, class:"btn btn-outline-primary mr-3" %>
       </div>
 
-    <% if @posts == [] %>
+      <!--施設の投稿詳細-->
+      <% if @posts == [] %>
        <div class="box mt-3">
          <div class="no-genre-text mt-5">
           <h1>現在<%= @genre.name %>に関する情報はありません</h1>
          </div>
        </div>
        <div class="down-more-all"></div>
-    <% else %>
+      <% else %>
       <% @posts.each do |posts| %>
         <div class="d-flex justify-content-center">
           <div class="card border-warning mt-3 mb-5" style="width: 36rem;">
@@ -30,20 +34,19 @@
                       <iframe width="500" height="315" src="https://www.youtube.com/embed/<%= posts.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                   <% end %>
-
               </div>
             <div class="card-footer bg-transparent warning">
               <div>
                 <span class="mr-3">投稿日: <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></span>
                 <span class="ml-3"><%= link_to posts.admin_post_comments.count + posts.from_admin_comments.count, admin_post_path(posts.id), class:"far fa-comment-dots"%></span>
-             </div>
+              </div>
             </div>
           </div>
         </div>
+        <% end %>
+        <div class="down"></div>
+      <!--投稿が少ない時の余白-->
       <% end %>
-      <div class="down"></div>
-      <!--投稿は少ない時の余白-->
-    <% end %>
       <div class="d-flex justify-content-center">
         <div class="page mb-5">
           <%= paginate @posts %>

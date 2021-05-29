@@ -18,7 +18,7 @@ Fit Support
 
 # 具体的にできること
 ## ユーザー側
-- 自分に近い体型の近いユーザーやキーワードで検索できる
+- 自分の体型に近いユーザーやキーワードで検索できる（体重などのデータは非公開に設定することも可能）
 - ユーザーフォロー機能やメッセージ機能でユーザー同士も繋がれる
 - 自分の通っている施設を登録し、その施設からの情報を受け取ることができる
 ## 施設側
@@ -27,11 +27,6 @@ Fit Support
 
 # URL
 https://fit-support.work/
-
-
-# 設計書
-https://www.icloud.com/iclouddrive/0LC79qw5MzxaLvu1tGJFIu_hA
-https://www.icloud.com/iclouddrive/0UVcoAzjGe7p1sDqj58LQDsKQ
 
 # チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1fkra7PfZOS3hjmOf3t71C4QsB93uuI8HuyXsFleY9Js/edit?usp=sharing

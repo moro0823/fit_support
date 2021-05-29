@@ -1,11 +1,13 @@
   <div class ="container">
+    <!--タイトル-->
     <div class="box mt-3 mb-3">
         <h1 class="title-home pt-5">Welcome To Fit-Support</h1>
         <h4>「SNSの機能」＋「ユーザーと運動施設の連携」を同時に実現したアプリです！</h4>
     </div>
-
+    
+    <!--ゲストログインボタン-->
     <div class="box mt-5">
-      <div class="list-group text-color danger">
+      <div class="list-group">
         <%= link_to homes_guest_sign_in_path, method: :post, class:"list-group-item list-group-item-warning" do %>
           ユーザーの機能をすぐに試す </br>（ユーザー名：ゲスト）
         <% end %>
@@ -22,7 +24,8 @@
         <% end %>
       </div>
     </div>
-
+    
+    <!--スポーツクラブ一覧　タイトル-->
     <div class="box mt-5">
       <h2 class="subtitle-home">新規スポーツクラブ</h2>
       <p>
@@ -30,9 +33,11 @@
         <p class="pt-3"><%= link_to "施設一覧", admin_admin_users_path, class: "btn btn-primary" %></p>
       </p>
     </div>
-      <div class="info-content">
-        <% @admin_user.each do |admin_user| %>
-        <div class="info" style="text-align: center;">
+    
+    <!--スポーツクラブ一覧（最大４件）-->
+    <div class="fitness_clubs">
+      <% @admin_user.each do |admin_user| %>
+      <div class="info">
         <div class="card mt-4" style="width: 20rem;">
             <%= attachment_image_tag admin_user, :image, fallback: "no_image.png" %>
           <div class="card-body">
@@ -47,7 +52,8 @@
             <% end %>
           </div>
         </div>
-        </div>
-        <% end %>
       </div>
+      <% end %>
     </div>
+    
+  </div>

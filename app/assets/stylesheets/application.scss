@@ -148,7 +148,6 @@ html, body{
 
 
 /*カード*/
-
 .card-text-title{
   background: linear-gradient(transparent 60%, yellow 50%);
   display: inline-block;
@@ -329,6 +328,7 @@ footer {
 }
 
 @media screen and (max-width: 864px){
+// ヘッダーとフッターの帯の高さ
 .admin-top {
   height: 120px;
  }
@@ -349,6 +349,7 @@ footer{
 }
 
 @media screen and (max-width: 500px){
+// ヘッダーとフッターの帯の高さ
 .admin-top {
   height: 180px;
  }
