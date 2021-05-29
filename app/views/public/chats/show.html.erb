@@ -1,26 +1,27 @@
-<div class="container">
+  <div class="container">
     <div class="box mt-5">
         <div class="title mt-5">
             <h2 id="room" data-room="<%= @room.id %>" data-user="<%= current_customer.id %>"><%= @customer.username %> さんとのTalk Room</h2>
         </div>
-            <table class="message table mt-5">
-              <thead>
+          <!--メッセージ-->
+          <table class="message table mt-5">
+            <thead>
+              <tr>
+                <th class="chat_name" style="ml-5 text-align: left;"><%= current_customer.username %></th>
+                <th class="chat_name" style="mr-5 text-align: right;"><%= @customer.username %></th>
+              </tr>
+            </thead>
+            <% @chats.each do |chat| %>
+            <% if chat.customer_id == current_customer.id %>
+              <tbody>
                 <tr>
-                  <th style="ml-5 text-align: left; font-size: 25px; color: #FF0461;"><%= current_customer.username %></th>
-                  <th style="mr-5 text-align: right; font-size: 25px; color: #FF0461;"><%= @customer.username %></th>
-                </tr>
-              </thead>
-              <% @chats.each do |chat| %>
-                <% if chat.customer_id == current_customer.id %>
-                <tbody>
-                  <tr>
-                    <th>
-                      <p style="ml-3 text-align: left; font-size: 18px;">
-                        <%= chat.message %>
-                        <%= link_to "削除", room_chat_path(room_id: chat.room.id, id: chat.id), local: true, method: :delete %>
-                      </p>
-                    </th>
-                    <th></th>
+                  <th>
+                    <p style="ml-3 text-align: left;">
+                      <%= chat.message %>
+                      <%= link_to "削除", room_chat_path(room_id: chat.room.id, id: chat.id), local: true, method: :delete %>
+                    </p>
+                  </th>
+                  <th></th>
                   </tr>
                 </tbody>
                 <% else %>
@@ -28,16 +29,18 @@
                   <tr>
                     <th></th>
                     <th>
-                      <p style="mr-3 text-align: right; font-size: 18px;"><%= chat.message %></p>
+                      <p style="mr-3 text-align: right;"><%= chat.message %></p>
                     </th>
                   </tr>
                 </tbody>
                 <% end %>
               <% end %>
             </table>
+
+            <!--メッセージ送信フォーム-->
             <div class="post mt-5">
               <%= form_with model: @chat  do |f| %>
-                <%= f.text_field :message, local: true, size:"60x20" %>
+                <%= f.text_field :message, local: true %>
                 <%= f.hidden_field :room_id %>
                 <%= button_tag type: 'submit', class: "buttom" do %>
                   <i class="fas fa-paper-plane"></i>
@@ -46,4 +49,4 @@
             </div>
       <div class="down-more-all"></div>
     </div>
-</div>
+  </div>

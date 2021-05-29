@@ -40,6 +40,7 @@ class Public::ChatsController < ApplicationController
         @notification.save if @notification.valid?
         redirect_back(fallback_location: root_path)
     else
+      flash[:alert] = "メッセージが送信できませんでした"
       redirect_back(fallback_location: root_path)
     end
   end
