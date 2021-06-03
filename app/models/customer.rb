@@ -45,9 +45,11 @@ class Customer < ApplicationRecord
   def following?(customer)
     following_customer.include?(customer)
   end
-
+  
+  # すでにいいねしているかを確かめる
   def already_favorited?(post)
     favorites.exists?(post_id: post.id)
+    #exists レコードの存在を確認
   end
 
   def recorded_by?(staff)
