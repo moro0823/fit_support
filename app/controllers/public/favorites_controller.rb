@@ -15,7 +15,7 @@ class Public::FavoritesController < ApplicationController
     @favorite = Favorite.find_by(post_id: @post.id, customer_id: current_customer.id)
     @favorite.destroy
     redirect_to customer_favorite_path
-    # favorite.htmlで削除だけするので非同期通信に別でdestoyアクションを
+    # いいねした投稿一覧ページ（favorite.html）でいいねを消すと投稿全体が見れなくなるので、別のdestoyアクションを作成
   end
 
   def index
