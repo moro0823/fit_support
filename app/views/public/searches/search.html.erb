@@ -10,6 +10,8 @@
       <div class="search">
         <div class="search_form">
           <%= form_with(scope: :search, url: search_path, method: :get, local: :true) do |f| %>
+          <!--scope: :searchをすることでparams[:search]にカラム名をKeyとしたHashを設定-->
+          <!--value: @search_params[:カラム名]とすることで検索パラメータを検索後も保持-->
             <div class="search_field mt-3">
               <div class="label">
                 <%= f.label :"性別" %><br />
