@@ -1,59 +1,56 @@
   <div class ="container">
-    <!--タイトル-->
-    <div class="box mt-3 mb-3">
-        <h1 class="title-home pt-5">Welcome To Fit-Support</h1>
-        <h4>「SNSの機能」＋「ユーザーと運動施設の連携」を同時に実現したアプリです！</h4>
-    </div>
-    
-    <!--ゲストログインボタン-->
-    <div class="box mt-5">
-      <div class="list-group">
-        <%= link_to homes_guest_sign_in_path, method: :post, class:"list-group-item list-group-item-warning" do %>
-          ユーザーの機能をすぐに試す </br>（ユーザー名：ゲスト）
-        <% end %>
-        <%= link_to  homes_guest_admin_sign_in_path, method: :post,class: "list-group-item list-group-item-light" do %>
-          管理者の機能をすぐに試す</br>（管理者名（施設名）：Fit-Support）
-        <% end %>
-      </div>
-      <div class="list-group mt-5">
-        <%= link_to  homes_ather_guest_sign_in_path, method: :post, class: "list-group-item list-group-item-warning" do %>
-          別のユーザーからログインして機能を確かめる</br>（ユーザー名：アザーゲスト）
-        <% end %>
-        <%= link_to  homes_ather_guest_admin_sign_in_path, method: :post,class: "list-group-item list-group-item-light" do %>
-          別の管理者からログインして機能を確かめる</br>（管理者名（施設名）：WorkOuter）
-        <% end %>
-      </div>
-    </div>
-    
-    <!--スポーツクラブ一覧　タイトル-->
-    <div class="box mt-5">
-      <h2 class="subtitle-home">新規スポーツクラブ</h2>
-      <p>
-        <h5>アカウントを作成すると自分の通っているスポーツクラブからの情報を受け取れます!</h5>
-        <p class="pt-3"><%= link_to "施設一覧", admin_admin_users_path, class: "btn btn-primary" %></p>
-      </p>
-    </div>
-    
-    <!--スポーツクラブ一覧（最大４件）-->
-    <div class="fitness_clubs">
-      <% @admin_user.each do |admin_user| %>
-      <div class="info">
-        <div class="card mt-4" style="width: 20rem;">
-            <%= attachment_image_tag admin_user, :image, fallback: "no_image.png" %>
-          <div class="card-body">
-          <h5 class="card-title" style="font-size: 28px; color: red; "><%= admin_user.name %></h5>
-            <p class="card-text mt-3"><%= admin_user.body %></p>
-            <p class="card-text mt-3">電話番号: <%= admin_user.phone_number %></p>
-            <p class="card-text mt-3">郵便番号: <%= admin_user.postal_code %></p>
-            <p class="card-text mt-3">住所: <%= admin_user.adrress %></p>
-            <% if admin_user.homepage_url.nil? %>
-            <% else %>
-              <p class="card-text mt-3">ホームページ: <%= text_url_to_link(admin_user.homepage_url).html_safe %></p>
-            <% end %>
+    <section class="toppage-about">
+      <div class="main-area">
+        <div class="about-img-area">
+          <%= image_tag "img/sample2.jpg" %>
+          <div class="about-img-logo"><%= image_tag "img/logo3.jpg" %></div>
+        </div>
+        <div class="discription">
+          <h2 class="about-title">
+            ABOUT THIS SITE
+          </h2>
+          <div class="box17">
+
           </div>
         </div>
       </div>
-      <% end %>
-    </div>
-    
+    </section>
+
+    <section class="toppage-about">
+      <div class="main-area">
+        <div class="discription">
+          <h2 class="user-about-title">
+            ユーザーとして使う
+          </h2>
+          <div class="box17">
+
+          </div>
+        </div>
+        <div class="about-img-area">
+          <%= image_tag "img/sample4.jpg" %>
+          <div class="user-btn-flat-double-border">
+            <%= link_to "ゲストログイン", homes_guest_sign_in_path, method: :post %>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="admin-about">
+      <div class="main-area">
+        <div class="about-img-area">
+          <%= image_tag "img/sample1.jpg" %>
+          <div class="admin-btn-flat-double-border">
+            <%= link_to "管理者ログイン", homes_guest_admin_sign_in_path, method: :post %>
+          </div>
+        </div>
+        <div class="discription">
+          <h2 class="admin-about-title">
+            フィットネスクラブ経営者として使う
+          </h2>
+          <div class="box17">
+
+          </div>
+        </div>
+      </div>
+    </section>
   </div>

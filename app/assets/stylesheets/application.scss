@@ -28,9 +28,8 @@
 
  /*フォント*/
 html, body{
-  font-family: 'Times New Roman','Noto Serif JP', sans-serif;
+  font-family: "serif";
   font-size: 20px;
-  font-weight: bold;
 }
 
  /*ヘッダーのデザイン*/
@@ -48,29 +47,38 @@ html, body{
   background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
 }
 
-.before-login-top{
-  padding-top: 10px;
+// ログイン前のヘッダー
+.header{
   text-align: center;
-  height: 100px;
-  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  padding: 10px 0;
+  margin: 0 auto;
 }
 
-.main-logo {
- margin-bottom: 0px;
- padding-top: 10px;
- padding-bottom: 10px;
+.header-item,{
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
 }
+
+.header-item img{
+  height: 95px;
+}
+
+.header-item a{
+  color: black;
+}
+
+
 
 /*アプリ全体の背景画像 */
 .mb-auto{
-  background: linear-gradient(rgba(255,255,255,0.9),rgba(255,255,255,0.9)),image-url("img/logo.jpg");
+  //background: linear-gradient(rgba(255,255,255,0.9),rgba(255,255,255,0.9)),image-url("img/logo.jpg");
 }
 
 .container-fluid{
   margin-top: 30px;
   width: 80%;
   height: 100%;
- background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
 }
 
  // 各ページのタイトル（違いが出せるように分けているが今は同じ）
@@ -121,7 +129,7 @@ html, body{
 .favorite-sample_image{
   width: 90%;
   height: 700px;
-  background-image:image-url("img/new_favorite_sample.png");
+  background-image: image-url("img/new_favorite_sample.png");
   background-size: cover;
   background-position: center;
   margin: 0 auto;
@@ -270,8 +278,8 @@ footer {
   width: 100%;
   height: 90px;
   text-align: center;
-  line-height: 90px;
   background-color: #848282;
+  padding-top: 15px;
 }
 
 .footer-text {
@@ -343,7 +351,7 @@ footer {
 
 footer{
   height: 50px;
-  line-height: 50px;
+  padding-top: 10px;
 }
 
 }
