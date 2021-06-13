@@ -23,3 +23,125 @@
 .profile-box{
   display: flex;
 }
+
+.mypage-contents{
+
+}
+
+.mypage-contents-line{
+  justify-content: center;
+  display: flex;
+}
+
+.box-blue {
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    padding: 0.5em 1em;
+    margin: 2em 2em;
+    border: double 5px #4ec4d3;
+}
+.box-blue p {
+    margin: 0;
+    padding: 0;
+}
+
+.box-green {
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    padding: 0.5em 1em;
+    margin: 2em 2em;
+    border: double 5px #33FF33;
+}
+.box-green p {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+// 新規投稿のボタン
+.btn-circle-border-double {
+  font-size: 20px;
+  margin-top: 20px;
+  display: inline-block;
+  text-decoration: none;
+  color: #4ec4d3;
+  width: 120px;
+  height: 120px;
+  line-height: 100px;
+  border-radius: 50%;
+  border: double 4px #4ec4d3;
+  text-align: center;
+  overflow: hidden;
+  transition: .6s;
+}
+
+.btn-circle-border-double:hover {
+  -webkit-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}
+
+.btn-circle-border-double a{
+  font-size: 50px;
+  margin-left: 7px;
+}
+
+// お気に入り投稿のボタン
+.btn-circle-border-double-favorite {
+  font-size: 20px;
+  margin-top: 20px;
+  display: inline-block;
+  text-decoration: none;
+  color: #4ec4d3;
+  width: 120px;
+  height: 120px;
+  line-height: 110px;
+  border-radius: 50%;
+  border: double 4px #4ec4d3;
+  text-align: center;
+  overflow: hidden;
+  transition: .6s;
+}
+
+.btn-circle-border-double-favorite:hover {
+  -webkit-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}
+
+.btn-circle-border-double-favorite a{
+  font-size: 50px;
+}
+
+// 検索のボタン
+.btn-circle-border-double-green {
+  font-size: 20px;
+  margin-top: 20px;
+  display: inline-block;
+  text-decoration: none;
+  color: #33FF33;
+  width: 120px;
+  height: 120px;
+  line-height: 110px;
+  border-radius: 50%;
+  border: double 4px #33FF33;
+  text-align: center;
+  overflow: hidden;
+  transition: .6s;
+}
+
+.btn-circle-border-double-green:hover {
+  -webkit-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}
+
+.btn-circle-border-double-green a{
+  font-size: 50px;
+}
+
+
+// ボタンの中の説明文
+.mypage-btn-discription{
+  font-size: 15px;
+}

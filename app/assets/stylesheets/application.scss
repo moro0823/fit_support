@@ -17,6 +17,7 @@
  @import "bootstrap";
  @import "simple_calendar";
  @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
+ @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
 * {
   margin: 0;
@@ -28,12 +29,13 @@
 
  /*フォント*/
 html, body{
-  font-family: "serif";
+  font-family: 'Noto Serif JP', sans-serif;
   font-size: 20px;
 }
 
  /*ヘッダーのデザイン*/
 .admin-top {
+
   padding-top: 10px;
   height: 100px;
   text-align: center;

@@ -6,6 +6,10 @@ class Public::PostsController < ApplicationController
     @favorite = Favorite.new
   end
 
+  def mypost
+    @posts = current_customer.posts.all.page(params[:page]).reverse_order
+  end
+
   def training
     @posts = Post.where(status: "トレーニングメニュー").page(params[:page]).reverse_order
   end

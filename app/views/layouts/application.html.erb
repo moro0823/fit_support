@@ -4,13 +4,13 @@
     <title>FitSupport</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <script src="https://kit.fontawesome.com/721f0cdc29.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
@@ -19,51 +19,11 @@
     <header class="shadow-sm">
       <!--ユーザー、ログイン時のヘッダー-->
       <% if customer_signed_in? %>
-        <ul class="customer-top">
-          <div class="btn-group mr-5 ml-3 mt-3">
-            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span style="font-size: 20px; color: white;" >ユーザー関連</span>
-            </button>
-            <ul class="dropdown-menu">
-              <li class="ml-2" style ="font-size: 15px"><%= link_to "マイページ", customer_path(current_customer)%></li>
-              <li><hr class="dropdown-divider"></li>
-                <li class="ml-2" style ="font-size: 15px"><%= link_to "マイ施設からの情報一覧", public_admin_posts_path %></li>
-                <li class="ml-2 mt-2" style ="font-size: 15px"><%= link_to "マイ施設の編集", admin_admin_users_path%></li>
-            </ul>
-          </div>
-          <div class="btn-group mt-3 mr-5">
-            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span style="font-size: 20px; color: white;" >投稿関連</span>
-            </button>
-            <ul class="dropdown-menu">
-              <li class="ml-2" style ="font-size: 15px"><%= link_to "投稿を作成", new_post_path  %></li>
-              <li><hr class="dropdown-divider"></li>
-              <li class="ml-2" style ="font-size: 15px"><%= link_to "いいねした投稿一覧", customer_favorite_path %></li>
-              <li class="ml-2 mt-2" style ="font-size: 15px"><%= link_to "全投稿一覧", posts_path %></li>
-            </ul>
-          </div>
-          <div class="btn-group mt-3 mr-5">
-            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span style="font-size: 20px; color: white;" >検索関連</span>
-            </button>
-            <ul class="dropdown-menu">
-              <li class="ml-2" style ="font-size: 15px"><%= link_to "体型の近い人を探す", search_path %></li>
-              <li><hr class="dropdown-divider"></li>
-              <li class="ml-2" style ="font-size: 15px"><%= link_to "友達を探す", search_friend_path %></li>
-            </ul>
-          </div>
-          <div class="btn-group mt-3 mr-5">
-            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span style="font-size: 20px; color: white;" >Login Now : <%= current_customer.username %></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li class="ml-2" style ="font-size: 15px"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
-              <li><hr class="dropdown-divider"></li>
-              <li class="ml-2" style ="font-size: 15px"><%= link_to "ユーザー情報編集", edit_customer_path(current_customer) %></li>
-            </ul>
-          </div>
+        <ul class="header">
+          <li class="header-item"><%= link_to image_tag('img/logo3.jpg') %></li>
+          <li class="header-item"><%= link_to "マイページに戻る", customer_path(current_customer)%></li>
+          <li class="header-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
         </ul>
-        <div class="loginname" style ="color: white;"></div>
 
 
      <!--管理者ログイン時ヘッダー-->

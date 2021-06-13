@@ -2,19 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/*topページのタイトル */
-.title-home{
-  color: 	#00CC33;
-  background: linear-gradient(transparent 97%, 	#00CC33 50%);
-  display: inline-block;
-}
-
+// Top-page全体
 .main-area{
   width: 90%;
   margin: 50px auto;
   display: flex;
 }
 
+.toppage-about{
+  margin-top: 50px;
+  padding-top: 30px;
+  background-color: #FFFFDD;
+}
+
+.user-about{
+  padding-top: 30px;
+  background-color: #FFD5EC;
+}
+
+.admin-about{
+  padding-top: 30px;
+  background-color: #DDFFFF;
+}
+
+//画像
 .about-img-area{
   width: 60%;
   text-align: center;
@@ -25,15 +36,14 @@
 }
 
 .about-img-logo img{
-  width: 60%;
+  width: 50%;
   height: 80px;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
-.discription{
-  width: 60%;
-}
 
+
+// タイトル
 .about-title{
   border-bottom: solid 3px black;
   display: inline-block;
@@ -57,8 +67,69 @@
   margin-top: 30px;
 }
 
+
+// ゲストログインボタン
+.user-btn-flat-double-border {
+  margin-top: 50px;
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border: double 4px red;
+  border-radius: 3px;
+  transition: .4s;
+}
+.user-btn-flat-double-border:hover {
+  background: red;
+}
+.user-btn-flat-double-border a{
+  color: red;
+}
+.user-btn-flat-double-border:hover a{
+  color: white;
+}
+
+// 管理者ゲストログインボタン
+.admin-btn-flat-double-border {
+  margin-top: 50px;
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border: double 4px blue;
+  border-radius: 3px;
+  transition: .4s;
+}
+.admin-btn-flat-double-border:hover {
+  background: blue;
+}
+.admin-btn-flat-double-border a{
+  color: blue;
+}
+.admin-btn-flat-double-border:hover a{
+  color: white;
+}
+
+
+// 説明文
+.discription{
+  width: 60%;
+}
+
+.about-discription{
+  list-style: none;
+  display: flex;
+}
+
+.about-text-title{
+  font-size: 28px;
+}
+
+.attention{
+  font-size: 15px;
+}
+
+
+// 枠線
 .box17{
-    height: 300px;
     margin:2em 0;
     position: relative;
     padding: 0.5em 1.5em;
@@ -79,44 +150,4 @@
 .box17 p {
     margin: 0;
     padding: 0;
-}
-
-
-
-.user-btn-flat-double-border {
-  margin-top: 50px;
-  display: inline-block;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  border: double 4px red;
-  border-radius: 3px;
-  transition: .4s;
-}
-.user-btn-flat-double-border:hover {
-  background: red;
-}
-.user-btn-flat-double-border a{
-  color: red;
-}
-.user-btn-flat-double-border:hover a{
-  color: white;
-}
-
-.admin-btn-flat-double-border {
-  margin-top: 50px;
-  display: inline-block;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  border: double 4px blue;
-  border-radius: 3px;
-  transition: .4s;
-}
-.admin-btn-flat-double-border:hover {
-  background: blue;
-}
-.admin-btn-flat-double-border a{
-  color: blue;
-}
-.admin-btn-flat-double-border:hover a{
-  color: white;
 }
