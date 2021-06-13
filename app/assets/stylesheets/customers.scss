@@ -22,6 +22,16 @@
 
 .profile-box{
   display: flex;
+  border: 1px solid #dee2e6;
+}
+
+.tab-box{
+  border: 1px solid #dee2e6;
+  padding-left: 20px;
+}
+
+#nav-tab.nav.nav-tabs{
+  border: 0px;
 }
 
 .mypage-contents{
@@ -31,14 +41,14 @@
 .mypage-contents-line{
   justify-content: center;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .box-blue {
     text-align: center;
-    width: 300px;
-    height: 300px;
+    width: 262px;
     padding: 0.5em 1em;
-    margin: 2em 2em;
+    margin: 5px;
     border: double 5px #4ec4d3;
 }
 .box-blue p {
@@ -48,13 +58,24 @@
 
 .box-green {
     text-align: center;
-    width: 300px;
-    height: 300px;
+    width: 262px;
     padding: 0.5em 1em;
-    margin: 2em 2em;
+    margin: 5px;
     border: double 5px #33FF33;
 }
 .box-green p {
+    margin: 0;
+    padding: 0;
+}
+
+.box-red {
+    text-align: center;
+    width: 262px;
+    padding: 0.5em 1em;
+    margin: 5px;
+    border: double 5px red;
+}
+.box-red p {
     margin: 0;
     padding: 0;
 }
@@ -140,8 +161,44 @@
   font-size: 50px;
 }
 
+// 施設関連のボタン
+.btn-circle-border-double-red {
+  font-size: 20px;
+  margin-top: 20px;
+  display: inline-block;
+  text-decoration: none;
+  color: red;
+  width: 120px;
+  height: 120px;
+  line-height: 110px;
+  border-radius: 50%;
+  border: double 4px red;
+  text-align: center;
+  overflow: hidden;
+  transition: .6s;
+}
+
+.btn-circle-border-double-red:hover {
+  -webkit-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}
+
+.btn-circle-border-double-red a{
+  font-size: 50px;
+}
+
 
 // ボタンの中の説明文
 .mypage-btn-discription{
   font-size: 15px;
+}
+
+
+.main-title{
+  margin-top: 50px;
+}
+
+.main-title-right{
+  margin-top: 80px;
+  text-align: center;
 }

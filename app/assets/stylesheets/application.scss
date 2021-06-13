@@ -23,13 +23,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #6c6b6b;
 }
 
 
  /*フォント*/
 html, body{
-  font-family: 'Noto Serif JP', sans-serif;
+  font-family: 'Times New Roman','Arial',YuGothic,'Yu Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','メイリオ', Meiryo,'ＭＳ ゴシック',sans-serif;
   font-size: 20px;
 }
 
@@ -282,6 +281,7 @@ footer {
   text-align: center;
   background-color: #848282;
   padding-top: 15px;
+  margin-top: 100px;
 }
 
 .footer-text {
@@ -293,9 +293,7 @@ footer {
 @media screen and (max-width: 991px){
 
   html, body{
-    font-family: 'Times New Roman','Noto Serif JP', sans-serif;
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 16px;
    }
 
 
