@@ -93,7 +93,7 @@
 
             <% if @customer.id == current_customer.id %>
             <!--自分のマイページ表示時-->
-              <p style="color: red;">---登録中の施設---</p>
+              <p style="color: red;">---登録中のフィットネスクラブ---</p>
               <% @my_fitness_places.each do |my_fitness_place| %>
               <p class="my_fitness_place">
                 ・<%= my_fitness_place.admin_user.name %>
@@ -109,16 +109,21 @@
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <% if @customer.id == current_customer.id %>
         <div class="tab-box">
-          <h5 class="mt-3" style= "color:black;">パーソナルトレーナーとあなたとの間にカルテを作成して</br>より効果的にトレーニングを行いましょう！</br>
-            <span style="font-size: 15px; color: black;">※カルテは担当のパーソナルトレーナーが作成することで表示されます</br>
-            ※カルテは担当者とあなた双方が閲覧・編集が可能です！</span>
-          </h5>
-          <h5 class="karute mt-3 mb-3" style= "color:black;" >作成中のカルテ</h5>
+          <div class="karute-img">
+            <div class="karute-img-text-area">
+              <h3 class="karute-img-text">パーソナルトレーナーとあなたとの間にカルテを作成して</br>より効果的にトレーニングを行いましょう！</h3>
+              <div class="karute-img-text-attention">※カルテは担当のパーソナルトレーナーが作成することで表示されます</br>
+                ※カルテは担当者とあなた双方が閲覧・編集が可能です！
+              </div>
+            </div>
+          </div>
+
+          <h5 class="karute mt-3 mb-3 ml-3" style= "color:black;" >作成中のカルテ</h5>
           <% if @karutes == [] %>
             現在、作成中のカルテはありません
           <% else %>
             <% @karutes.each do |karute| %>
-            <p style="color: black;">担当者: <%= link_to karute.staff_name, admin_karute_path(karute) %></p>
+            <p class="ml-3" style="color: black;">担当者: <%= link_to karute.staff_name, admin_karute_path(karute) %></p>
             <% end %>
           <% end %>
         <% end %>
@@ -128,6 +133,16 @@
       <!--メッセージタブ-->
       <div class="tab-pane fade" id="nav-message" role="tabpanel" aria-labelledby="nav-message-tab">
         <div class="tab-box">
+          <div class="message-img">
+            <div class="message-img-text-area">
+              <h3 class="message-img-text">
+                メッセージを送ることでユーザー同士、交流できます！
+              </h3>
+              <div class="message-img-text-attention">
+                ※こちらからメッセージを送る際は、送る相手のマイページから送信可能です
+              </div>
+            </div>
+          </div>
           <% notifications = @notifications.where.not(visitor_id: current_customer.id) %>
           <!--自分に対するメッセージは通知に表示しない-->
           <% if notifications.exists? %>
@@ -135,7 +150,7 @@
           <!--notificationsは複数データが存在するので、複数形にすることでインスタンスの数だけ部分テンプレートが呼び出される-->
           <!--１つ１つのnotificationを部分テンプレートで使用できる-->
           <% else %>
-            <h5 class="message mt-3 mb-3" style= "color:black;" >新着メッセージはありません</h5>
+            <h5 class="message mt-3 mb-3 ml-3" style= "color:black;" >新着メッセージはありません</h5>
           <% end %>
         </div>
       </div>

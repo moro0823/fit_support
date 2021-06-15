@@ -2,3 +2,68 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.l-wrapper {
+  margin: 1rem auto;
+  width: 60%;
+}
+
+.l-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 7px 34px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+  transition: all .5s;
+}
+.card {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #ccc;
+}
+
+.card-content {
+  padding: 8px 20px 20px;
+}
+.card-title a{
+  font-size: 30px;
+  color: #4f96f6;
+  font-weight: 700;
+}
+.card-title{
+  font-size: 30px;
+  font-weight: 700;
+}
+.card-text {
+  font-size: 20px;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+}
+.card-link {
+  text-align: center;
+  border-top: 1px solid #eee;
+  padding: 20px;
+}
+.card-link a {
+  text-decoration: none;
+  color: #4f96f6;
+  margin: 0 10px;
+}
+.card-user-profile a{
+  font-size: 25px;
+}
+
+.post-genre{
+  margin-top: 20px;
+}
+
+.post-genre-link a{
+  margin-top: 10px;
+  font-size: 30px;
+  color: #4f96f6;
+}
+
+
+
+@media screen and (max-width: 765px){
+.l-wrapper {
+  width: 100%;
+ }
+
+}

@@ -1,65 +1,65 @@
   <div class ="container">
     <div class="box mt-3">
       <h2 class="title mt-5">投稿詳細</h2>
+        <h4 class="post-genre">投稿ジャンル</br>
+          <% if @post.status == "トレーニングメニュー" %>
+            <h5 class="post-genre-link"><%= link_to @post.status,posts_training_path %></h5>
+          <% elsif @post.status == "食事" %>
+            <h5 class="post-gere-link"><%= link_to @post.status,posts_eat_path %></h5>
+          <% else @post.status == "知識" %>
+            <h5 class="post-genre-link"><%= link_to @post.status,posts_info_path %></h5>
+          <% end %>
+        </h4>
         <div class="d-flex justify-content-center">
-          <div class="card border-success mt-3 mb-5" style="width: 36rem;">
-            <div class="card-header bg-transparent border-success">
-              <%= attachment_image_tag @post.customer, :profile_image, :fill, 60, 60, fallback: "no_image.png",size: "60x60",class:"mr-4 mt-2 rounded-circle";  %>
-              <%= link_to @post.customer.username, customer_path(@post.customer.id)  %>
-            </div>
-              <div class="card-body">
-                  <p class="card-title">
-                    <% if @post.status == "トレーニングメニュー" %>
-                      <h5 class="text-danger"><%= @post.status %></h5>
-                    <% elsif @post.status == "食事" %>
-                      <h5 class="text-info"><%= @post.status %></h5>
-                    <% else @post.status == "知識" %>
-                      <h5 class="text-primary"><%= @post.status %></h5>
-                    <% end %>
-                  </p>
-                  <h4 class ="card-text-title"><%=@post.title %></h4>
-                  <p class="card-text"><%= simple_format @post.body %></p>
-                  <div>
-                    <p>
-                    <% if @post.post_images.present? %>
-                      <div class="slider">
-                        <% @post.post_images.each do |image| %>
-                            <%= attachment_image_tag image, :image, :fill, 500, 500, format: "jpeg" %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                    </p>
-                  </div>
+          <div class="l-wrapper">
+            <div class="card">
+              <div class="card-user-profile mb-3">
+                <%= attachment_image_tag @post.customer, :profile_image, :fill, 100, 100, fallback: "no_image.png",size: "100x100",class:"mr-4 mt-2 rounded-circle";  %>
+                <%= link_to @post.customer.username, customer_path(@post.customer.id)  %>
               </div>
-            <div class="card-footer bg-transparent border-success">
-              <p class="mt-2 mb-3">投稿日 : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-              <div>
-                <span id="posts_<%= @post.id %>">
-                  <%= render "public/favorites/favorite", posts: @post %>
-                </span>
-                <span id="post_<%= @post.id %>">
-                  <%= render "public/posts/comment" %>
-                </span>
+            <div class="card-img">
+            <% if @post.post_images.present? %>
+              <div class="slider">
+                <% @post.post_images.each do |image| %>
+                  <%= attachment_image_tag image, :image, :fill, 500, 500, format: "jpeg" %>
+                <% end %>
               </div>
-                <p class="mt-2 mb-3"><%= link_to "この投稿にいいねしたユーザー一覧を表示", from_favorite_path(@post),class:"btn btn-outline-danger" %></p>
-            </div>
-          </div>
-        </div>
-
-
-        <div>
-          <div class="new-comment">
-            <%= form_with(model:[@post, @post_comment], class: 'js-form') do |f| %>
-              <p><%= f.text_area :comment,placeholder: "コメントをここに",size:"90%x5" %></p>
-              <p><%= f.submit "コメントする", class:"btn btn-primary mt-3" %></p>
             <% end %>
-          </div>
+            </div>
 
-          <div id="post_comment_<%= @post.id %>">
-            <%= render "public/post_comments/comment" %>
+            <div class="card-content">
+              <p class="card-title"><%= @post.title %></p>
+              <p class="card-text"><%= simple_format(h(@post.body),class: "card-text") %></p>
+              <!--h: 特殊文字をエスケープ　クロスサイトスクリプティングの攻撃を防ぐ-->
+            </div>
+            <div class="card-link">
+              <span class="mr-3">投稿日 : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+              <span id="posts_<%= @post.id %>">
+                <%= render "public/favorites/favorite", posts: @post %>
+              </span>
+              <span id="post_<%= @post.id %>">
+                <%= render "public/posts/comment" %>
+              </span>
+              <p class="card-text"><%= link_to "この投稿にいいねしたユーザー一覧を表示", from_favorite_path(@post) %></p>
+            </div>
+            </div>
           </div>
-          <div class="more"><%= link_to_next_page @comments, 'もっと見る', remote: true, id: 'view_more',class:"btn btn-primary mt-3 mb-5" %></div>
         </div>
+
+      <div>
+        <div class="new-comment">
+          <%= form_with(model:[@post, @post_comment], class: 'js-form') do |f| %>
+            <p><%= f.text_area :comment,placeholder: "コメントをここに",size:"90%x5" %></p>
+            <p><%= f.submit "コメントする", class:"btn btn-primary mt-3" %></p>
+          <% end %>
+        </div>
+
+        <div id="post_comment_<%= @post.id %>">
+          <%= render "public/post_comments/comment" %>
+        </div>
+        <div class="more"><%= link_to_next_page @comments, 'もっと見る', remote: true, id: 'view_more',class:"btn btn-primary mt-3 mb-5" %></div>
+      </div>
+
     </div>
   </div>
 
