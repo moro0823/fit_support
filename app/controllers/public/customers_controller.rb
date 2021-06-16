@@ -4,7 +4,7 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts.all.page(params[:page]).reverse_order
+    @posts = @customer.posts.all.page(params[:page]).reverse_order.limit(4)
     @my_fitness_places = current_customer.my_fitness_places
     @karutes = Karute.where(customer_id: current_customer)
     @notifications = current_customer.passive_notifications.where(checked: 0)

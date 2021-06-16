@@ -10,38 +10,25 @@
             <h5 class="post-genre-link"><%= link_to @post.status,posts_info_path %></h5>
           <% end %>
         </h4>
-        <div class="d-flex justify-content-center">
+        <div class="post-show">
           <div class="l-wrapper">
             <div class="card">
-              <div class="card-user-profile mb-3">
-                <%= attachment_image_tag @post.customer, :profile_image, :fill, 100, 100, fallback: "no_image.png",size: "100x100",class:"mr-4 mt-2 rounded-circle";  %>
-                <%= link_to @post.customer.username, customer_path(@post.customer.id)  %>
-              </div>
-            <div class="card-img">
-            <% if @post.post_images.present? %>
-              <div class="slider">
-                <% @post.post_images.each do |image| %>
-                  <%= attachment_image_tag image, :image, :fill, 500, 500, format: "jpeg" %>
+              <%= render partial: "post_header", locals:{posts: @post} %>
+              <%= render partial: "post_main", locals:{posts: @post} %>
+              <div class="card-link">
+                <span class="mr-3">投稿日 : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+                <span id="posts_<%= @post.id %>">
+                  <%= render "public/favorites/favorite", posts: @post %>
+                </span>
+                <span id="post_<%= @post.id %>">
+                  <%= render "public/posts/comment" %>
+                </span>
+                <p class="card-text"><%= link_to "この投稿にいいねしたユーザー一覧を表示", from_favorite_path(@post) %></p>
+                <% if @post.customer_id == current_customer.id %>
+                  <span class="post-edit mr-2"><%= link_to "編集",edit_post_path(@post.id), class:"btn btn-info btn-sm"  %></span>
+                  <span class="post-delete"><%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger btn-sm"  %></span>
                 <% end %>
               </div>
-            <% end %>
-            </div>
-
-            <div class="card-content">
-              <p class="card-title"><%= @post.title %></p>
-              <p class="card-text"><%= simple_format(h(@post.body),class: "card-text") %></p>
-              <!--h: 特殊文字をエスケープ　クロスサイトスクリプティングの攻撃を防ぐ-->
-            </div>
-            <div class="card-link">
-              <span class="mr-3">投稿日 : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-              <span id="posts_<%= @post.id %>">
-                <%= render "public/favorites/favorite", posts: @post %>
-              </span>
-              <span id="post_<%= @post.id %>">
-                <%= render "public/posts/comment" %>
-              </span>
-              <p class="card-text"><%= link_to "この投稿にいいねしたユーザー一覧を表示", from_favorite_path(@post) %></p>
-            </div>
             </div>
           </div>
         </div>

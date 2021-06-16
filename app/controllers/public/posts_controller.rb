@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to customer_path(current_customer), notice: "更新しました"
+      redirect_to post_path(@post), notice: "更新しました"
     else
       flash.now[:alert] = '更新に失敗しました'
       render :edit

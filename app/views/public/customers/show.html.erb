@@ -106,8 +106,8 @@
       </div>
 
       <!--カルテタブ-->
+      <% if @customer.id == current_customer.id %>
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-        <% if @customer.id == current_customer.id %>
         <div class="tab-box">
           <div class="karute-img">
             <div class="karute-img-text-area">
@@ -126,11 +126,12 @@
             <p class="ml-3" style="color: black;">担当者: <%= link_to karute.staff_name, admin_karute_path(karute) %></p>
             <% end %>
           <% end %>
-        <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <!--メッセージタブ-->
+      <% if @customer.id == current_customer.id %>
       <div class="tab-pane fade" id="nav-message" role="tabpanel" aria-labelledby="nav-message-tab">
         <div class="tab-box">
           <div class="message-img">
@@ -154,13 +155,14 @@
           <% end %>
         </div>
       </div>
+      <% end %>
       </div>
     </div>
 
   <!---機能ボタン--->
-    <div class="main">
-      <% if @customer.id == current_customer.id %>
-        <h2 class="main-title-right">USE THIS SITE</h2>
+    <% if @customer.id == current_customer.id %>
+      <div class="main">
+        <h2 class="main-title-center">USE THIS SITE</h2>
         <div class="mypage-contents">
           <div class="mypage-contents-line">
               <div class="box-blue">
@@ -247,7 +249,32 @@
                 <p class="mypage-btn-discription mt-4">自分の通っている施設を登録して情報を受け取りましょう！</p>
               </div>
           </div>
+        </div>
       <% end %>
+
+    <div class="mypage-post">
+      <% if @customer.id == current_customer.id %>
+        <h2 class="main-title-center">MY POST</h2>
+      <% else %>
+        <h2 class="main-title-center"><%= @customer.username %> `s POST</h2>
+      <% end %>
+      <div class="mypage-post-index">
+        <% @posts.each do |posts| %>
+          <div class="l-wrapper">
+            <div class="card">
+              <%= render partial: "public/posts/post_main", locals:{posts: posts} %>
+              <%= render partial: "public/posts/post_footer", locals:{posts: posts} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
+
+    <div class="d-flex justify-content-center">
+      <div class="page mb-5">
+        <%= paginate @posts %>
+      </div>
+    </div>
+
   </div>
 
