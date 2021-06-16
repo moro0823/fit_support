@@ -6,6 +6,10 @@ class Public::PostsController < ApplicationController
     @favorite = Favorite.new
   end
 
+  def mypost
+    @posts = current_customer.posts.all.page(params[:page]).reverse_order
+  end
+
   def training
     @posts = Post.where(status: "トレーニングメニュー").page(params[:page]).reverse_order
   end
@@ -56,7 +60,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to customer_path(current_customer), notice: "更新しました"
+      redirect_to post_path(@post), notice: "更新しました"
     else
       flash.now[:alert] = '更新に失敗しました'
       render :edit

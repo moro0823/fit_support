@@ -1,5 +1,11 @@
   <div class="container">
     <!---プロフィール--->
+    <% if @customer.id == current_customer.id %>
+      <h2 class="main-title">MYPAGE</h2>
+    <% else %>
+      <h2 class="main-title"><%= @customer.username %> 's PAGE</h2>
+    <% end %>
+
     <div class="profile">
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin: 0 auto;">
@@ -22,7 +28,7 @@
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent" style="margin-bottom: 10px; height: 100%;">
-      <!---プロフィールタブ---> 
+      <!---プロフィールタブ--->
       <div class="tab-pane fade  show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
         <div class="profile-box">
           <div class="profile-side">
@@ -31,11 +37,15 @@
             <div class="button mt-3">
               <% if @customer.id == current_customer.id %>
               <!--自分のマイページ表示時-->
-                <p><%= link_to "フォロー中 #{@customer.following_customer.where.not(id: current_customer.id).count}",customer_follower_path(@customer) %></p>
+                <p><%= link_to "フォロー中: #{@customer.following_customer.where.not(id: current_customer.id).count}",customer_follower_path(@customer) %></p>
                 <p><%= link_to "フォロワー: #{@customer.follower_customer.where.not(id: current_customer.id).count}",customer_followed_path(@customer) %></p>
+                <p>BodyDataの公開設定</p>
+                <% if @customer.is_show %>
+                  <p class="text-success">公開中</p>
+                <% else %>
+                  <p class="text-danger">未公開</p>
+                <% end %>
                 <p><%= link_to "ユーザー情報編集", edit_customer_path(current_customer),class:"btn btn-info btn-sm" %></p>
-                <p><%= link_to "いいねした投稿", customer_favorite_path,class:"btn btn-danger btn-sm" %></p>
-                <p><%= link_to "マイ施設の編集", admin_admin_users_path, class: "btn btn-warning btn-sm" %></p>
               <% else %>
               <!--他人のマイページ表示時-->
                 <% if current_customer.following?(@customer) %>
@@ -58,18 +68,22 @@
             </div>
           </div>
           <div class="profile-main">
+            <p style="color: red;">---自己紹介---</p>
             <div class="introduction mt-2" style="color:black;"><%=simple_format @customer.introduction %></div>
             <div class="body-data">
-              <div>BodyDataの公開設定</br>
-              <% if @customer.is_show %>
-                <p class="text-success">公開中</p>
-              <% else %>
-                <p class="text-danger">未公開</p>
-              <% end %>
-              </div>
+              <div>
+                <% if @customer.id != current_customer.id %>
+                  <p style="color: red;">---BodyDataの公開設定---</p>
+                  <% if @customer.is_show %>
+                    <p class="text-success">公開中</p>
+                  <% else %>
+                    <p class="text-danger">未公開</p>
+                  <% end %>
+                <% end %>
+                </div>
               <% if @customer == current_customer || @customer.is_show %>
               <!--ログイン中のユーザーのマイページの時または公開中に設定しているユーザーのマイページはBodydataを表示する-->
-              ---BodyData---
+              <p style="color: red;">---BodyData---</p>
               <p>性別: <%= @customer.sex %></p>
               <p>年齢: <%= @customer.age%> 才</p>
               <p>身長: <%= @customer.height %> cm</p>
@@ -79,7 +93,7 @@
 
             <% if @customer.id == current_customer.id %>
             <!--自分のマイページ表示時-->
-              ---登録中の施設---
+              <p style="color: red;">---登録中のフィットネスクラブ---</p>
               <% @my_fitness_places.each do |my_fitness_place| %>
               <p class="my_fitness_place">
                 ・<%= my_fitness_place.admin_user.name %>
@@ -90,109 +104,177 @@
           </div>
         </div>
       </div>
-      
+
       <!--カルテタブ-->
+      <% if @customer.id == current_customer.id %>
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-        <% if @customer.id == current_customer.id %>
-          <h5 class="karute mt-3 mb-3" style= "color:black;" >作成中のカルテ</h5>
+        <div class="tab-box">
+          <div class="karute-img">
+            <div class="karute-img-text-area">
+              <h3 class="karute-img-text">パーソナルトレーナーとあなたとの間にカルテを作成して</br>より効果的にトレーニングを行いましょう！</h3>
+              <div class="karute-img-text-attention">※カルテは担当のパーソナルトレーナーが作成することで表示されます</br>
+                ※カルテは担当者とあなた双方が閲覧・編集が可能です！
+              </div>
+            </div>
+          </div>
+
+          <h5 class="karute mt-3 mb-3 ml-3" style= "color:black;" >作成中のカルテ</h5>
           <% if @karutes == [] %>
             現在、作成中のカルテはありません
           <% else %>
             <% @karutes.each do |karute| %>
-            <p style="color: black;">担当者: <%= link_to karute.staff_name, admin_karute_path(karute) %></p>
+            <p class="ml-3" style="color: black;">担当者: <%= link_to karute.staff_name, admin_karute_path(karute) %></p>
             <% end %>
           <% end %>
-        <% end %>
-      </div>
-
-      <!--メッセージタブ-->
-      <div class="tab-pane fade" id="nav-message" role="tabpanel" aria-labelledby="nav-message-tab">
-        <% notifications = @notifications.where.not(visitor_id: current_customer.id) %>
-          <!--自分に対するメッセージは通知に表示しない-->
-        <% if notifications.exists? %>
-          <%= render notifications %>
-          <!--notificationsは複数データが存在するので、複数形にすることでインスタンスの数だけ部分テンプレートが呼び出される-->
-          <!--１つ１つのnotificationを部分テンプレートで使用できる-->
-        <% else %>
-          <h5 class="message mt-3 mb-3" style= "color:black;" >新着メッセージはありません</h5>
-        <% end %>
-      </div>
-      
-      </div>
-    </div>
-
-  <!---自分の投稿一覧--->
-    <div class="main">
-      <% if @customer.id == current_customer.id %>
-        <div class="dropdown" style="margin: 20px auto; text-align: center;">
-        <button class="btn btn-secondary dropdown-toggle mt-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-          ジャンルごとの投稿一覧
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li class="ml-2 mr-2">
-            <%= form_tag(search_mypage_post_path,:method => 'get') do %>
-              <%= hidden_field_tag :search, 0 %>
-              <%= submit_tag 'トレーニングメニュー'%>
-            <% end %>
-          </li>
-          <li class="mt-3 ml-2">
-            <%= form_tag(search_mypage_post_path,:method => 'get') do %>
-              <%= hidden_field_tag :search, 1 %>
-              <%= submit_tag '食事'%>
-            <% end %>
-          </li>
-          <li class="mt-3 ml-2">
-            <%= form_tag(search_mypage_post_path,:method => 'get') do %>
-              <%= hidden_field_tag :search, 2 %>
-              <%= submit_tag "情報の共有" %>
-            <% end %>
-          </li>
-        </ul>
-        </div>
-      <% end %>
-
-      <% @posts.each do |posts| %>
-        <div>
-          <div class="card border-success mb-3" style="width: 70%; margin: 0 auto">
-            <div class="card-header bg-transparent border-success">
-              <% if posts.status == "トレーニングメニュー" %>
-                <h5 class="text-danger"><%= posts.status %></h5>
-              <% elsif posts.status == "食事" %>
-                <h5 class="text-warning"><%= posts.status %></h5>
-              <% else posts.status == "知識" %>
-                <h5 class="text-primary"><%= posts.status %></h5>
-              <% end %>
-            </div>
-              <div class="card-body">
-                <h5 class="card-text-title"><%= link_to posts.title,post_path(posts.id),class:"text-dark" %></h5>
-                  <p class="card-text"><%= simple_format posts.body %></p>
-                  <div>
-                    <% if posts.post_images.present? %>
-                      <div class="slider">
-                        <% posts.post_images.each do |image| %>
-                            <%= attachment_image_tag image, :image, :fill, 300, 300, format: "jpeg" %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </div>
-                  <div>投稿日:<%= posts.updated_at.strftime("%Y/%m/%d %H:%M") %></div>
-              </div>
-            <div class="card-footer bg-transparent border-success">
-              <span class="ml-3 mr-3"><i class="fas fa-heart mr-1" style="color:red;"></i><%= link_to posts.favorites.count,from_favorite_path(posts) %></span>
-              <span class="mr-3"><i class="far fa-comment-dots mr-1"></i><%= link_to posts.post_comments.count,post_path(posts.id) %></span>
-              <% if @customer.id == current_customer.id %>
-              <span class="mr-2"><%= link_to "編集",edit_post_path(posts.id), class:"btn btn-info btn-sm"  %></span>
-                <%= link_to "削除", post_path(posts.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger btn-sm"  %>
-            　<% end %>
-            </div>
           </div>
         </div>
       <% end %>
+
+      <!--メッセージタブ-->
+      <% if @customer.id == current_customer.id %>
+      <div class="tab-pane fade" id="nav-message" role="tabpanel" aria-labelledby="nav-message-tab">
+        <div class="tab-box">
+          <div class="message-img">
+            <div class="message-img-text-area">
+              <h3 class="message-img-text">
+                メッセージを送ることでユーザー同士、交流できます！
+              </h3>
+              <div class="message-img-text-attention">
+                ※こちらからメッセージを送る際は、送る相手のマイページから送信可能です
+              </div>
+            </div>
+          </div>
+          <% notifications = @notifications.where.not(visitor_id: current_customer.id) %>
+          <!--自分に対するメッセージは通知に表示しない-->
+          <% if notifications.exists? %>
+            <%= render notifications %>
+          <!--notificationsは複数データが存在するので、複数形にすることでインスタンスの数だけ部分テンプレートが呼び出される-->
+          <!--１つ１つのnotificationを部分テンプレートで使用できる-->
+          <% else %>
+            <h5 class="message mt-3 mb-3 ml-3" style= "color:black;" >新着メッセージはありません</h5>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+      </div>
     </div>
+
+  <!---機能ボタン--->
+    <% if @customer.id == current_customer.id %>
+      <div class="main">
+        <h2 class="main-title-center">USE THIS SITE</h2>
+        <div class="mypage-contents">
+          <div class="mypage-contents-line">
+              <div class="box-blue">
+                <div class="btn-circle-border-double">
+                  <%= link_to  new_post_path do %>
+                    <i class="far fa-edit" style="color: #4ec4d3;"></i>
+                  <% end %>
+                </div>
+                <p class="mt-3 mb-2">投稿作成</p>
+                <p class="mypage-btn-discription mt-4">トレーニング内容や食事の記録</p>
+                <p class="mypage-btn-discription">フィットネスに関する</br>情報の発信ができます！</p>
+              </div>
+              <div class="box-blue">
+                <div class="btn-circle-border-double">
+                  <%= link_to posts_mypost_path do %>
+                    <i class="fas fa-user-edit" style="color: #4ec4d3;"></i>
+                  <% end %>
+                </div>
+                <p class="mt-3 mb-2">My投稿一覧</p>
+                <p class="mypage-btn-discription mt-4">自分の投稿の確認や編集、削除</p>
+                <p class="mypage-btn-discription">他のユーザーからのコメントやお気に入りの確認ができます
+              </div>
+              <div class="box-blue">
+                <div class="btn-circle-border-double-favorite">
+                  <%= link_to customer_favorite_path do %>
+                    <i class="far fa-heart" style="color: #4ec4d3;"></i>
+                  <% end %>
+                </div>
+                <p class="mt-2 mb-2">お気に入りした</br>投稿一覧</p>
+                <p class="mypage-btn-discription mt-2">参考になった投稿を</p>
+                <p class="mypage-btn-discription">お気に入り（❤️）することで</br>すぐに見返すことができます</p>
+              </div>
+              <div class="box-blue">
+                <div class="btn-circle-border-double">
+                  <%= link_to posts_path do %>
+                    <i class="fas fa-file-signature" style="color: #4ec4d3;"></i>
+                  <% end %>
+                </div>
+                <p class="mt-3 mb-2">全投稿一覧</p>
+                <p class="mypage-btn-discription mt-4">
+                キーワード検索で気になるワードに関する投稿をすぐ探せます</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mypage-contents-line">
+            <!--検索関係-->
+              <div class="box-green">
+                <div class="btn-circle-border-double-green">
+                  <%= link_to search_path do %>
+                    <i class="fas fa-search" style="color: #33FF33;"></i>
+                  <% end %>
+                </div>
+                <p class="mt-2 mb-2">体型の近い人を探す</p>
+                <p class="mypage-btn-discription mt-4">どんな運動をしたらいいかわからない時は,
+                自分の体型に近い人の運動メニューを参考にしましょう！</p>
+              </div>
+              <div class="box-green">
+                <div class="btn-circle-border-double-green">
+                  <%= link_to search_friend_path do %>
+                    <i class="fas fa-users" style="color: #33FF33;"></i>
+                  <% end %>
+                </div>
+                <p class="mt-2 mb-2">友達を探す</p>
+                <p class="mypage-btn-discription mt-4">全ユーザーの中から友達を探してフォローやメッセージを送りましょう！</p>
+              </div>
+              <!--施設登録関係-->
+              <div class="box-red">
+                <div class="btn-circle-border-double-red">
+                  <%= link_to public_admin_posts_path do %>
+                    <i class="fas fa-mail-bulk" style="color: red;"></i>
+                  <% end %>
+                </div>
+                <p class="mt-2 mb-2">My施設からの情報</p>
+                <p class="mypage-btn-discription mt-4">登録した施設から発信された情報を確認できます</p>
+              </div>
+              <div class="box-red">
+                <div class="btn-circle-border-double-red">
+                  <%= link_to admin_admin_users_path do %>
+                    <i class="fas fa-house-user" style="color: red;"></i>
+                  <% end %>
+                </div>
+                <p class="mt-2 mb-2">My施設を登録・編集</p>
+                <p class="mypage-btn-discription mt-4">自分の通っている施設を登録して情報を受け取りましょう！</p>
+              </div>
+          </div>
+        </div>
+      <% end %>
+
+    <div class="mypage-post">
+      <% if @customer.id == current_customer.id %>
+        <h2 class="main-title-center">MY POST</h2>
+      <% else %>
+        <h2 class="main-title-center"><%= @customer.username %> `s POST</h2>
+      <% end %>
+      <div class="mypage-post-index">
+        <% @posts.each do |posts| %>
+          <div class="l-wrapper">
+            <div class="card">
+              <%= render partial: "public/posts/post_main", locals:{posts: posts} %>
+              <%= render partial: "public/posts/post_footer", locals:{posts: posts} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
     <div class="d-flex justify-content-center">
       <div class="page mb-5">
         <%= paginate @posts %>
       </div>
     </div>
+
   </div>
 

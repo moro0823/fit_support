@@ -1,0 +1,7 @@
+<div class="card-link">
+  <span class="mr-3">投稿日：<%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+  <span id="posts_<%= posts.id %>">
+    <%= render "public/favorites/favorite", posts: posts %>
+  </span>
+  <span class="ml-3"><%= link_to posts.post_comments.count, post_path(posts.id), class:"far fa-comment-dots"%></span>
+</div>

@@ -1,0 +1,7 @@
+<div class="search mt-3 mb-3">
+  <h5>キーワード検索</h5><h6>例：脂肪燃焼・筋トレ</h6>
+    <%= form_tag(search_post_path,:method => 'get') do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag '検索'%>
+    <% end %>
+</div>

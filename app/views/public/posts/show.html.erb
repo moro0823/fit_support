@@ -1,65 +1,52 @@
   <div class ="container">
     <div class="box mt-3">
       <h2 class="title mt-5">投稿詳細</h2>
-        <div class="d-flex justify-content-center">
-          <div class="card border-success mt-3 mb-5" style="width: 36rem;">
-            <div class="card-header bg-transparent border-success">
-              <%= attachment_image_tag @post.customer, :profile_image, :fill, 60, 60, fallback: "no_image.png",size: "60x60",class:"mr-4 mt-2 rounded-circle";  %>
-              <%= link_to @post.customer.username, customer_path(@post.customer.id)  %>
-            </div>
-              <div class="card-body">
-                  <p class="card-title">
-                    <% if @post.status == "トレーニングメニュー" %>
-                      <h5 class="text-danger"><%= @post.status %></h5>
-                    <% elsif @post.status == "食事" %>
-                      <h5 class="text-info"><%= @post.status %></h5>
-                    <% else @post.status == "知識" %>
-                      <h5 class="text-primary"><%= @post.status %></h5>
-                    <% end %>
-                  </p>
-                  <h4 class ="card-text-title"><%=@post.title %></h4>
-                  <p class="card-text"><%= simple_format @post.body %></p>
-                  <div>
-                    <p>
-                    <% if @post.post_images.present? %>
-                      <div class="slider">
-                        <% @post.post_images.each do |image| %>
-                            <%= attachment_image_tag image, :image, :fill, 500, 500, format: "jpeg" %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                    </p>
-                  </div>
-              </div>
-            <div class="card-footer bg-transparent border-success">
-              <p class="mt-2 mb-3">投稿日 : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-              <div>
+        <h4 class="post-genre">投稿ジャンル</br>
+          <% if @post.status == "トレーニングメニュー" %>
+            <h5 class="post-genre-link"><%= link_to @post.status,posts_training_path %></h5>
+          <% elsif @post.status == "食事" %>
+            <h5 class="post-gere-link"><%= link_to @post.status,posts_eat_path %></h5>
+          <% else @post.status == "知識" %>
+            <h5 class="post-genre-link"><%= link_to @post.status,posts_info_path %></h5>
+          <% end %>
+        </h4>
+        <div class="post-show">
+          <div class="l-wrapper">
+            <div class="card">
+              <%= render partial: "post_header", locals:{posts: @post} %>
+              <%= render partial: "post_main", locals:{posts: @post} %>
+              <div class="card-link">
+                <span class="mr-3">投稿日 : <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
                 <span id="posts_<%= @post.id %>">
                   <%= render "public/favorites/favorite", posts: @post %>
                 </span>
                 <span id="post_<%= @post.id %>">
                   <%= render "public/posts/comment" %>
                 </span>
+                <p class="card-text"><%= link_to "この投稿にいいねしたユーザー一覧を表示", from_favorite_path(@post) %></p>
+                <% if @post.customer_id == current_customer.id %>
+                  <span class="post-edit mr-2"><%= link_to "編集",edit_post_path(@post.id), class:"btn btn-info btn-sm"  %></span>
+                  <span class="post-delete"><%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger btn-sm"  %></span>
+                <% end %>
               </div>
-                <p class="mt-2 mb-3"><%= link_to "この投稿にいいねしたユーザー一覧を表示", from_favorite_path(@post),class:"btn btn-outline-danger" %></p>
             </div>
           </div>
         </div>
 
-
-        <div>
-          <div class="new-comment">
-            <%= form_with(model:[@post, @post_comment], class: 'js-form') do |f| %>
-              <p><%= f.text_area :comment,placeholder: "コメントをここに",size:"90%x5" %></p>
-              <p><%= f.submit "コメントする", class:"btn btn-primary mt-3" %></p>
-            <% end %>
-          </div>
-
-          <div id="post_comment_<%= @post.id %>">
-            <%= render "public/post_comments/comment" %>
-          </div>
-          <div class="more"><%= link_to_next_page @comments, 'もっと見る', remote: true, id: 'view_more',class:"btn btn-primary mt-3 mb-5" %></div>
+      <div>
+        <div class="new-comment">
+          <%= form_with(model:[@post, @post_comment], class: 'js-form') do |f| %>
+            <p><%= f.text_area :comment,placeholder: "コメントをここに",size:"90%x5" %></p>
+            <p><%= f.submit "コメントする", class:"btn btn-primary mt-3" %></p>
+          <% end %>
         </div>
+
+        <div id="post_comment_<%= @post.id %>">
+          <%= render "public/post_comments/comment" %>
+        </div>
+        <div class="more"><%= link_to_next_page @comments, 'もっと見る', remote: true, id: 'view_more',class:"btn btn-primary mt-3 mb-5" %></div>
+      </div>
+
     </div>
   </div>
 
