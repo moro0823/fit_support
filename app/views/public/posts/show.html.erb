@@ -23,7 +23,7 @@
                 <span id="post_<%= @post.id %>">
                   <%= render "public/posts/comment" %>
                 </span>
-                <p class="card-text"><%= link_to "この投稿にいいねしたユーザー一覧を表示", from_favorite_path(@post) %></p>
+                <p class="card-text"><%= link_to "この投稿をお気に入りしたユーザー一覧を表示", from_favorite_path(@post) %></p>
                 <% if @post.customer_id == current_customer.id %>
                   <span class="post-edit mr-2"><%= link_to "編集",edit_post_path(@post.id), class:"btn btn-info btn-sm"  %></span>
                   <span class="post-delete"><%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger btn-sm"  %></span>

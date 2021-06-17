@@ -1,48 +1,25 @@
   <div class="container">
     <div class="box mt-3">
-      <h2 class="title mt-5">いいねした投稿一覧</h2>
-      <h3 class="mt-5" style="color:red;">いいねをすることで</br>参考になった投稿をすぐ見返すことができます！</h3>
-      <h4 class="mt-3">自分の投稿にもいいねをつけることができます！</h4>
+      <h2 class="title mt-5">お気に入りした投稿一覧</h2>
+      <h4 class="mt-5">お気に入りすることで参考になった投稿をすぐに見返すことができます！</h4>
+      <p class="mt-1">自分の投稿もお気に入りすることができます！</p>
       <% if @favorite_posts.count == 0 %>
         <div class="mt-5"><%= link_to "投稿一覧からお気に入り投稿を探す",posts_path, class:"btn btn-warning" %></div>
         <h4 class="title mt-5">参考画像</h4>
          <div class="favorite-sample_image"></div>
-
       <% else %>
         <% @favorite_posts.each do |posts| %>
-        <div class="d-flex justify-content-center">
-          <div class="card border-success mt-3 mb-5" style="width: 36rem;">
-            <div class="card-header bg-transparent border-success">
-              <%= attachment_image_tag posts.customer, :profile_image, :fill, 60, 60, fallback: "no_image.png",size: "60x60",class:"mr-4 mt-2 rounded-circle";  %>
-              <%= link_to posts.customer.username, customer_path(posts.customer.id)  %>
-            </div>
-              <div class="card-body">
-                <h4 class ="card-text-title"><%= link_to posts.title,post_path(posts.id),class:"text-dark" %></h4>
-                  <p class="card-text">
-                    <% if posts.status == "トレーニングメニュー" %>
-                      <h5 class="text-danger"><%= posts.status %></h5>
-                    <% elsif posts.status == "食事" %>
-                      <h5 class="text-info"><%= posts.status %></h5>
-                    <% else posts.status == "知識" %>
-                      <h5 class="text-primary"><%= posts.status %></h5>
-                    <% end %>
-                  </p>
-                  <p class="card-text"><%= simple_format posts.body %></p>
-                <div>
-                  <% if posts.post_images.present? %>
-                    <div class="slider">
-                      <% posts.post_images.each do |image| %>
-                        <%= attachment_image_tag image, :image, :fill, 300, 300, format: "jpeg" %>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </div>
+        <div class="post-index">
+          <div class="l-wrapper">
+            <div class="card">
+              <%= render partial: "public/posts/post_header", locals:{posts: posts} %>
+              <%= render partial: "public/posts/post_main", locals:{posts: posts} %>
+              <div class="card-link">
+                <p class="mr-3">投稿日 : <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+                <%= link_to post_customer_favorite_path(posts), method: :delete do %>
+                  <p class="btn btn-outline-danger mt-2">お気に入り解除</p>
+                <% end %>
               </div>
-            <div class="card-footer bg-transparent border-success">
-              <p>投稿日 : <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-              <%= link_to post_customer_favorite_path(posts), method: :delete do %>
-                <p class="btn btn-outline-danger mt-2">いいねを取り消す</p>
-              <% end %>
             </div>
           </div>
         </div>
@@ -55,5 +32,4 @@
         </div>
       </div>
   </div>
-
 

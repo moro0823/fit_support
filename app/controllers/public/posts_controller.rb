@@ -6,8 +6,10 @@ class Public::PostsController < ApplicationController
     @favorite = Favorite.new
   end
 
-  def mypost
-    @posts = current_customer.posts.all.page(params[:page]).reverse_order
+  def ranking
+    @posts_training_top3 = Post.posts_training_top3
+    @posts_eat_top3 = Post.posts_eat_top3
+    @posts_info_top3 = Post.posts_info_top3
   end
 
   def training
