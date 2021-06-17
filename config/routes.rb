@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get 'posts/training' => "posts#training"
     get 'posts/eat' => "posts#eat"
     get 'posts/info' => "posts#info"
-    get 'posts/mypost' => "posts#mypost"
+    get 'posts/ranking' => "posts#ranking"
     post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
     post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
     get 'search' => "searches#search"
