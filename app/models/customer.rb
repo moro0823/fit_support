@@ -45,7 +45,7 @@ class Customer < ApplicationRecord
   def following?(customer)
     following_customer.include?(customer)
   end
-  
+
   # すでにいいねしているかを確かめる
   def already_favorited?(post)
     favorites.exists?(post_id: post.id)
@@ -56,12 +56,13 @@ class Customer < ApplicationRecord
     karutes.where(staff_id: staff.id).exists?
   end
 
+
   scope :search, -> (search_params) do
     # search_paramsが空の場合以降の処理を行わない。
     return if search_params.blank?
 
-    # パラメータを指定して検索を実行する
-    sex_like(search_params[:sex]).
+    # 下記で定義した各条件式にフォームで入力された値を入れ検索を実行する
+      sex_like(search_params[:sex]).  
       age_from(search_params[:age_from]).
       age_to(search_params[:age_to]).
       height_from(search_params[:height_from]).
@@ -71,13 +72,16 @@ class Customer < ApplicationRecord
       fat_percentage_from(search_params[:fat_percentage_from]).
       fat_percentage_to(search_params[:fat_percentage_to])
   end
-
-  # 性別が存在する場合、gender_isで検索する
+  
+  # 引数に入る値はフォームで入力された値が入る
+  # 性別が存在する場合、sexカラムから引数の値があるか検索する
   scope :sex_like, -> (sex) { where(sex: sex) if sex.present? }
-  # 年齢が存在する場合、ageで範囲検索する
+  # 年齢が存在する場合、agetカラムで範囲検索する ↓詳細
+    # ageカラムから引数で入力された値(from)以上の値があるか検索する
+    # ageカラムから引数で入力された値(to)以下の値があるか検索する
   scope :age_from, -> (from) { where('? <= age', from) if from.present? }
   scope :age_to, -> (to) { where('age <= ?', to) if to.present? }
-  # 身長が存在する場合、heightで範囲検索する
+  # 身長が存在する場合、heightカラムで範囲検索する
   scope :height_from, -> (from) { where('? <= height', from) if from.present? }
   scope :height_to, -> (to) { where('height <= ?', to) if to.present? }
   # 体重が存在する場合、weightで範囲検索する

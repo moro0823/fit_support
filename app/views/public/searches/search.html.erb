@@ -11,6 +11,7 @@
         <div class="search_form">
           <%= form_with(scope: :search, url: search_path, method: :get, local: :true) do |f| %>
           <!--scope: :searchをすることでparams[:search]にカラム名をKeyとしたHashを設定-->
+          <!--"search"=>{"sex"=>"男性", "age_from"=>"",""age_to=>"",.....}という形でグループ化できる-->
           <!--value: @search_params[:カラム名]とすることで検索パラメータを検索後も保持-->
             <div class="search_field mt-3">
               <div class="label">
@@ -102,5 +103,9 @@
         </tbody>
       </table>
     <% end %>
-    <div class="dowm-small"></div>
+    <div class="d-flex justify-content-center">
+      <div class="page mb-5">
+        <%= paginate @customers %>
+      </div>
+    </div>
  </div>
