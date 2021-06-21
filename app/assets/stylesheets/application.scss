@@ -32,23 +32,8 @@ html, body{
   font-size: 20px;
 }
 
- /*ヘッダーのデザイン*/
-.admin-top {
 
-  padding-top: 10px;
-  height: 100px;
-  text-align: center;
-  background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
-}
-
-.customer-top{
-  padding-top: 10px;
-  text-align: center;
-  height: 100px;
-  background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
-}
-
-// ログイン前のヘッダー
+// ヘッダー
 .header{
   text-align: center;
   padding: 10px 0;

@@ -1,0 +1,23 @@
+  <div class="card-body">
+      <h4 class="card-text-title"><%= link_to posts.title,admin_post_path(posts), class:"text-dark" %></h4>
+      <p class="card-text"><%= simple_format posts.body %></p>
+      <p class="card-text">
+        <% if admin_user_signed_in? %>
+        <div>ユーザーへの公開設定</div>
+           <% if posts.is_show %>
+             <p class="text-success">"公開中"</p>
+           <% else %>
+            <p class="text-danger">"非公開"</p>
+          <% end %>
+         <% end %>
+      </p>
+      <div>
+        <p class="img"><%= attachment_image_tag posts,:image, size:"500x315" %></p>
+      </div>
+
+      <% if posts.youtube_url.present? %>
+        <div class="youtube">
+          <iframe width="500" height="315" src="https://www.youtube.com/embed/<%= posts.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      <% end %>
+  </div>

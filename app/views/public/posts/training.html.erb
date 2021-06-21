@@ -13,6 +13,16 @@
         </ul>
         </div>
       </div>
-     <%= render 'public/posts/index', posts: @posts %>
+      <div class="post-index">
+        <% @posts.each do |posts| %>
+          <div class="l-wrapper">
+            <div class="card">
+              <%= render partial: "public/posts/post_header", locals:{posts: posts} %>
+              <%= render partial: "public/posts/post_main", locals:{posts: posts} %>
+              <%= render partial: "public/posts/post_footer", locals:{posts: posts} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>

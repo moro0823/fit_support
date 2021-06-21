@@ -1,0 +1,7 @@
+  <div class="card-link">
+    <% if admin_user_signed_in? %>
+      <%= link_to posts.genre.name, admin_genre_path(posts.genre) %>
+    <% else %>
+      <%= link_to posts.genre.name, genre_public_admin_posts_show_path(posts.genre) %>
+    <% end %>
+  </div>

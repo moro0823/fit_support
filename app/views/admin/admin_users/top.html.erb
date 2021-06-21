@@ -1,0 +1,68 @@
+<div class="main">
+  <h1 class="main-title-center">TOP-PAGE</h1>
+    <div class="admin-contents">
+      <div class="admin-contents-line">
+        <!--管理者の投稿関係-->
+        <div class="box-blue">
+          <div class="btn-circle-border-double-make-info">
+            <%= link_to new_admin_post_path do %>
+              <i class="fas fa-info-circle" style="color: #4ec4d3;"></i>
+            <% end %>
+          </div>
+          <p class="admin-top-title mt-3 mb-2">情報作成</p>
+          <p class="mypage-btn-discription mt-4">営業情報や代行案内などの情報作成</p>
+          <p class="mypage-btn-discription">YouTubeからの動画も投稿可能です！</p>
+        </div>
+        <div class="box-blue">
+          <div class="btn-circle-border-double-make-genre">
+            <%= link_to admin_genres_path do %>
+              <i class="fab fa-glide-g" style="color: #4ec4d3;"></i>
+            <% end %>
+          </div>
+          <p class="admin-top-title mt-3 mb-2">ジャンルの追加</p>
+          <p class="mypage-btn-discription mt-4">投稿につけるジャンルを追加する</p>
+        </div>
+        <div class="box-blue">
+          <div class="btn-circle-border-double-favorite">
+            <%= link_to admin_posts_path do %>
+              <i class="far fa-list-alt" style="color: #4ec4d3;"></i>
+            <% end %>
+          </div>
+          <p class="admin-top-title mt-3 mb-2">作成した情報一覧</p>
+          <p class="mypage-btn-discription mt-4">作成した情報の一覧や詳細を確認できます</p>
+          <p class="mypage-btn-discription">情報の非公開設定もこちらから</p>
+        </div>
+      </div>
+
+      <div class="admin-contents-line">
+        <!--ユーザーの投稿-->
+        <div class="box-green">
+          <div class="btn-circle-border-double-green">
+            <%= link_to admin_customer_post_path do %>
+              <i class="fas fa-file-signature" style="color: #33FF33;"></i>
+            <% end %>
+          </div>
+          <p class="admin-top-title mt-2 mb-2">ユーザーの投稿を見てみる</p>
+          <p class="mypage-btn-discription mt-4">このサイトのユーザーの投稿を見ることができます</p>
+        </div>
+        <div class="box-red">
+          <div class="btn-circle-border-double-red">
+            <%= link_to admin_customers_path do %>
+              <i class="fas fa-user-friends" style="color: red;"></i>
+            <% end %>
+          </div>
+          <p class="admin-top-title mt-2 mb-2">パーソナル担当ユーザーの登録</p>
+          <p class="mypage-btn-discription mt-4">こちらの施設をMY施設に登録したユーザーからのみ登録可能です</p>
+        </div>
+        <div class="box-red">
+          <div class="btn-circle-border-double-red">
+            <%= link_to new_admin_staff_path do %>
+              <i class="fas fa-user-circle" style="color: red;"></i>
+            <% end %>
+          </div>
+          <p class="admin-top-title mt-2 mb-2">スタッフ登録・一覧</p>
+          <p class="mypage-btn-discription mt-4">担当のお客様のカルテの閲覧・編集もこちらから</p>
+        </div>
+      </div>
+    </div>
+  </div>

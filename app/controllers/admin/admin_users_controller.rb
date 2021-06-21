@@ -1,7 +1,10 @@
 class Admin::AdminUsersController < ApplicationController
+  
+  def top
+  end
+  
   def show
     @admin_user = AdminUser.find(params[:id])
-
   end
 
   def index

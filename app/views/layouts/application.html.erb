@@ -29,50 +29,11 @@
 
      <!--管理者ログイン時ヘッダー-->
         <% elsif admin_user_signed_in? %>
-              <ul class="admin-top">
-                <div class="btn-group mr-5 ml-3 mt-3">
-                  <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span style="font-size: 20px; color: white;" >施設関連</span>
-                  </button>
-                <ul class="dropdown-menu">
-                  <li class="ml-2" style ="font-size: 15px"><%= link_to "施設情報", admin_admin_user_path(current_admin_user) %></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li class="ml-2" style ="font-size: 15px"><%= link_to "施設情報編集", edit_admin_admin_user_path(current_admin_user) %></li>
-                </ul>
-                </div>
-
-                <div class="btn-group mr-5 ml-3 mt-3">
-                  <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <span style="font-size: 20px; color: white;" >情報作成関連</span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li class="ml-2" style ="font-size: 15px"><%= link_to "管理者用情報作成", new_admin_post_path %></li>
-                  <li class="ml-2 mt-2" style ="font-size: 15px"><%= link_to "情報ジャンルを追加する", admin_genres_path %></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li class="ml-2" style ="font-size: 15px"><%= link_to "作成した情報一覧", admin_posts_path %></li>
-                </ul>
-                </div>
-                <div class="btn-group mr-5 ml-3 mt-3">
-                  <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <span style="font-size: 20px; color: white;" >パーソナル関連</span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li class="ml-2" style ="font-size: 15px"><%= link_to "スタッフ一覧・登録", new_admin_staff_path %></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li class="ml-2" style ="font-size: 15px"><%= link_to "ユーザーの登録", admin_customers_path %></li>
-                </ul>
-                </div>
-                <div class="btn-group mr-5 ml-3 mt-3">
-                  <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <span style="font-size: 20px; color: white;" >Login Now : <%= current_admin_user.name %></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li class="ml-2" style ="font-size: 15px"><%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete %></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li class="ml-2" style ="font-size: 15px"><%= link_to "ユーザーの投稿を見る", admin_customer_post_path %></li>
-                </ul>
-                </div>
-              </ul>
+          <ul class="header">
+            <li class="header-item"><%= link_to image_tag('img/logo3.jpg') %></li>
+            <li class="header-item"><%= link_to "TOP-PAGEに戻る", admin_top_path %></li>
+            <li class="header-item"><%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete %></li>
+          </ul>
         <!--ログアウト時のヘッダー-->
         <% else %>
         <nav>
