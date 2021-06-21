@@ -7,43 +7,22 @@
         <span class="ml-2" style="font-size:30px;">・<%= my_fitness_places.admin_user.name %><span>
       <% end %>
     </div>
-
     <!--登録施設詳細一覧-->
-    <div class="box mt-5">
+    <div class="admin-post-index mt-5">
       <% @my_fitness_places.each do |my_fitness_places| %>
         <% my_fitness_places.admin_user.admin_posts.where(is_show: true).order("id DESC").each do |posts| %>
-        <div class="d-flex justify-content-center">
-          <div class="card border-warning mt-3 mb-5" style="width: 80%;">
-            <div class="card-header bg-transparent border-warning">
-              <h3 class="text-danger">
-                <%= my_fitness_places.admin_user.name %>
-              </h3>
-            </div>
-            <div class="card-body">
-              <h4 class="card-text-title"><%=posts.title %></h4>
-              <p class="card-text"><%= simple_format posts.body %></p>
-              <div>
-                <p class="img"><%= attachment_image_tag posts,:image, size:"500x315" %></p>
+          <div class="l-wrapper mb-3">
+            <div class="card">
+              <div class="card-header bg-transparent">
+                <h3 class="text-danger">
+                  <%= my_fitness_places.admin_user.name %>
+                </h3>
               </div>
-              <% if posts.youtube_url.present? %>
-              <div class="youtube">
-                <iframe width="500" height="315" src="https://www.youtube.com/embed/<%= posts.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-              <% end %>
-            </div>
-            <div class="card-footer bg-transparent warning">
-              <div>
-                <span class="mr-3">
-                  更新日: <%= posts.updated_at.strftime('%Y/%m/%d %H:%M') %>
-                  <span class="ml-3"><%= link_to posts.admin_post_comments.count + posts.from_admin_comments.count, admin_post_path(posts.id), class:"far fa-comment-dots"%></span>
-                  <!--ユーザー側の投稿数と管理者側の投稿数の合計のコメント数で表示-->
-                </span>
-              </div>
+              <%= render partial: "admin/admin_posts/admin_posts_main", locals:{posts: posts} %>
+              <%= render partial: "admin/admin_posts/admin_posts_footer", locals:{posts: posts} %>
             </div>
           </div>
-        </div>
+          <% end %>
         <% end %>
-      <% end %>
     </div>
-    
   </div>

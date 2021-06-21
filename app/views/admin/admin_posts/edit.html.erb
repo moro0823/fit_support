@@ -26,10 +26,12 @@
     <div class="field mt-3">
       <div class="label">
         <%= f.label :"画像(任意)" %><br />
-          </div>
-          <%= attachment_image_tag @post, :image, :fill, 60, 60, format: 'jpeg' %>
-          <%= f.attachment_field :image ,placeholder: "画像" %>
-        </div>
+      </div>
+      <div class="current-admin-post-image mb-3">
+        <%= attachment_image_tag @post, :image, format: 'jpeg' %>
+      </div>
+        <%= f.attachment_field :image ,placeholder: "画像" %>
+    </div>
 
     <div class="field mt-3">
       <div class="label">

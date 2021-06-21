@@ -2,6 +2,7 @@
     <div class="box mt-5">
       <% if customer_signed_in? %>
         <h2 class="title mt-5 mb-3">登録可能な施設一覧</h2>
+        <p class="mt-2 mb-3">登録したスポーツクラブからの情報を受け取ることができます！</p>
       <% else %>
         <h2 class="title mt-5 mb-3">施設一覧</h2>
       <% end %>
@@ -16,22 +17,19 @@
             <p class="card-text mt-3">電話番号: <%= admin_user.phone_number %></p>
             <p class="card-text mt-3">郵便番号: <%= admin_user.postal_code %></p>
             <p class="card-text mt-3">住所: <%= admin_user.adrress %></p>
-            <% if admin_user.homepage_url.nil? %>
-            <% else %>
+            <% unless admin_user.homepage_url.nil? %>
               <p class="card-text mt-3">ホームページ: <%= text_url_to_link(admin_user.homepage_url).html_safe %></p>
             <% end %>
             <% if customer_signed_in? %>
-            <% if admin_user.record_by?(current_customer) %>
-            <p>
-              <%= link_to "登録を解除する", admin_admin_user_my_fitness_places_path(admin_user_id: admin_user.id), method: :delete, class: "btn btn-danger" %>
-            </p>
-            <% else %>
-            <p>
-              <%= link_to "登録する", admin_admin_user_my_fitness_places_path(admin_user_id: admin_user.id), method: :post, class: "btn btn-primary" %>
-            </p>
-            <% end %>
-            <p class="card-text mt-3 mb-3">登録するとログイン後のスポーツクラブからの情報一覧が</br>
-                                      この施設が投稿した情報のみ表示されるようになります</p>
+              <% if admin_user.record_by?(current_customer) %>
+                <p>
+                  <%= link_to "登録を解除する", admin_admin_user_my_fitness_places_path(admin_user_id: admin_user.id), method: :delete, class: "btn btn-danger" %>
+                </p>
+              <% else %>
+                <p>
+                  <%= link_to "登録する", admin_admin_user_my_fitness_places_path(admin_user_id: admin_user.id), method: :post, class: "btn btn-primary" %>
+                </p>
+              <% end %>
             <% end %>
           </div>
           </div>

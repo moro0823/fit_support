@@ -1,8 +1,9 @@
 class Admin::AdminUsersController < ApplicationController
-  
+
   def top
+    @admin_user = current_admin_user
   end
-  
+
   def show
     @admin_user = AdminUser.find(params[:id])
   end
@@ -18,7 +19,7 @@ class Admin::AdminUsersController < ApplicationController
   def update
     @admin_user = current_admin_user
     if @admin_user.update(admin_user_params)
-      redirect_to admin_admin_user_path(@admin_user), notice: 'ユーザー情報を更新しました'
+      redirect_to admin_top_path, notice: 'ユーザー情報を更新しました'
     else
       flash.now[:alert] = 'ユーザー情報の更新に失敗しました'
       render :edit
