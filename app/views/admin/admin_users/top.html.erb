@@ -38,12 +38,12 @@
         <!--ユーザーの投稿-->
         <div class="box-green">
           <div class="btn-circle-border-double-green">
-            <%= link_to admin_customer_post_path do %>
-              <i class="fas fa-file-signature" style="color: #33FF33;"></i>
+            <%= link_to edit_admin_admin_user_path(current_admin_user) do %>
+              <i class="fas fa-home" style="color: #33FF33;"></i>
             <% end %>
           </div>
-          <p class="admin-top-title mt-2 mb-2">ユーザーの投稿を見てみる</p>
-          <p class="mypage-btn-discription mt-4">このサイトのユーザーの投稿を見ることができます</p>
+          <p class="admin-top-title mt-2 mb-2">施設情報の編集</p>
+          <p class="mypage-btn-discription mt-4">ホームページのリンクも掲載可能です</p>
         </div>
         <div class="box-red">
           <div class="btn-circle-border-double-red">
@@ -65,4 +65,6 @@
         </div>
       </div>
     </div>
+    <h1 class="main-title-center">THIS FITNESS-CLUB INFO</h1>
+    <%= render partial: "admin/admin_users/admin_info", locals:{admin_user: @admin_user} %>
   </div>

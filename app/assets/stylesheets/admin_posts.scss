@@ -4,6 +4,7 @@
 
 
 .admin-post-index .l-wrapper {
+  text-align: center;
   margin: 1rem auto;
   width: 70%;
 }
@@ -64,9 +65,6 @@
   color: white;
   margin: 20px 10px;
 }
-.admin-post-index .card-user-profile a{
-  font-size: 25px;
-}
 
 .admin-post-index .post-genre{
   margin-top: 20px;
@@ -76,6 +74,10 @@
   margin-top: 10px;
   font-size: 30px;
   color: #4f96f6;
+}
+
+.admin-post-show .attachment.admin_post.image{
+  width: 80%;
 }
 
 @media screen and (max-width: 765px){

@@ -6,8 +6,10 @@
           <div class="label">
             <%= f.label :"施設紹介画像" %><br />
           </div>
-          <%= attachment_image_tag @admin_user, :image, :fill,100,100 %>
-          <%= f.attachment_field :image, placeholder: "施設紹介画像" %>
+          <div class="current_admin_image mb-3">
+            <%= attachment_image_tag @admin_user, :image %>
+          </div>
+            <%= f.attachment_field :image, placeholder: "施設紹介画像" %>
         </div>
 
         <div class="field mt-3">

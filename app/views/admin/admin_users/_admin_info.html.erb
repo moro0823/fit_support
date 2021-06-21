@@ -1,0 +1,19 @@
+ <div class ="container">
+    <div class="box">
+        <div class="d-flex justify-content-center">
+          <div class="card mt-2" style="width: 40rem;">
+            <%= attachment_image_tag admin_user, :image, size: "100%x400", fallback: "no_image.png",size: "100%x400"  %>
+          <div class="card-body">
+          <h5 class="card-title" style="font-size: 50px;"><%= admin_user.name %></h5>
+            <p class="card-text mt-3"><%= admin_user.body %></p>
+            <p class="card-text mt-3">電話番号: <%= admin_user.phone_number %></p>
+            <p class="card-text mt-3">郵便番号: <%= admin_user.postal_code %></p>
+            <p class="card-text mt-3">住所: <%= admin_user.adrress %></p>
+            <% unless @admin_user.homepage_url.nil? %>
+              <p class="card-text mt-3">ホームページ: <%= text_url_to_link(admin_user.homepage_url).html_safe %> </p>
+            <% end %>
+          </div>
+          </div>
+        </div>
+    </div>
+  </div>
