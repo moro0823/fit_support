@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource_or_scope)
     # resource_or_scope.is_a? => deviseのモデルが複数ある場合に使用
     if resource_or_scope.is_a?(AdminUser)
-      new_admin_staff_path
+      admin_top_path
     else
       customer_path(current_customer)
     end

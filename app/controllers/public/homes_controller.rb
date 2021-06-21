@@ -9,7 +9,7 @@ class Public::HomesController < ApplicationController
   def admin_posts
     @my_fitness_places = current_customer.my_fitness_places
   end
-  
+
   #トップページを登録施設一覧に変更した為、現在は使用していない
   def admin_posts_show
     @genre = Genre.find(params[:genre_id])
@@ -39,7 +39,7 @@ class Public::HomesController < ApplicationController
       admin.password = "admintest"
     end
     sign_in admin
-    redirect_to new_admin_staff_path, notice: '「Fit Support」管理者としてログインしました'
+    redirect_to admin_top_path, notice: '「Fit Support」管理者としてログインしました'
   end
 
   def ather_guest_admin_sign_in
@@ -47,6 +47,6 @@ class Public::HomesController < ApplicationController
       admin.password = "admintest2"
     end
     sign_in admin
-    redirect_to new_admin_staff_path, notice: '「WorkOuter」 管理者としてログインしました'
+    redirect_to admin_top_path, notice: '「WorkOuter」 管理者としてログインしました'
   end
 end

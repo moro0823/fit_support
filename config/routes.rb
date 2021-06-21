@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get "top" => "admin_users#top"
     resources :customers, only: [:index, :show]
     resources :genres, only: [:index, :show, :edit, :create, :update, :destroy]
     get 'customer/post' => 'customers#post'

@@ -1,12 +1,26 @@
   <div class ="container">
     <div class="box mt-3">
-      <h2 class="admin-title mt-5">情報一覧</h2>
+      <h2 class="admin-title mt-5">作成した情報一覧</h2>
       <div class="link-genre mt-3">
         <% @genres.each do |genre| %>
           <%= link_to genre.name,admin_genre_path(genre), class:"btn btn-outline-primary mr-3 " %>
         <% end %>
       </div>
-     <%= render "admin/admin_posts/index", posts: @posts %>
+     <div class="admin-post-index">
+        <% @posts.each do |posts| %>
+          <div class="l-wrapper">
+            <div class="card">
+              <%= render partial: "admin/admin_posts/admin_posts_header", locals:{posts: posts} %>
+              <%= render partial: "admin/admin_posts/admin_posts_main", locals:{posts: posts} %>
+              <%= render partial: "admin/admin_posts/admin_posts_footer", locals:{posts: posts} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="page mb-5">
+          <%= paginate @posts %>
+        </div>
+      </div>
     </div>
-    <div class="down-more"></div>
   </div>

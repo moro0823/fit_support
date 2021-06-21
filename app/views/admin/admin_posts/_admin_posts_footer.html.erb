@@ -1,0 +1,8 @@
+<div class="card-footer bg-transparent warning">
+  <div>
+    <span class="mr-3">
+      投稿日: <%= posts.created_at.strftime('%Y/%m/%d %H:%M') %>
+      <span class="ml-3"><%= link_to posts.admin_post_comments.count + posts.from_admin_comments.count, admin_post_path(posts.id), class:"far fa-comment-dots"%></span>
+    </span>
+ </div>
+</div>

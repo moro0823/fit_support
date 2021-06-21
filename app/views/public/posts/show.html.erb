@@ -6,7 +6,7 @@
             <h5 class="post-genre-link"><%= link_to @post.status,posts_training_path %></h5>
           <% elsif @post.status == "食事" %>
             <h5 class="post-gere-link"><%= link_to @post.status,posts_eat_path %></h5>
-          <% else @post.status == "知識" %>
+          <% else @post.status == "情報の" %>
             <h5 class="post-genre-link"><%= link_to @post.status,posts_info_path %></h5>
           <% end %>
         </h4>
