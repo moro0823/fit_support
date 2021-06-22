@@ -14,7 +14,7 @@
                   <h5 class="card-title"><%= link_to posts.status,posts_info_path ,class:"text-primary"%></h5>
                 <% end %>
                   <h4 class="card-text-title"><%= posts.title %></h4>
-                  <p class="card-text"><%= simple_format posts.body %></p>
+                  <p class="card-text"><%= simple_format(h(posts.body)) %></p>
                   <div>
                     <p>
                     <% if posts.post_images.present? %>
