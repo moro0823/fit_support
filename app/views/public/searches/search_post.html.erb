@@ -9,8 +9,17 @@
     <div class="box mt-3">
       <h2 class="title mt-5 mb-4">「<%= params[:search] %>」の検索結果</h2>
       <div class="mb-2"><%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-primary" %></div>
-      <%= render 'public/posts/index', posts: @posts %>
+      <div class="post-index">
+        <% @posts.each do |posts| %>
+          <div class="l-wrapper">
+            <div class="card">
+              <%= render partial: "public/posts/post_header", locals:{posts: posts} %>
+              <%= render partial: "public/posts/post_main", locals:{posts: posts} %>
+              <%= render partial: "public/posts/post_footer", locals:{posts: posts} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class ="down-more"></div>
   <% end %>
 </div>

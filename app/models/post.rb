@@ -13,6 +13,7 @@ class Post < ApplicationRecord
   has_many :post_images, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image
 
+  #ランキング機能 TOP3を抽出
   def self.posts_training_top3
       Post.where(status: "トレーニングメニュー").joins(:favorites).group("favorites.post_id").order("count(favorites.post_id) desc").limit(3)
       #Post.joins(:favorite) => いいねのついた投稿を取得
@@ -27,4 +28,7 @@ class Post < ApplicationRecord
   def self.posts_info_top3
     Post.where(status: "情報の共有").joins(:favorites).group("favorites.post_id").order("count(favorites.post_id) desc").limit(3)
   end
+
+
+
 end
