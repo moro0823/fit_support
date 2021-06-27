@@ -152,3 +152,46 @@
     padding: 0;
 }
 
+
+
+@media screen and (max-width: 991px){
+  .main-area{
+    display: block;
+  }
+
+  .discription{
+    width: 95%;
+    padding-bottom: 20px;
+  }
+
+  .about-img-area{
+    width: 100%;
+  }
+
+ .about-img-logo img{
+   height: 90px;
+ }
+
+ .user-btn-flat-double-border{
+   margin-bottom: 30px;
+   margin-top: 30px;
+ }
+
+ .user-about{
+   padding-top: 10px;
+ }
+
+ .user-about .main-area{
+   margin-top: 20px;
+ }
+}
+
+
+
+@media screen and (max-width: 500px){
+  .about-img-logo img{
+    width: 50%;
+    height: 50px;
+    margin-top: 30px;
+  }
+}

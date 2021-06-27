@@ -3,7 +3,7 @@
     <% if posts.post_images.present? %>
         <div class="slider">
           <% posts.post_images.each do |image| %>
-            <%= attachment_image_tag image, :image, :fill, 500, 500, format: "jpeg" %>
+            <%= attachment_image_tag image, :image, format: "jpeg" %>
           <% end %>
         </div>
     <% end %>
