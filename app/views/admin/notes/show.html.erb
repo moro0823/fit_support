@@ -9,12 +9,12 @@
         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">食事</a>
         <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">コメント</a>
       </div>
-      <div class="link mt-5"><%= link_to "トレーニングシートに戻る", admin_karute_path(@note.karute), class:"btn btn-success" %></div>
+      <div class="link mt-5"><%= link_to "トレーニングシートに戻る", admin_karute_path(@note.karute), class:"btn btn-success btn-sm" %></div>
     </div>
     <div class="col-9">
       <div class="tab-content" id="v-pills-tabContent" style="background-color: white; height: 100%; font-size: 25px;">
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-          <%= simple_format @note.menu %>
+          <%= simple_format h(@note.menu) %>
         </div>
         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
           <%= simple_format @note.eat %>
@@ -30,5 +30,4 @@
       <%= link_to "削除", admin_karute_note_path(@note), method: :delete,
                           "data-confirm" => "本当に削除しますか？", class:"btn btn-danger ml-3" %>
     </div>
-  <div class="down-more-all"></div>
 </div>

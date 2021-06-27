@@ -178,21 +178,6 @@ html, body{
    font-weight: bold;
 }
 
-.down-small{
-    padding-bottom: 200px
-}
-.down{
-    padding-bottom: 300px
-}
-
-.down-more{
-    padding-bottom: 400px
-}
-
-.down-more-all{
-    padding-bottom: 700px
-}
-
 .admin-title-down{
    background-color: #FFCC00;
    display: inline-block;
@@ -334,26 +319,17 @@ footer {
    height: 120px;
 }
 
-footer{
-  height: 50px;
-  padding-top: 10px;
 }
 
-}
+@media screen and (max-width: 568px){
+  .header-item img{
+    height: 70px;
+  }
 
-@media screen and (max-width: 500px){
-// ヘッダーとフッターの帯の高さ
-.admin-top {
-  height: 180px;
- }
-
-.customer-top{
-  height: 180px;
- }
-
-.before-login-top{
-   height: 200px;
-}
+  .header-item,{
+    display: block;
+    margin: 20px 20px;
+  }
 }
 
 
