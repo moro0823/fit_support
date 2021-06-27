@@ -11,6 +11,7 @@ class Public::SearchesController < ApplicationController
 
   def search_post
     @posts = Post.where('title LIKE ? OR body LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").page(params[:page]).reverse_order
+    
   end
 
   def search_mypage_post

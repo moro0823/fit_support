@@ -56,13 +56,12 @@ class Customer < ApplicationRecord
     karutes.where(staff_id: staff.id).exists?
   end
 
-
   scope :search, -> (search_params) do
     # search_paramsが空の場合以降の処理を行わない。
     return if search_params.blank?
 
     # 下記で定義した各条件式にフォームで入力された値を入れ検索を実行する
-      sex_like(search_params[:sex]).  
+      sex_like(search_params[:sex]).
       age_from(search_params[:age_from]).
       age_to(search_params[:age_to]).
       height_from(search_params[:height_from]).
@@ -72,7 +71,7 @@ class Customer < ApplicationRecord
       fat_percentage_from(search_params[:fat_percentage_from]).
       fat_percentage_to(search_params[:fat_percentage_to])
   end
-  
+
   # 引数に入る値はフォームで入力された値が入る
   # 性別が存在する場合、sexカラムから引数の値があるか検索する
   scope :sex_like, -> (sex) { where(sex: sex) if sex.present? }
@@ -102,4 +101,5 @@ class Customer < ApplicationRecord
   end
 
   scope :username, -> (username) { where('username LIKE ?', "%#{username}%") if username.present? }
+
 end
